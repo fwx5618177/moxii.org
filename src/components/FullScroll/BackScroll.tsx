@@ -12,6 +12,9 @@ const fullPageDistance = 10;
 const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
   const fullPageRef = useRef<HTMLDivElement>(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState<string>(
+    "https://via.placeholder.com/1920x1080"
+  );
 
   const handleScrollUp = () => {
     scroll.scrollToTop();
@@ -38,13 +41,30 @@ const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
 
   return (
     <div className={styles.container}>
-      <div ref={fullPageRef} className={styles["bg-image"]}>
+      <div
+        ref={fullPageRef}
+        className={styles["bg-image"]}
+        style={{
+          backgroundImage: backgroundImage
+            ? `url(${backgroundImage})`
+            : undefined,
+        }}
+      >
         <Link to="content-section" smooth={true} duration={500}>
           <div className={styles.arrow}>↓</div>
         </Link>
       </div>
       <Element name="content-section" className={styles["content-section"]}>
-        <div className={styles["bg-image-small"]}>{header}</div>
+        <div
+          className={styles["bg-image-small"]}
+          style={{
+            backgroundImage: backgroundImage
+              ? `url(${backgroundImage})`
+              : undefined,
+          }}
+        >
+          {header}
+        </div>
         {children}
         {showArrowUp && (
           <div className={styles.arrowUp} onClick={handleScrollUp}>

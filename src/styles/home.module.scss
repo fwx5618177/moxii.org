@@ -5,7 +5,10 @@
 
 .bg-image {
     position: relative;
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+    // background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -54,7 +57,10 @@
 }
 
 .bg-image-small {
-    background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
+    // background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
     height: 150px;
 }

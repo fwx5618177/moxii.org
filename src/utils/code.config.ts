@@ -1,0 +1,21 @@
+export const enum CODE_CONFIG {
+  SUCCESS = 200,
+  ERROR = 999,
+  TIMEOUT = 408,
+  NOT_FOUND = 404,
+  SERVER_ERROR = 500,
+  BAD_GATEWAY = 502,
+  SERVICE_UNAVAILABLE = 503,
+  GATEWAY_TIMEOUT = 504,
+}
+
+export const enum CODE_MESSAGE_CONFIG {
+  SUCCESS = "成功",
+  ERROR = "错误",
+  TIMEOUT = "请求超时",
+  NOT_FOUND = "未找到",
+  SERVER_ERROR = "服务器错误",
+  BAD_GATEWAY = "错误的网关",
+  SERVICE_UNAVAILABLE = "服务不可用",
+  GATEWAY_TIMEOUT = "网关超时",
+}
