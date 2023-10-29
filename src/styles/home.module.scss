@@ -4,6 +4,7 @@
 }
 
 .bg-image {
+    position: relative;
     background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -19,7 +20,11 @@
 .arrow {
     font-size: 3rem;
     animation: bounce 1s infinite;
-    color: aqua;
+
+    position: absolute;
+    bottom: 10px; // or any desired distance from the bottom
+    left: 50%;
+    transform: translateX(-50%); // center the arrow horizontally
 }
 
 @keyframes bounce {

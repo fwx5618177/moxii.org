@@ -1,12 +1,16 @@
-import React, { useState, useEffect, FC, ReactNode } from "react";
+import React, { useState, useEffect, FC, ReactNode, useRef } from "react";
 import { Link, Element, animateScroll as scroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
 
 interface BackScrollProps {
   children?: ReactNode;
+  header?: ReactNode;
 }
 
-const BackScroll: FC<BackScrollProps> = ({ children }) => {
+const fullPageDistance = 10;
+
+const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
+  const fullPageRef = useRef<HTMLDivElement>(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
 
   const handleScrollUp = () => {
@@ -16,7 +20,9 @@ const BackScroll: FC<BackScrollProps> = ({ children }) => {
   useEffect(() => {
     const handleScroll = () => {
       const position = window.pageYOffset;
-      if (position > window.innerHeight) {
+      const fullPageHeight = fullPageRef.current!.clientHeight;
+
+      if (position >= fullPageHeight - fullPageDistance) {
         setShowArrowUp(true);
       } else {
         setShowArrowUp(false);
@@ -32,15 +38,13 @@ const BackScroll: FC<BackScrollProps> = ({ children }) => {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles["full-page"]} ${styles["bg-image"]}`}>
+      <div ref={fullPageRef} className={styles["bg-image"]}>
         <Link to="content-section" smooth={true} duration={500}>
           <div className={styles.arrow}>↓</div>
         </Link>
       </div>
       <Element name="content-section" className={styles["content-section"]}>
-        <div className={`${styles["top-header"]} ${styles["bg-image-small"]}`}>
-          {/* This is where your small header decoration is */}
-        </div>
+        <div className={styles["bg-image-small"]}>{header}</div>
         {children}
         {showArrowUp && (
           <div className={styles.arrowUp} onClick={handleScrollUp}>
