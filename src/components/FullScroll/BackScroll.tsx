@@ -1,10 +1,16 @@
 import React, { useState, useEffect, FC, ReactNode, useRef } from "react";
 import { Link, Element, animateScroll as scroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
+import { Api } from "./api";
 
 interface BackScrollProps {
   children?: ReactNode;
   header?: ReactNode;
+}
+
+interface ImageResponse {
+  id: string;
+  link: string;
 }
 
 const fullPageDistance = 10;
@@ -16,24 +22,35 @@ const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
     "https://via.placeholder.com/1920x1080"
   );
 
+  const fetchImage = async () => {
+    try {
+      const imageLink = await Api.fetchImage<ImageResponse, any>();
+
+      setBackgroundImage(imageLink?.link);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleScrollUp = () => {
     scroll.scrollToTop();
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-      const fullPageHeight = fullPageRef.current!.clientHeight;
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    const fullPageHeight = fullPageRef.current!.clientHeight;
 
-      if (position >= fullPageHeight - fullPageDistance) {
-        setShowArrowUp(true);
-      } else {
-        setShowArrowUp(false);
-      }
-    };
+    if (position >= fullPageHeight - fullPageDistance) {
+      setShowArrowUp(true);
+    } else {
+      setShowArrowUp(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchImage();
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };

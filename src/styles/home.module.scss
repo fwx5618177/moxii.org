@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    // cursor: pointer;
 }
 
 .arrow {
@@ -28,6 +28,9 @@
     bottom: 10px; // or any desired distance from the bottom
     left: 50%;
     transform: translateX(-50%); // center the arrow horizontally
+
+    border: 1px solid #f4f4f4;
+    border-radius: 12px;
 }
 
 @keyframes bounce {
@@ -60,7 +63,6 @@
     // background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
     background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: fixed;
     background-size: cover;
     height: 150px;
 }

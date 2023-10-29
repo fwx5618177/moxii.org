@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { message } from "antd";
 import { CODE_CONFIG, CODE_MESSAGE_CONFIG } from "./code.config";
+import { config } from "@/config/dev";
 
 interface RequestConfig extends AxiosRequestConfig {
   data?: any;
@@ -8,6 +9,7 @@ interface RequestConfig extends AxiosRequestConfig {
 
 const service = axios.create({
   timeout: 10000, // 设置请求超时时间10秒
+  baseURL: config.baseURL, // 设置base url
 });
 
 // 请求拦截器
