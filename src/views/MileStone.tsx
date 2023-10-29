@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import LoadAnime from "@/components/LoadAnime/LoadAnime";
 import MileStone from "@/components/MileStone";
 
-const HomePage = () => {
+const MileStonePage = () => {
   return (
     <>
       <MileStone />
@@ -11,4 +11,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default MileStonePage;
