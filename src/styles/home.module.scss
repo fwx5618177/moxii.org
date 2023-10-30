@@ -5,7 +5,6 @@
 
 .bg-image {
     position: relative;
-    // background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -17,20 +16,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // cursor: pointer;
 }
 
 .arrow {
     font-size: 3rem;
     animation: bounce 1s infinite;
-
     position: absolute;
-    bottom: 10px; // or any desired distance from the bottom
+    bottom: 30px;
     left: 50%;
-    transform: translateX(-50%); // center the arrow horizontally
 
-    border: 1px solid #f4f4f4;
-    border-radius: 12px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    /* 左侧空白 */
+    border-right: 20px solid transparent;
+    /* 右侧空白 */
+    border-top: 30px solid #ff5733;
+    /* 底部三角形 */
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* 添加过渡效果 */
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    /* 阴影效果 */
+
+    &:hover {
+        transform: translateY(-2px);
+        /* 鼠标悬停时微微上移 */
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        /* 添加阴影效果 */
+        filter: contrast(0.8);
+    }
 }
 
 @keyframes bounce {
@@ -44,10 +60,14 @@
     }
 
     40% {
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
 
     60% {
+        transform: translateY(-10px);
+    }
+
+    80% {
         transform: translateY(-5px);
     }
 }
@@ -60,7 +80,6 @@
 }
 
 .bg-image-small {
-    // background: url('https://via.placeholder.com/1920x1080') no-repeat center center;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

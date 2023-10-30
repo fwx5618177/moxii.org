@@ -1,36 +1,26 @@
+"use client";
+
 import React, { useState, useEffect, FC, ReactNode, useRef } from "react";
 import { Link, Element, animateScroll as scroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
 import { Api } from "./api";
-
-interface BackScrollProps {
-  children?: ReactNode;
-  header?: ReactNode;
-}
-
-interface ImageResponse {
-  id: string;
-  link: string;
-}
+import { BackScrollProps } from "BgImage";
 
 const fullPageDistance = 10;
 
-const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
+const BackScroll: FC<BackScrollProps> = ({
+  children,
+  header,
+  backgroundImage,
+}) => {
+  const { link } = backgroundImage;
   const fullPageRef = useRef<HTMLDivElement>(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState<string>(
-    "https://via.placeholder.com/1920x1080"
-  );
 
-  const fetchImage = async () => {
-    try {
-      const imageLink = await Api.fetchImage<ImageResponse, any>();
-
-      setBackgroundImage(imageLink?.link);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  console.log({
+    link,
+    backgroundImage,
+  });
 
   const handleScrollUp = () => {
     scroll.scrollToTop();
@@ -48,8 +38,6 @@ const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
   };
 
   useEffect(() => {
-    fetchImage();
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -62,22 +50,18 @@ const BackScroll: FC<BackScrollProps> = ({ children, header }) => {
         ref={fullPageRef}
         className={styles["bg-image"]}
         style={{
-          backgroundImage: backgroundImage
-            ? `url(${backgroundImage})`
-            : undefined,
+          backgroundImage: link ? `url(${link})` : undefined,
         }}
       >
         <Link to="content-section" smooth={true} duration={500}>
-          <div className={styles.arrow}>↓</div>
+          <div className={styles.arrow}></div>
         </Link>
       </div>
       <Element name="content-section" className={styles["content-section"]}>
         <div
           className={styles["bg-image-small"]}
           style={{
-            backgroundImage: backgroundImage
-              ? `url(${backgroundImage})`
-              : undefined,
+            backgroundImage: link ? `url(${link})` : undefined,
           }}
         >
           {header}
