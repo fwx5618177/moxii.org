@@ -3,9 +3,11 @@ import { ImageResponse } from "BgImage";
 
 const getData = async (): Promise<ImageResponse> => {
   const res = await fetch("http://127.0.0.1:3000/api/home", {
-    next: {
-      revalidate: 3600,
-    },
+    // -> SSG
+    // next: {
+    //   revalidate: 10, -> ISR
+    // },
+    // cache: "no-cache", // -> SSR
   });
 
   if (!res.ok) {

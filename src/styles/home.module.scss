@@ -88,8 +88,23 @@
 
 .arrowUp {
     position: fixed;
-    bottom: 20px;
+    bottom: 60px;
     right: 20px;
-    font-size: 3rem;
+    font-size: 1.3rem;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ff5733;
+    text-align: center;
+
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: bounce 1s infinite;
+
     cursor: pointer;
+
+    &:hover {
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.39);
+        filter: contrast(0.8);
+    }
 }

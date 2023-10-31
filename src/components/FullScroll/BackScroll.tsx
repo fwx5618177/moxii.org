@@ -17,11 +17,6 @@ const BackScroll: FC<BackScrollProps> = ({
   const fullPageRef = useRef<HTMLDivElement>(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
 
-  console.log({
-    link,
-    backgroundImage,
-  });
-
   const handleScrollUp = () => {
     scroll.scrollToTop();
   };
