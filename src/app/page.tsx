@@ -2,7 +2,11 @@ import HomePage from "@/views/Home";
 import { ImageResponse } from "BgImage";
 
 const getData = async (): Promise<ImageResponse> => {
-  const res = await fetch("http://127.0.0.1:3000/api/home");
+  const res = await fetch("http://127.0.0.1:3000/api/home", {
+    next: {
+      revalidate: 3600,
+    },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch");
