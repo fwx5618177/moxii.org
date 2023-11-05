@@ -1,0 +1,46 @@
+// InfoBox.module.scss
+$info-box-border-color: #ddd;
+$info-box-background: #fff;
+$info-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$info-box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+$transition-duration: 0.3s;
+
+.infoBox {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $info-box-background;
+    border: 2px solid $info-box-border-color;
+    border-radius: 12px;
+    box-shadow: $info-box-shadow;
+    transition: box-shadow $transition-duration, transform $transition-duration;
+
+    overflow: auto;
+
+    // 利用伪元素添加装饰效果
+    &:before {
+        content: "";
+        position: absolute;
+        top: -2px; // 正好在边框之外
+        right: -2px;
+        bottom: -2px;
+        left: -2px;
+        z-index: -1;
+        background: linear-gradient(45deg, #f06, #aef);
+        border-radius: 14px; // 比.infoBox的border-radius大一点，形成边框效果
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    &:hover {
+        box-shadow: $info-box-shadow-hover;
+
+        &:before {
+            opacity: 1; // 鼠标悬停时显示伪元素
+        }
+
+        // 提升阴影强度
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+}

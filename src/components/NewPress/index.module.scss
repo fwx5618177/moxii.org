@@ -1,0 +1,61 @@
+.articleList {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .title {
+        // 标题样式
+        font-size: 1em;
+        margin-bottom: 1em;
+        color: #4c4948;
+    }
+
+    .articles {
+        // 文章列表样式
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .articleItem {
+        display: flex;
+        justify-content: center;
+
+        height: 60px;
+        gap: 1em;
+        cursor: pointer;
+
+        .imageContainer {
+            width: 60px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // 保证图片比例不变
+            }
+        }
+
+        .articleContent {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .articleTitle {
+                font-size: 1em;
+
+                transition: color .4s ease-in-out;
+
+                &:hover {
+                    color: #49b1f5b3;
+                }
+            }
+
+            .articleDate {
+                font-size: 0.8em;
+                color: #666;
+            }
+        }
+    }
+}
