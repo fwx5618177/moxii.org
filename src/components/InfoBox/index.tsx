@@ -5,15 +5,20 @@ interface InfoBoxProps {
   width?: string | number;
   height?: string | number;
   children?: React.ReactNode;
+  scrollable?: boolean;
 }
 
 const InfoBox: React.FC<InfoBoxProps> = ({
   width = 300,
   height = 350,
+  scrollable = false,
   children,
 }) => {
   return (
-    <div className={styles.infoBox} style={{ width, height }}>
+    <div
+      className={styles.infoBox}
+      style={{ width, height, overflow: scrollable ? "auto" : "hidden" }}
+    >
       {children}
     </div>
   );

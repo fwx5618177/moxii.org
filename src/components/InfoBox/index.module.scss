@@ -6,7 +6,7 @@ $info-box-shadow-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
 $transition-duration: 0.3s;
 
 .infoBox {
-    padding: 20px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,8 +15,6 @@ $transition-duration: 0.3s;
     border-radius: 12px;
     box-shadow: $info-box-shadow;
     transition: box-shadow $transition-duration, transform $transition-duration;
-
-    overflow: auto;
 
     // 利用伪元素添加装饰效果
     &:before {

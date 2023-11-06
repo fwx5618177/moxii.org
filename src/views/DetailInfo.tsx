@@ -6,6 +6,7 @@ import InfoBox from "@/components/InfoBox";
 import ProfileCard from "../components/ProfileCard";
 import NewPress from "@/components/NewPress";
 import { FaHistory } from "react-icons/fa";
+import ArticleDisplay from "@/components/ArticleDisplay";
 
 const items = Array.from({ length: 100 }, (_, index) => ({
   title: `Item ${index + 1}`,
@@ -68,7 +69,7 @@ const DetailInfo = ({ data = items }) => {
         <h2>Detail Info</h2>
         <div className={styles["info-block"]}>Some personal information...</div>
       </div>
-
+      {/* 
       <ProfileCard
         avatarUrl={""}
         name={"冯文轩"}
@@ -101,6 +102,14 @@ const DetailInfo = ({ data = items }) => {
           </div>
         }
         articles={recentArticles}
+      /> */}
+
+      <ArticleDisplay
+        imageUrl="https://picsum.photos/400/300"
+        title="探秘ElegantPaper的美学设计"
+        date="2022-11-27"
+        content="精美的排版设计和卓越的阅读体验。..."
+        position="left" // 或 "right"
       />
 
       <div className={styles["line"]}></div>

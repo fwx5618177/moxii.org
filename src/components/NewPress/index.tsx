@@ -19,7 +19,7 @@ interface NewPressProps {
 // 文章列表组件
 const NewPress: React.FC<NewPressProps> = ({ title, articles }) => {
   return (
-    <InfoBox>
+    <InfoBox scrollable>
       <div className={styles.articleList}>
         <h2 className={styles.title}>{title}</h2>
         <div className={styles.articles}>

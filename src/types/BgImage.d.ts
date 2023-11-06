@@ -10,5 +10,6 @@ declare module "BgImage" {
   export interface ImageResponse {
     id: string;
     link: string;
+    small: string;
   }
 }

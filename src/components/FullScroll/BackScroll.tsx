@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, FC, ReactNode, useRef } from "react";
+import React, { useState, useEffect, FC, useRef } from "react";
 import { Link, Element, animateScroll as scroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
-import { Api } from "./api";
 import { BackScrollProps } from "BgImage";
 
 const fullPageDistance = 10;
@@ -13,7 +12,7 @@ const BackScroll: FC<BackScrollProps> = ({
   header,
   backgroundImage,
 }) => {
-  const { link } = backgroundImage;
+  const { link, small } = backgroundImage;
   const fullPageRef = useRef<HTMLDivElement>(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
 
@@ -56,7 +55,7 @@ const BackScroll: FC<BackScrollProps> = ({
         <div
           className={styles["bg-image-small"]}
           style={{
-            backgroundImage: link ? `url(${link})` : undefined,
+            backgroundImage: small ? `url(${small})` : undefined,
           }}
         >
           {header}
