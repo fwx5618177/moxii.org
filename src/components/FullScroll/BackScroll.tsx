@@ -3,7 +3,7 @@
 import React, { useState, useEffect, FC, useRef } from "react";
 import { Link, Element, animateScroll as scroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
-import { BackScrollProps } from "BgImage";
+import { BackScrollProps } from "Components";
 
 const fullPageDistance = 10;
 

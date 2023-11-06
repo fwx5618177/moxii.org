@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import NonScroll from "@/components/FullScroll/NonScroll";
 import BackScroll from "@/components/FullScroll/BackScroll";
-import { ImageResponse } from "BgImage";
+import { ImageResponse } from "Components";
 import DetailInfo from "./DetailInfo";
 
 const HomePage: FC<{

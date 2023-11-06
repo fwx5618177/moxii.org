@@ -2,21 +2,15 @@ import React, { FC, ReactNode } from "react";
 import InfoBox from "@/components/InfoBox";
 import styles from "./index.module.scss";
 import Image from "next/image";
-
-interface ArticleDisplayProps {
-  imageUrl: string;
-  title: string;
-  date: string | ReactNode;
-  content: string;
-  position?: "left" | "right";
-}
+import MetaData from "./MetaData";
+import { ArticleDisplayProps } from "Components";
 
 const ArticleDisplay: FC<ArticleDisplayProps> = ({
   imageUrl,
   title,
-  date,
   content,
   position = "left",
+  meta,
 }) => {
   const imageSection = (
     <div className={styles.imageContainer}>
@@ -33,7 +27,7 @@ const ArticleDisplay: FC<ArticleDisplayProps> = ({
   const contentSection = (
     <div className={styles.contentContainer}>
       <h2 className={styles.title}>{title}</h2>
-      <p className={styles.date}>{date}</p>
+      <MetaData {...meta} isSticky type="模板" />
       <p className={styles.content}>{content}</p>
     </div>
   );

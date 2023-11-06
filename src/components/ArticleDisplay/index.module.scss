@@ -46,9 +46,17 @@
         }
 
         .date {
-            font-size: 0.9em;
+            font-size: 0.7em;
             color: #666;
             margin-bottom: 1em;
+
+            .pin {
+                color: #ff7242;
+            }
+
+            & span {
+                margin-left: 8px;
+            }
         }
 
         .content {
