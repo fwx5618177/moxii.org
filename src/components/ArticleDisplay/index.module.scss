@@ -5,6 +5,10 @@
     width: 100%;
     height: 100%;
 
+    overflow: hidden; // 防止内容溢出
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 盒阴影
+
+
     &.left {
         flex-direction: row;
     }
@@ -14,30 +18,26 @@
     }
 
     .imageContainer {
-        flex: 1;
+        flex: 0 0 377px; // 固定图片的大小
         cursor: pointer;
 
         img {
-            width: 100%;
-            height: auto;
-            display: block;
             transition: transform 0.3s ease-in-out;
             object-fit: cover;
-        }
-    }
 
-    &:hover .imageContainer img {
-        transform: scale(1.1); // 缩放图像
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
     }
 
     .contentContainer {
         flex: 1;
-        margin-left: 40px;
+        padding-left: 40px;
 
         .title {
             font-size: 1.5em;
             margin-bottom: 0.5em;
-
             cursor: pointer;
 
             &:hover {
@@ -60,7 +60,7 @@
         }
 
         .content {
-            font-size: .8em;
+            font-size: 0.6em;
             color: #333;
         }
     }

@@ -66,70 +66,141 @@ const DetailInfo = ({ data = items }) => {
   return (
     <div className={styles["detail-container"]}>
       <div className={styles["info-section"]}>
-        <h2>Detail Info</h2>
-        <div className={styles["info-block"]}>Some personal information...</div>
-      </div>
-      {/* 
-      <ProfileCard
-        avatarUrl={""}
-        name={"冯文轩"}
-        description={"开发工程师"}
-        articlesCount={0}
-        tagsCount={0}
-        categoriesCount={0}
-        qqLink={""}
-        emailLink={""}
-        githubLink={""}
-      />
+        <ProfileCard
+          avatarUrl={""}
+          name={"冯文轩"}
+          description={"开发工程师"}
+          articlesCount={0}
+          tagsCount={0}
+          categoriesCount={0}
+          qqLink={""}
+          emailLink={""}
+          githubLink={""}
+        />
 
-      <NewPress
-        title={
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-start",
-            }}
-          >
-            <FaHistory className={styles} color="#4c4948" />
-            <span
+        <NewPress
+          title={
+            <div
               style={{
-                marginLeft: 5,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-start",
               }}
             >
-              最新文章
-            </span>
-          </div>
-        }
-        articles={recentArticles}
-      /> */}
-
-      <ArticleDisplay
-        imageUrl="https://picsum.photos/400/300"
-        title="探秘ElegantPaper的美学设计"
-        date="2022-11-27"
-        content="精美的排版设计和卓越的阅读体验。..."
-        position="left" // 或 "right"
-      />
+              <FaHistory className={styles} color="#4c4948" />
+              <span
+                style={{
+                  marginLeft: 5,
+                }}
+              >
+                最新文章
+              </span>
+            </div>
+          }
+          articles={recentArticles}
+        />
+      </div>
 
       <div className={styles["line"]}></div>
 
       <div className={styles["list-section"]}>
-        <ul>
-          {data?.map((item, index) => (
-            <li
-              key={index}
-              data-id={index}
-              ref={(el) => (itemRefs.current[index] = el)}
-              // className={`${styles["list-item"]} ${
-              //   visibleItems.includes(index.toString()) ? styles["visible"] : ""
-              // }`}
-              className={styles["list-item"]}
-            >
-              {item?.title}
-            </li>
-          ))}
-        </ul>
+        <ArticleDisplay
+          key={0}
+          imageUrl="https://picsum.photos/400/300"
+          title="探秘ElegantPaper的美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="left"
+          meta={{
+            isSticky: true,
+            type: "公告",
+          }}
+        />
+
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
+        <ArticleDisplay
+          key={1}
+          imageUrl="https://picsum.photos/400/300"
+          title="探美学设计"
+          date="2022-11-27"
+          content="精美的排版设计和卓越的阅读体验。..."
+          position="right"
+          meta={{
+            isSticky: false,
+            type: "模板",
+          }}
+        />
       </div>
     </div>
   );

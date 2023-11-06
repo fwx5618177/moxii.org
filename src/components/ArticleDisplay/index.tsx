@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import InfoBox from "@/components/InfoBox";
 import styles from "./index.module.scss";
 import Image from "next/image";
@@ -11,35 +11,28 @@ const ArticleDisplay: FC<ArticleDisplayProps> = ({
   content,
   position = "left",
   meta,
+  date,
 }) => {
-  const imageSection = (
-    <div className={styles.imageContainer}>
-      <Image
-        width={377}
-        height={252}
-        src={imageUrl}
-        alt={title}
-        className={styles.image}
-      />
-    </div>
-  );
-
-  const contentSection = (
-    <div className={styles.contentContainer}>
-      <h2 className={styles.title}>{title}</h2>
-      <MetaData {...meta} isSticky type="模板" />
-      <p className={styles.content}>{content}</p>
-    </div>
-  );
-
   return (
     <InfoBox width={866} height={252}>
-      <div className={styles.articleDisplay + " " + styles[position]}>
-        {position === "left" ? imageSection : contentSection}
-        {position === "left" ? contentSection : imageSection}
+      <div className={`${styles.articleDisplay} ${styles[position]}`}>
+        <div className={styles.imageContainer}>
+          <Image
+            width={377}
+            height={252}
+            src={imageUrl}
+            alt={title}
+            layout="responsive"
+          />
+        </div>
+        <div className={styles.contentContainer}>
+          <h2 className={styles.title}>{title}</h2>
+          <MetaData date={date} {...meta} />
+          <p className={styles.content}>{content}</p>
+        </div>
       </div>
     </InfoBox>
   );
 };
 
-export default ArticleDisplay;
+export default React.memo(ArticleDisplay);
