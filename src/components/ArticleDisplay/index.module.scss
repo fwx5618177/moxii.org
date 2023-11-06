@@ -8,7 +8,6 @@
     overflow: hidden; // 防止内容溢出
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // 盒阴影
 
-
     &.left {
         flex-direction: row;
     }
@@ -38,6 +37,8 @@
         .title {
             font-size: 1.5em;
             margin-bottom: 0.5em;
+            transition: color 0.5s ease-in-out;
+
             cursor: pointer;
 
             &:hover {

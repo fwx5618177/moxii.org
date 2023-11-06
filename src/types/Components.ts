@@ -22,11 +22,42 @@ declare module "Components" {
   }
 
   interface ArticleDisplayProps {
+    key?: number;
     imageUrl: string;
     title: string;
     date: string | Date | number;
     content: string;
     position?: "left" | "right";
     meta: MetaDataProps;
+  }
+
+  type WebsiteStatsProps = {
+    articleCount: number;
+    totalWordCount: number;
+    totalVisitors: number;
+    totalVisits: number;
+    lastUpdated: string | Date | number;
+  };
+
+  export type TagCloudProps = {
+    tags: string[];
+    title: string;
+  };
+
+  export type PaginationProps = {
+    currentPage: number;
+    totalPages: number;
+    pageSize: number;
+    onPageChange: (page: number, pageSize?: number, total?: number) => void;
+  };
+
+  export interface PageSet {
+    page: number;
+    pageSize: number;
+    total: number;
+  }
+
+  export interface ListSectionProps {
+    defaultArticles: ArticleDisplayProps[];
   }
 }
