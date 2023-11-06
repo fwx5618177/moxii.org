@@ -22,6 +22,7 @@ const ArticleDisplay: FC<ArticleDisplayProps> = ({
             height={252}
             src={imageUrl}
             alt={title}
+            priority
             layout="responsive"
           />
         </div>

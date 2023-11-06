@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { WebsiteStatsProps } from "Components";
 import styles from "./index.module.scss";
@@ -44,7 +46,7 @@ const WebsiteStats: React.FC<WebsiteStatsProps> = ({
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>最后更新时间：</span>
           <span className={styles["stat-value"]}>
-            {moment(lastUpdated || Date.now()).format("YYYY-MM-DD HH:mm:ss")}
+            {moment(lastUpdated).format("YYYY-MM-DD HH:mm:ss")}
           </span>
         </div>
       </div>

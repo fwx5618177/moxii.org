@@ -156,7 +156,7 @@ const DetailInfo = ({ data = items }) => {
           totalWordCount={0}
           totalVisitors={0}
           totalVisits={0}
-          lastUpdated={""}
+          lastUpdated={"2023-11-05 20:12:02"}
         />
       </div>
 
@@ -166,6 +166,7 @@ const DetailInfo = ({ data = items }) => {
         <ListSection
           defaultArticles={Array.from({ length: 100 }).map((_, index) => ({
             ...articles[0],
+            key: index,
             title: articles[0].title + index,
           }))}
         />

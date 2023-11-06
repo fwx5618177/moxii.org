@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBoxOpen } from "react-icons/fa";
+import { FaSkull } from "react-icons/fa";
 import styles from "./index.module.scss";
 
 interface EmptyProps {
@@ -13,12 +13,12 @@ const Empty: React.FC<EmptyProps> = ({
   width = "200px",
   height = "200px",
   iconSize = "20px",
-  iconColor,
+  iconColor = "#9ca3af",
 }) => {
   return (
     <div className={styles["empty-container"]} style={{ width, height }}>
       <div className={styles["empty-box"]}>
-        <FaBoxOpen className="empty-icon" size={iconSize} color={iconColor} />
+        <FaSkull className="empty-icon" size={iconSize} color={iconColor} />
       </div>
     </div>
   );

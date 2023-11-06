@@ -1,7 +1,7 @@
 import { ListSectionProps, ArticleDisplayProps, PageSet } from "Components";
 import Pagination from "@/components/Pagination";
 import ArticleDisplay from "@/components/ArticleDisplay";
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./index.module.scss";
 import Empty from "@/components/Empty";
 
@@ -16,14 +16,8 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
     defaultArticles.slice(0, page.pageSize)
   );
 
-  const onPageChange = (page: number, pageSize: number, total: number) => {
+  const onPageChange = (page: number, pageSize: number) => {
     queryList({ page, pageSize });
-
-    setPage({
-      page,
-      pageSize,
-      total,
-    });
   };
 
   const queryList = async ({ page, pageSize }) => {
@@ -33,14 +27,15 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
     // const data = await res.json();
     const start = (page - 1) * pageSize;
     const result = defaultArticles?.slice(start, start + pageSize);
+    const total = Math.ceil(defaultArticles?.length / pageSize);
 
-    console.log({
-      result,
-      start,
+    setArticles(result);
+    setPage((cur) => ({
+      ...cur,
       page,
       pageSize,
-    });
-    setArticles(result);
+      total,
+    }));
   };
 
   return (
@@ -59,12 +54,7 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
             />
           ))
         ) : (
-          <Empty
-            width="800px"
-            height="80rem"
-            iconSize={"20rem"}
-            iconColor="#c3c3c3"
-          />
+          <Empty width="800px" height="80rem" iconSize={"20rem"} />
         )}
       </div>
 
@@ -78,4 +68,4 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
   );
 };
 
-export default ListSection;
+export default React.memo(ListSection);

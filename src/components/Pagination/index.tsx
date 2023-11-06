@@ -1,6 +1,7 @@
 import { PageSet, PaginationProps } from "Components";
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import usePagination from "./usePagination";
 
 const PageSizeOptions = [5, 10, 20, 50];
 
@@ -10,10 +11,11 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages = 0,
   onPageChange,
 }) => {
-  const [page, setPage] = useState<PageSet>({
-    page: currentPage,
+  const { page, updatePage, updatePageSize } = usePagination({
+    currentPage,
     pageSize,
-    total: totalPages,
+    totalPages,
+    onPageChange,
   });
 
   // 生成页码数组
@@ -38,28 +40,14 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className={styles["pagination"]}>
-      <button
-        onClick={() => {
-          setPage((cur) => ({
-            ...cur,
-            page: 1,
-          }));
-          onPageChange(1, page.pageSize, page.total);
-        }}
-        disabled={currentPage === 1}
-      >
+      <button onClick={() => updatePage(1)} disabled={currentPage === 1}>
         首页
       </button>
 
       {/* 上一页 */}
       <button
         onClick={() => {
-          setPage((cur) => ({
-            ...cur,
-            page: currentPage - 1,
-          }));
-
-          onPageChange(currentPage - 1, page.pageSize, page.total);
+          updatePage(currentPage - 1);
         }}
         disabled={currentPage === 1}
       >
@@ -71,12 +59,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           key={item}
           onClick={() => {
-            setPage((cur) => ({
-              ...cur,
-              page: item,
-            }));
-
-            onPageChange(item, page.pageSize, page.total);
+            updatePage(item);
           }}
           className={currentPage === item ? styles["active"] : null}
         >
@@ -93,12 +76,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* 下一页 */}
       <button
         onClick={() => {
-          setPage((cur) => ({
-            ...cur,
-            page: currentPage + 1,
-          }));
-
-          onPageChange(currentPage + 1, page.pageSize, page.total);
+          updatePage(currentPage + 1);
         }}
         disabled={currentPage === page?.total}
       >
@@ -108,12 +86,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* 尾页 */}
       <button
         onClick={() => {
-          setPage((cur) => ({
-            ...cur,
-            page: page?.total,
-          }));
-
-          onPageChange(page?.total, page.pageSize, page.total);
+          updatePage(page?.total);
         }}
         disabled={currentPage === page?.total}
       >
@@ -125,12 +98,7 @@ const Pagination: React.FC<PaginationProps> = ({
         type="number"
         value={page?.page}
         onChange={(e) => {
-          setPage((cur) => ({
-            ...cur,
-            page: Number(e.target.value),
-          }));
-
-          onPageChange(Number(e.target.value), page.pageSize, page.total);
+          updatePage(Number(e.target.value));
         }}
       />
 
@@ -138,12 +106,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <select
         value={page?.pageSize}
         onChange={(e) => {
-          setPage((cur) => ({
-            ...cur,
-            pageSize: Number(e.target.value),
-          }));
-
-          onPageChange(1, Number(e.target.value), page.total);
+          updatePageSize(Number(e.target.value));
         }}
       >
         {PageSizeOptions.map((item) => (
