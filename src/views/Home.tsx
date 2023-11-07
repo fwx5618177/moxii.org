@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import NonScroll from "@/components/FullScroll/NonScroll";
 import BackScroll from "@/components/FullScroll/BackScroll";

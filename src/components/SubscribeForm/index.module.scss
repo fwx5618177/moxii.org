@@ -1,0 +1,31 @@
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.rssButton {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #d5d5d5;
+    }
+}
+
+.emailButton {
+    background-color: #00bcd4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #00acc1;
+    }
+}

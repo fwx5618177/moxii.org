@@ -9,6 +9,7 @@ import WebsiteStats from "@/components/WebsiteStats";
 import TagCloud from "@/components/TagCloud";
 import ListSection from "@/components/ListSection";
 import { ArticleDisplayProps } from "Components";
+import SubscribeButtons from "@/components/SubscribeForm";
 
 const items = Array.from({ length: 100 }, (_, index) => ({
   title: `Item ${index + 1}`,
@@ -157,6 +158,11 @@ const DetailInfo = ({ data = items }) => {
           totalVisitors={0}
           totalVisits={0}
           lastUpdated={"2023-11-05 20:12:02"}
+        />
+
+        <SubscribeButtons
+          onRssSubscribe={undefined}
+          onEmailSubscribe={undefined}
         />
       </div>
 

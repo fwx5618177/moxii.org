@@ -8,7 +8,7 @@ const imageData = {
   small: "https://picsum.photos/2560/150",
 };
 
-export async function GET(_request: NextRequest) {
+export async function GET(_request?: NextRequest) {
   try {
     // 模拟异步获取背景图像数据
     // 你可以在这里实际获取数据
