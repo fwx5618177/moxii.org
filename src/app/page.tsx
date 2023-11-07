@@ -1,8 +1,8 @@
 import { getList } from "@/utils/data/getList";
 import HomePage from "@/views/Home";
-import { ImageResponse } from "Components";
+import { HomeResponse } from "Api";
 
-const getData = async (): Promise<ImageResponse> => {
+const getData = async (): Promise<HomeResponse> => {
   // const res = await fetch("http://127.0.0.1:3000/api/home", {
   //   // -> SSG
   //   // next: {
@@ -22,11 +22,11 @@ const getData = async (): Promise<ImageResponse> => {
 };
 
 export default async function Page() {
-  const backgroundImage = await getData();
+  const defaultData = await getData();
 
   return (
     <main className="flex flex-col gap-8">
-      <HomePage backgroundImage={backgroundImage} />
+      <HomePage {...defaultData} />
     </main>
   );
 }

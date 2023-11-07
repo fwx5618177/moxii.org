@@ -7,7 +7,7 @@ const PageSizeOptions = [5, 10, 20, 50];
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage = 1,
-  pageSize = 5,
+  pageSize = PageSizeOptions[0],
   totalPages = 0,
   onPageChange,
 }) => {

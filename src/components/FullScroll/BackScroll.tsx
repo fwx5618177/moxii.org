@@ -5,19 +5,13 @@ import { BackScrollProps } from "Components";
 
 const fullPageDistance = 10;
 
-const BackScroll: FC<BackScrollProps> = ({
-  children,
-  header,
-  backgroundImage,
-}) => {
-  const { link, small } = backgroundImage;
+const BackScroll: FC<BackScrollProps> = ({ children, header, imageData }) => {
+  const { link, small } = imageData;
   const fullPageRef = useRef<HTMLDivElement>(null);
   const contentSectionRef = useRef(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
 
   const handleScroll = () => {
-    console.log("Handling scroll event");
-
     const position = window.pageYOffset;
     const fullPageHeight = fullPageRef?.current
       ? fullPageRef?.current?.clientHeight
@@ -27,12 +21,10 @@ const BackScroll: FC<BackScrollProps> = ({
   };
 
   const handleScrollUp = () => {
-    console.log("Arrow up clicked");
     animateScroll.scrollToTop();
   };
 
   const scrollToContentSection = () => {
-    console.log("Arrow down clicked");
     const contentSection = contentSectionRef?.current;
     if (contentSection && typeof contentSection.scrollIntoView === "function") {
       contentSection?.scrollIntoView({ behavior: "smooth" });
@@ -43,11 +35,9 @@ const BackScroll: FC<BackScrollProps> = ({
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      console.log("window is undefined");
+      console.error("window is undefined");
       return;
     }
-
-    console.log("useEffect is running on client");
 
     window.addEventListener("scroll", handleScroll, {
       passive: true,
@@ -57,8 +47,6 @@ const BackScroll: FC<BackScrollProps> = ({
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  console.log("Outside useEffect, fullPageRef.current", fullPageRef);
 
   return (
     <div className={styles.container}>

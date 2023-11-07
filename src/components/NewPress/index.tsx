@@ -2,19 +2,7 @@ import React, { ReactNode } from "react";
 import InfoBox from "@/components/InfoBox";
 import styles from "./index.module.scss";
 import Image from "next/image";
-
-// 文章类型定义
-interface Article {
-  title: string;
-  date: string;
-  imageUrl: string;
-}
-
-// 组件的 Props 类型
-interface NewPressProps {
-  title: string | ReactNode;
-  articles: Article[];
-}
+import { NewPressProps } from "Components";
 
 // 文章列表组件
 const NewPress: React.FC<NewPressProps> = ({ title, articles }) => {

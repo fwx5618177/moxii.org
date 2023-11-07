@@ -4,7 +4,7 @@ declare module "Components" {
   export interface BackScrollProps {
     children?: ReactNode;
     header?: ReactNode;
-    backgroundImage: ImageResponse;
+    imageData: ImageResponse;
   }
 
   export interface ImageResponse {
@@ -14,14 +14,14 @@ declare module "Components" {
   }
 
   // 定义组件props的接口
-  interface MetaDataProps {
+  export interface MetaDataProps {
     isSticky?: boolean; // 可选属性，默认为false
     date?: string | Date | number;
     type: string;
     count?: number;
   }
 
-  interface ArticleDisplayProps {
+  export interface ArticleDisplayProps {
     key?: number;
     imageUrl: string;
     title: string;
@@ -31,7 +31,7 @@ declare module "Components" {
     meta: MetaDataProps;
   }
 
-  type WebsiteStatsProps = {
+  export type WebsiteStatsProps = {
     articleCount: number;
     totalWordCount: number;
     totalVisitors: number;
@@ -59,5 +59,23 @@ declare module "Components" {
 
   export interface ListSectionProps {
     defaultArticles: ArticleDisplayProps[];
+  }
+
+  export interface DetailInfoProps {
+    data?: ArticleDisplayProps[];
+    recentArticles?: Article[];
+    tags?: string[];
+    websiteStats?: WebsiteStatsProps;
+  }
+
+  export interface Article {
+    title: string;
+    date: string;
+    imageUrl: string;
+  }
+
+  export interface NewPressProps {
+    title: string | ReactNode;
+    articles: Article[];
   }
 }
