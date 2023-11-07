@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 import Empty from "@/components/Empty";
 
+const minHeight = "88rem";
+
 const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
   const pageSet = {
     page: 1,
@@ -40,7 +42,12 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
 
   return (
     <>
-      <div className={styles["list"]}>
+      <div
+        className={styles["list"]}
+        style={{
+          minHeight: minHeight,
+        }}
+      >
         {articles?.length > 0 ? (
           articles.map((article: ArticleDisplayProps, index: number) => (
             <ArticleDisplay
@@ -54,7 +61,7 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
             />
           ))
         ) : (
-          <Empty width="800px" height="80rem" iconSize={"20rem"} />
+          <Empty width="800px" height={minHeight} iconSize={"20rem"} />
         )}
       </div>
 
