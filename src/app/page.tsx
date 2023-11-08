@@ -1,4 +1,4 @@
-import { getList } from "@/utils/data/getList";
+import { getDefaultList } from "@/utils/data/getDefaultList";
 import HomePage from "@/views/Home";
 import { HomeResponse } from "Api";
 
@@ -10,7 +10,7 @@ const getData = async (): Promise<HomeResponse> => {
   //   // },
   //   // cache: "no-cache", // -> SSR
   // });
-  const res = await getList();
+  const res = await getDefaultList();
 
   if (!res.ok) {
     throw new Error("Failed to fetch");
