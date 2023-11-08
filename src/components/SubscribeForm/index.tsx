@@ -5,6 +5,7 @@ import { FaRss } from "react-icons/fa";
 import { SubscribeEmailApi } from "@/app/api/subscribeForm/Api";
 import { useMutation } from "react-query";
 import { message } from "antd";
+import InfoBox from "../InfoBox";
 
 const SubscribeButtons = () => {
   const { mutate: subscribe } = useMutation(

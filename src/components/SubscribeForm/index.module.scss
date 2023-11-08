@@ -1,6 +1,6 @@
 .buttonsContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     gap: 10px;
 }
@@ -11,6 +11,7 @@
     justify-content: center;
     text-align: center;
     gap: 5px;
+    width: 100px;
 
     background-color: #ff6d0b;
     color: #fff;
