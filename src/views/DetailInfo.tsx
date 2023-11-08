@@ -64,10 +64,7 @@ const DetailInfo: FC<DetailInfoProps> = ({
           lastUpdated={websiteStats?.lastUpdated}
         />
 
-        <SubscribeButtons
-          onRssSubscribe={undefined}
-          onEmailSubscribe={undefined}
-        />
+        <SubscribeButtons />
       </div>
 
       <div className={styles["line"]}></div>

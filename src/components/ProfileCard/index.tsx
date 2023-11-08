@@ -2,18 +2,7 @@ import React from "react";
 import InfoBox from "@/components/InfoBox";
 import styles from "./index.module.scss";
 import { FaGithub, FaQq, FaEnvelope } from "react-icons/fa";
-
-interface ProfileCardProps {
-  avatarUrl: string;
-  name: string;
-  description: string;
-  articlesCount: number;
-  tagsCount: number;
-  categoriesCount: number;
-  qqLink: string;
-  emailLink: string;
-  githubLink: string;
-}
+import { ProfileCardProps } from "Components";
 
 const ProfileCard: React.FC<ProfileCardProps> = ({
   avatarUrl,

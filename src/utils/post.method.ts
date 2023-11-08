@@ -2,23 +2,24 @@ import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { message } from "antd";
 import { CODE_CONFIG, CODE_MESSAGE_CONFIG } from "./code.config";
 import { config } from "@/config/dev";
-
-interface RequestConfig extends AxiosRequestConfig {
-  data?: any;
-}
+import { RequestConfig } from "Api";
 
 const service = axios.create({
   timeout: 10000, // 设置请求超时时间10秒
   baseURL: config.baseURL, // 设置base url
 });
 
-// 请求拦截器
+// 请求拦截器 -> 对请求做一些处理和要求
 service.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token"); // 你可以根据实际情况更改token的获取方式
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
+    // token setting
+    // const token = localStorage.getItem("token"); // 你可以根据实际情况更改token的获取方式
+    // if (token) {
+    //   config.headers["Authorization"] = `Bearer ${token}`;
+    // }
+
+    config.headers["Content-Type"] = "application/json;charset=UTF-8";
+
     return config;
   },
   (error) => Promise.reject(error)
@@ -27,12 +28,36 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    if (response.data.code === CODE_CONFIG.ERROR) {
-      // 假设你的响应结构有一个code字段并且999为错误代码
-      message.error(CODE_MESSAGE_CONFIG.ERROR);
-      return Promise.reject(new Error(CODE_MESSAGE_CONFIG.ERROR));
+    const code = response?.data?.code;
+    switch (code) {
+      case CODE_CONFIG.ERROR:
+        message.error(
+          `${CODE_MESSAGE_CONFIG.ERROR}:${response?.data?.message}`
+        );
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.ERROR));
+      case CODE_CONFIG.TIMEOUT:
+        message.error(CODE_MESSAGE_CONFIG.TIMEOUT);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.TIMEOUT));
+      case CODE_CONFIG.NOT_FOUND:
+        message.error(CODE_MESSAGE_CONFIG.NOT_FOUND);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_FOUND));
+      case CODE_CONFIG.SERVER_ERROR:
+        message.error(CODE_MESSAGE_CONFIG.SERVER_ERROR);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.SERVER_ERROR));
+      case CODE_CONFIG.BAD_GATEWAY:
+        message.error(CODE_MESSAGE_CONFIG.BAD_GATEWAY);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.BAD_GATEWAY));
+      case CODE_CONFIG.SERVICE_UNAVAILABLE:
+        message.error(CODE_MESSAGE_CONFIG.SERVICE_UNAVAILABLE);
+        return Promise.reject(
+          new Error(CODE_MESSAGE_CONFIG.SERVICE_UNAVAILABLE)
+        );
+      case CODE_CONFIG.GATEWAY_TIMEOUT:
+        message.error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT));
+      default:
+        return response.data;
     }
-    return response.data;
   },
   (error: AxiosError) => {
     if (

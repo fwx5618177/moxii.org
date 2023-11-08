@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: flex-start;
     width: 80vw; // 设定宽度
-    margin: 3rem auto; // 水平居中
+    margin: 2.4rem auto; // 水平居中
     font-family: 'Arial', sans-serif;
     background-color: #f2f2f2;
 
     .info-section {
-        flex: 1;
+        width: 370px;
         box-sizing: border-box;
 
         display: flex;
@@ -16,7 +16,7 @@
         align-items: flex-end;
 
         gap: 2rem; // 间距
-        margin: 3rem 1rem; // 边距
+        margin: 0rem; // 边距
     }
 
     .line {
@@ -27,6 +27,7 @@
     }
 
     .list-section {
-        margin: 3rem 1rem; // 边距
+        max-width: 1100px;
+        margin: 0rem .7rem; // 边距
     }
 }

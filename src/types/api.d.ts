@@ -1,5 +1,6 @@
 declare module "Api" {
   import { ReactNode } from "react";
+  import { AxiosRequestConfig, AxiosResponse } from "axios";
   import {
     ImageResponse,
     ArticleDisplayProps,
@@ -14,4 +15,12 @@ declare module "Api" {
     tags: string[];
     websiteStats: WebsiteStatsProps;
   };
+
+  interface RequestConfig extends AxiosRequestConfig {
+    data?: {
+      code: CODE_CONFIG;
+      message?: string;
+      data: any;
+    };
+  }
 }

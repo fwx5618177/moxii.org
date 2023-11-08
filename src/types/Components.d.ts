@@ -78,4 +78,16 @@ declare module "Components" {
     title: string | ReactNode;
     articles: Article[];
   }
+
+  interface ProfileCardProps {
+    avatarUrl: string;
+    name: string;
+    description: string;
+    articlesCount: number;
+    tagsCount: number;
+    categoriesCount: number;
+    qqLink: string;
+    emailLink: string;
+    githubLink: string;
+  }
 }
