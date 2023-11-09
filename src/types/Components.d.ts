@@ -12,14 +12,16 @@ declare module "Components" {
     id: string;
     link: string;
     small: string;
+    welcome: string;
   }
 
   // 定义组件props的接口
   export interface MetaDataProps {
     isSticky?: boolean; // 可选属性，默认为false
-    date?: string | Date | number;
     type: string;
-    count?: number;
+    readCount?: string | number;
+    wordCount?: string | number;
+    readTimeCost?: string | number;
   }
 
   export interface ArticleDisplayProps {
@@ -28,6 +30,8 @@ declare module "Components" {
     imageUrl: string;
     title: string;
     date: string | Date | number;
+    publishedDate?: string | Date | number;
+    updatedDate?: string | Date | number;
     content: string;
     position?: "left" | "right";
     meta: MetaDataProps;
@@ -100,6 +104,8 @@ declare module "Components" {
     small: string;
     children?: ReactNode;
     height?: number;
+    isPost?: boolean;
+    postData?: ArticleDisplayProps;
   }
 
   interface PostPageProps {
@@ -113,5 +119,24 @@ declare module "Components" {
   interface PostViewProps {
     children?: ReactNode;
     defaultData: HomeResponse;
+    postData?: PostResponse;
+  }
+
+  interface InfoBoxProps {
+    width?: string | number;
+    height?: string | number;
+    children?: React.ReactNode;
+    scrollable?: boolean;
+    infoBoxStyle?: React.CSSProperties;
+  }
+
+  interface HeaderTitleProps {
+    title: string;
+    publishedDate: string | Date | number;
+    updatedDate: string | Date | number;
+    readCount: string | number;
+    wordCount: string | number;
+    readTimeCost: string | number;
+    type: string | ReactNode;
   }
 }

@@ -22,8 +22,13 @@ export const generateMetadata = async (props: {
 const Page: FC<PostPageProps> = async ({ params }) => {
   const { slug } = params || { slug: "" };
   const defaultData = await getDefaultHomeData();
+  const defaultPostData = await getDefaultPostData(slug);
 
-  return <PostView defaultData={defaultData}>{slug}</PostView>;
+  return (
+    <PostView defaultData={defaultData} postData={defaultPostData}>
+      {slug}
+    </PostView>
+  );
 };
 
 export default Page;

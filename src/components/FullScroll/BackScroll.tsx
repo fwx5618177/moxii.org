@@ -8,7 +8,7 @@ import Header from "../Header/header";
 const fullPageDistance = 10;
 
 const BackScroll: FC<BackScrollProps> = ({ children, header, imageData }) => {
-  const { link, small } = imageData;
+  const { link, small, welcome } = imageData;
   const fullPageRef = useRef<HTMLDivElement>(null);
   const contentSectionRef = useRef(null);
   const [showArrowUp, setShowArrowUp] = useState(false);
@@ -59,6 +59,9 @@ const BackScroll: FC<BackScrollProps> = ({ children, header, imageData }) => {
         }}
         ref={fullPageRef}
       >
+        <div>
+          <h1 className={styles["welcome-title"]}>{welcome}</h1>
+        </div>
         <Link to="content-section" smooth={true} duration={500}>
           <div className={styles.arrow} onClick={scrollToContentSection}>
             <Image

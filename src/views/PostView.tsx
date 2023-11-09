@@ -1,6 +1,5 @@
 "use client";
 
-import DetailInfo from "./DetailInfo";
 import styles from "@/styles/postView.module.scss";
 import Header from "@/components/Header/header";
 import PostPage from "@/components/PostPage";
@@ -10,10 +9,9 @@ import { FaHistory } from "react-icons/fa";
 import { FC } from "react";
 import { PostViewProps } from "Components";
 import TagCloud from "@/components/TagCloud";
-import SubscribeButtons from "@/components/SubscribeForm";
 import WebsiteStats from "@/components/WebsiteStats";
 
-const PostView: FC<PostViewProps> = ({ children, defaultData }) => {
+const PostView: FC<PostViewProps> = ({ children, defaultData, postData }) => {
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
     defaultData;
   const { small } = imageData;
@@ -21,7 +19,7 @@ const PostView: FC<PostViewProps> = ({ children, defaultData }) => {
   return (
     <>
       <main className={styles["detail-post"]}>
-        <Header small={small} height={400} />
+        <Header small={small} height={400} isPost postData={postData} />
 
         <div className={styles["detail-container"]}>
           <div className={styles["info-section"]}>

@@ -5,7 +5,8 @@ export const imageData = {
   id: "1",
   // link: "https://via.placeholder.com/1920x1080", // 你的背景图像链接
   link: "https://picsum.photos/2560/1600",
-  small: "https://picsum.photos/2560/150",
+  small: "https://picsum.photos/2560/400",
+  welcome: "Moxi的个人主页",
 };
 
 export const articles = [
@@ -15,11 +16,16 @@ export const articles = [
     imageUrl: "https://picsum.photos/400/300",
     title: "探秘ElegantPaper的美学设计",
     date: "2022-11-27",
+    publishedDate: "2022-11-27",
+    updatedDate: "2022-11-27",
     content: "精美的排版设计和卓越的阅读体验。",
     position: "left",
     meta: {
       isSticky: true,
       type: "公告",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
   {
@@ -28,11 +34,16 @@ export const articles = [
     imageUrl: "https://picsum.photos/400/300",
     title: "探美学设计",
     date: "2022-11-27",
+    publishedDate: "2022-11-27",
+    updatedDate: "2022-11-27",
     content: "不断探索设计的边界。",
     position: "right",
     meta: {
       isSticky: false,
       type: "模板",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
   {
@@ -41,11 +52,16 @@ export const articles = [
     imageUrl: "https://picsum.photos/400/300",
     title: "艺术与技术的融合",
     date: "2022-12-01",
+    publishedDate: "2022-11-27",
+    updatedDate: "2022-11-27",
     content: "当艺术遇上技术，创新无限。",
     position: "left",
     meta: {
       isSticky: false,
       type: "专题",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
   {
@@ -59,6 +75,9 @@ export const articles = [
     meta: {
       isSticky: false,
       type: "分析",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
   {
@@ -72,6 +91,9 @@ export const articles = [
     meta: {
       isSticky: false,
       type: "观点",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
   {
@@ -85,6 +107,9 @@ export const articles = [
     meta: {
       isSticky: false,
       type: "观点",
+      readCount: 100,
+      wordCount: 100,
+      readTimeCost: 100,
     },
   },
 ] as ArticleDisplayProps[];

@@ -5,7 +5,13 @@ import { PostPageProps } from "Components";
 
 const PostPage: FC<PostPageProps> = ({ children }) => {
   return (
-    <InfoBox width={"100%"} height={"140vh"}>
+    <InfoBox
+      width={"100%"}
+      height={"140vh"}
+      infoBoxStyle={{
+        padding: "50px 40px",
+      }}
+    >
       {children}
     </InfoBox>
   );

@@ -22,9 +22,9 @@ export const GET = async (request: NextRequest) => {
   }
 };
 
-export const ssgData = async (slug: string) => {
+export const ssgData = async (slug: string | number) => {
   try {
-    const findData = articles.find((item) => item?.slug === slug);
+    const findData = articles.find((item) => item?.slug === String(slug));
 
     return new NextResponse(
       JSON.stringify({
