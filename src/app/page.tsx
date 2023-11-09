@@ -1,21 +1,8 @@
-import { getDefaultList } from "@/utils/data/getDefaultList";
+import { getDefaultHomeData } from "@/data-fetching/home/getDefaultData";
 import HomePage from "@/views/Home";
-import { HomeResponse } from "Api";
-
-const getData = async (): Promise<HomeResponse> => {
-  const res = await getDefaultList();
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch");
-  }
-
-  const result = await res.json();
-
-  return result?.data;
-};
 
 export default async function Page() {
-  const defaultData = await getData();
+  const defaultData = await getDefaultHomeData();
 
   return (
     <main className="flex flex-col gap-8">

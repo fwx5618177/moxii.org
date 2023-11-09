@@ -58,6 +58,7 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
               content={article.content}
               position={article.position}
               meta={article.meta}
+              slug={article.slug}
             />
           ))
         ) : (

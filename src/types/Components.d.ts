@@ -23,6 +23,7 @@ declare module "Components" {
 
   export interface ArticleDisplayProps {
     key?: number;
+    slug?: string;
     imageUrl: string;
     title: string;
     date: string | Date | number;
@@ -66,6 +67,8 @@ declare module "Components" {
     recentArticles?: Article[];
     tags?: string[];
     websiteStats?: WebsiteStatsProps;
+    isHomeList?: boolean;
+    children?: ReactNode;
   }
 
   export interface Article {

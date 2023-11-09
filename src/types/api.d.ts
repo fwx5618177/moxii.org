@@ -16,6 +16,8 @@ declare module "Api" {
     websiteStats: WebsiteStatsProps;
   };
 
+  type PostResponse = ArticleDisplayProps;
+
   interface RequestConfig extends AxiosRequestConfig {
     data?: {
       code: CODE_CONFIG;

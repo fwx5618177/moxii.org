@@ -2,10 +2,9 @@ import React from "react";
 import styles from "./index.module.scss";
 import SubscribeForm from "./SubscribeButtons";
 import { FaRss } from "react-icons/fa";
-import { SubscribeEmailApi } from "@/app/api/subscribeForm/Api";
 import { useMutation } from "react-query";
 import { message } from "antd";
-import InfoBox from "../InfoBox";
+import { SubscribeEmailApi } from "@/components/SubscribeForm/api";
 
 const SubscribeButtons = () => {
   const { mutate: subscribe } = useMutation(

@@ -1,6 +1,12 @@
 declare module "Post" {
   import { ReactNode } from "react";
 
+  interface PostPageProps {
+    params: {
+      slug: string;
+    };
+  }
+
   interface Author {
     name: string;
     picture?: string;

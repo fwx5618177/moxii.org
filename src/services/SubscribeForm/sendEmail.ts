@@ -15,8 +15,8 @@ export const sendEmail = async (
       port: 25,
       secure: false,
       auth: {
-        user: config.email_user, // 你的邮箱账号
-        pass: config.email_pwd, // 你的邮箱密码
+        user: config.email_user,
+        pass: config.email_pwd,
       },
     });
 

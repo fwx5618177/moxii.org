@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/getAllPosts";
+import { getAllPosts } from "@/services/Post/getAllPosts";
 import { Feed } from "feed";
 
 export default async function generateRssFeed(_req, res) {

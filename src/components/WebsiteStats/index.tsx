@@ -28,25 +28,25 @@ const WebsiteStats: React.FC<WebsiteStatsProps> = ({
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>本站总字数：</span>
           <span className={styles["stat-value"]}>
-            {totalWordCount.toLocaleString()}k
+            {totalWordCount?.toLocaleString()}k
           </span>
         </div>
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>本站访客数：</span>
           <span className={styles["stat-value"]}>
-            {totalVisitors.toLocaleString()}k
+            {totalVisitors?.toLocaleString()}k
           </span>
         </div>
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>本站总访问量：</span>
           <span className={styles["stat-value"]}>
-            {totalVisits.toLocaleString()}
+            {totalVisits?.toLocaleString()}
           </span>
         </div>
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>最后更新时间：</span>
           <span className={styles["stat-value"]}>
-            {moment(lastUpdated).format("YYYY-MM-DD HH:mm:ss")}
+            {moment(lastUpdated)?.format("YYYY-MM-DD HH:mm:ss")}
           </span>
         </div>
       </div>

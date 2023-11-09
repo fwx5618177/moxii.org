@@ -16,6 +16,8 @@ const DetailInfo: FC<DetailInfoProps> = ({
   recentArticles,
   tags,
   websiteStats,
+  isHomeList = true,
+  children,
 }) => {
   return (
     <div className={styles["detail-container"]}>
@@ -70,7 +72,7 @@ const DetailInfo: FC<DetailInfoProps> = ({
       <div className={styles["line"]}></div>
 
       <div className={styles["list-section"]}>
-        <ListSection defaultArticles={data} />
+        {isHomeList ? <ListSection defaultArticles={data} /> : children}
       </div>
     </div>
   );
