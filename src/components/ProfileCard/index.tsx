@@ -20,7 +20,9 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       <div className={styles.container}>
         <div
           className={styles.avatar}
-          style={{ backgroundImage: `url(${avatarUrl})` }}
+          style={{
+            backgroundImage: `url(${avatarUrl || "/gibe.png"})`,
+          }}
         ></div>
         <div className={styles.name}>{name}</div>
         <div className={styles.description}>{description}</div>

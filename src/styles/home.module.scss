@@ -38,14 +38,8 @@
     bottom: 30px;
     left: 50%;
 
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    /* 左侧空白 */
-    border-right: 20px solid transparent;
-    /* 右侧空白 */
-    border-top: 30px solid #ff5733;
-    /* 底部三角形 */
+    width: 64px;
+    height: 64px;
 
     cursor: pointer;
     transition: all 0.3s ease;
@@ -86,33 +80,34 @@
     }
 }
 
-
-.bg-image-small {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    height: 150px;
-}
-
 .arrowUp {
     position: fixed;
     bottom: 60px;
     right: 20px;
     font-size: 1.3rem;
-    width: 35px;
-    height: 35px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
-    border: 1px solid #ff5733;
+    // border: 1px solid #ff5733;
     text-align: center;
 
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     animation: bounce 1s infinite;
 
+    .icon {
+        object-fit: contain;
+    }
+
     cursor: pointer;
 
     &:hover {
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.39);
         filter: contrast(0.8);
+
+        .icon {
+            transform: rotate3d(0, 1, 0, 360deg);
+            transition: transform 1.2s ease-in;
+        }
     }
 }

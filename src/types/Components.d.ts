@@ -1,5 +1,6 @@
 declare module "Components" {
   import { ReactNode } from "react";
+  import { HomeResponse } from "Api";
 
   export interface BackScrollProps {
     children?: ReactNode;
@@ -67,6 +68,7 @@ declare module "Components" {
     recentArticles?: Article[];
     tags?: string[];
     websiteStats?: WebsiteStatsProps;
+    profileInfo?: ProfileCardProps;
     isHomeList?: boolean;
     children?: ReactNode;
   }
@@ -92,5 +94,24 @@ declare module "Components" {
     qqLink: string;
     emailLink: string;
     githubLink: string;
+  }
+
+  interface HeaderProps {
+    small: string;
+    children?: ReactNode;
+    height?: number;
+  }
+
+  interface PostPageProps {
+    content?: string;
+    title?: string;
+    date?: string;
+    author?: string;
+    children?: ReactNode;
+  }
+
+  interface PostViewProps {
+    children?: ReactNode;
+    defaultData: HomeResponse;
   }
 }

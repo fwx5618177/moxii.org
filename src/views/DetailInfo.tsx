@@ -16,6 +16,7 @@ const DetailInfo: FC<DetailInfoProps> = ({
   recentArticles,
   tags,
   websiteStats,
+  profileInfo,
   isHomeList = true,
   children,
 }) => {
@@ -23,15 +24,15 @@ const DetailInfo: FC<DetailInfoProps> = ({
     <div className={styles["detail-container"]}>
       <div className={styles["info-section"]}>
         <ProfileCard
-          avatarUrl={""}
-          name={"冯文轩"}
-          description={"开发工程师"}
-          articlesCount={0}
-          tagsCount={0}
-          categoriesCount={0}
-          qqLink={""}
-          emailLink={""}
-          githubLink={""}
+          avatarUrl={profileInfo?.avatarUrl}
+          name={profileInfo?.name}
+          description={profileInfo?.description}
+          articlesCount={profileInfo?.articlesCount}
+          tagsCount={profileInfo?.tagsCount}
+          categoriesCount={profileInfo?.categoriesCount}
+          qqLink={profileInfo?.qqLink}
+          emailLink={profileInfo?.emailLink}
+          githubLink={profileInfo?.githubLink}
         />
 
         <NewPress

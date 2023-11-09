@@ -5,6 +5,7 @@ import {
   recentArticles,
   tags,
   websiteStats,
+  profileInfo,
 } from "@/mocks/ssg";
 
 export async function GET(request: NextRequest) {
@@ -19,6 +20,7 @@ export async function GET(request: NextRequest) {
           recentArticles,
           tags,
           websiteStats,
+          profileInfo,
         },
       })
     );
@@ -34,6 +36,7 @@ export async function GET(request: NextRequest) {
           recentArticles,
           tags,
           websiteStats,
+          profileInfo,
         },
       })
     );
@@ -52,6 +55,7 @@ export async function ssgData() {
           recentArticles,
           tags,
           websiteStats,
+          profileInfo,
         },
       })
     );
@@ -67,6 +71,7 @@ export async function ssgData() {
           recentArticles,
           tags,
           websiteStats,
+          profileInfo,
         },
       })
     );

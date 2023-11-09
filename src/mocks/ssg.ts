@@ -127,3 +127,15 @@ export const websiteStats = {
   totalVisits: 100,
   lastUpdated: Date.now(),
 };
+
+export const profileInfo = {
+  name: "冯文轩",
+  avatar: "https://picsum.photos/200/300?random=4",
+  description: "一个热爱生活的人",
+  articlesCount: 0,
+  tagsCount: 0,
+  categoriesCount: 0,
+  qqLink: "https://im.qq.com/",
+  githubLink: "https://github.com/fwx5618177/",
+  emailLink: "fengwenxuan2006@126.com",
+};

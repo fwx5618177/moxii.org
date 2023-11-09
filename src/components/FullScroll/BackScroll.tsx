@@ -2,6 +2,8 @@ import React, { useState, useEffect, FC, useRef } from "react";
 import { Link, Element, animateScroll } from "react-scroll";
 import styles from "@/styles/home.module.scss";
 import { BackScrollProps } from "Components";
+import Image from "next/image";
+import Header from "../Header/header";
 
 const fullPageDistance = 10;
 
@@ -58,7 +60,15 @@ const BackScroll: FC<BackScrollProps> = ({ children, header, imageData }) => {
         ref={fullPageRef}
       >
         <Link to="content-section" smooth={true} duration={500}>
-          <div className={styles.arrow} onClick={scrollToContentSection}></div>
+          <div className={styles.arrow} onClick={scrollToContentSection}>
+            <Image
+              className="down_icon"
+              src={"/arrow_down_transparent.png"}
+              width={64}
+              height={64}
+              alt={"arrow down"}
+            />
+          </div>
         </Link>
       </div>
       <Element
@@ -66,18 +76,17 @@ const BackScroll: FC<BackScrollProps> = ({ children, header, imageData }) => {
         name="content-section"
         className={styles["content-section"]}
       >
-        <div
-          className={styles["bg-image-small"]}
-          style={{
-            backgroundImage: small ? `url(${small})` : undefined,
-          }}
-        >
-          {header}
-        </div>
+        <Header small={small}>{header}</Header>
         {children}
         {showArrowUp && (
           <div className={styles.arrowUp} onClick={handleScrollUp}>
-            ↑
+            <Image
+              className={styles.icon}
+              src="/arrow-up-transparent.png"
+              width={64}
+              height={64}
+              alt={"arrow up"}
+            />
           </div>
         )}
       </Element>

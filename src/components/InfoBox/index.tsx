@@ -9,8 +9,8 @@ interface InfoBoxProps {
 }
 
 const InfoBox: React.FC<InfoBoxProps> = ({
-  width = 370,
-  height = 350,
+  width = 290,
+  height = 300,
   scrollable = false,
   children,
 }) => {

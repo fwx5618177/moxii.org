@@ -19,7 +19,7 @@ const WebsiteStats: React.FC<WebsiteStatsProps> = ({
       <div className={styles["website-stats"]}>
         <div className={styles["website-header"]}>
           <FaChartLine />
-          <span>网站咨询</span>
+          <span>网站资讯</span>
         </div>
         <div className={styles["stat-item"]}>
           <span className={styles["stat-title"]}>文章数目：</span>

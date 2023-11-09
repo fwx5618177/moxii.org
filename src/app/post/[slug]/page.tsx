@@ -23,11 +23,7 @@ const Page: FC<PostPageProps> = async ({ params }) => {
   const { slug } = params || { slug: "" };
   const defaultData = await getDefaultHomeData();
 
-  return (
-    <main>
-      <PostView defaultData={defaultData}>{slug}</PostView>
-    </main>
-  );
+  return <PostView defaultData={defaultData}>{slug}</PostView>;
 };
 
 export default Page;

@@ -6,7 +6,7 @@ import { FaTags } from "react-icons/fa";
 
 const TagCloud: React.FC<TagCloudProps> = ({ tags, title }) => {
   return (
-    <InfoBox height={330}>
+    <InfoBox height={300}>
       <div className={styles["info-box"]}>
         <div className={styles["info-box-title"]}>
           <FaTags />

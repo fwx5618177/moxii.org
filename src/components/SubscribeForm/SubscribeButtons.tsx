@@ -5,7 +5,7 @@ const SubscribeForm = ({ onSubscribe }) => {
   const [email, setEmail] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
-  const emailOptions = ["@gmail.com", "@yahoo.com", "@outlook.com"];
+  const emailOptions = ["@gmail.com", "@yahoo.com", "@outlook.com", "@126.com"];
 
   const handleChange = (e) => {
     const newEmail = e.target.value;

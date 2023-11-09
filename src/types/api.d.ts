@@ -14,6 +14,7 @@ declare module "Api" {
     recentArticles: Article[];
     tags: string[];
     websiteStats: WebsiteStatsProps;
+    profileInfo: ProfileCardProps;
   };
 
   type PostResponse = ArticleDisplayProps;

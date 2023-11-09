@@ -1,6 +1,39 @@
-.post-view {
-    min-height: 100vh;
-    overflow: auto;
-    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-    background-color: #f4f4f4;
+.detail-post {
+    width: 100%; // 设定宽度
+    background-color: #f2f2f2;
+    box-sizing: border-box;
+
+    padding-bottom: 2.5rem;
+
+    .detail-container {
+        margin: 2.5rem auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        font-family: 'Arial', sans-serif;
+
+        .info-section {
+            width: 370px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 2rem; // 间距
+            margin: 0rem .7rem; // 边距
+
+            .info-tips {
+                position: fixed;
+                gap: 2rem;
+            }
+        }
+
+        .list-section {
+            width: 65rem;
+            max-width: 1100px;
+            margin: 0rem .7rem; // 边距
+        }
+    }
 }

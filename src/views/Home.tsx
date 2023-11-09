@@ -3,7 +3,6 @@
 import React, { FC } from "react";
 import NonScroll from "@/components/FullScroll/NonScroll";
 import BackScroll from "@/components/FullScroll/BackScroll";
-import { ImageResponse } from "Components";
 import DetailInfo from "./DetailInfo";
 import { HomeResponse } from "Api";
 
@@ -13,6 +12,7 @@ const HomePage: FC<HomeResponse> = ({
   recentArticles,
   tags,
   websiteStats,
+  profileInfo,
 }) => {
   const isRollBack = true;
 
@@ -21,6 +21,7 @@ const HomePage: FC<HomeResponse> = ({
       {isRollBack ? (
         <BackScroll imageData={imageData}>
           <DetailInfo
+            profileInfo={profileInfo}
             data={list}
             recentArticles={recentArticles}
             tags={tags}
