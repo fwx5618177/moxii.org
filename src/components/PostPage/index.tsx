@@ -4,6 +4,7 @@ import InfoBox from "@/components/InfoBox";
 import { PostPageProps } from "Components";
 import CopyRight from "@/components/copyright";
 import RelativeArticle from "../RelativeArticle";
+import moment from "moment";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -13,18 +14,39 @@ const PostPage: FC<PostPageProps> = ({
   author,
   relativeArticles,
   type,
+  addition = ["Chinese"],
 }) => {
+  console.log({
+    relativeArticles,
+  });
+
   return (
     <InfoBox
       width={"100%"}
-      height={"140vh"}
+      height={"auto"}
       infoBoxStyle={{
         padding: "50px 40px",
       }}
     >
       <div className={styles["post-page-container"]}>
         <article className={styles["post-page-article"]}>
-          {type}-{slug}
+          <header className={styles["post-page-article-header"]}>
+            <h1>{title}</h1>
+            {slug && <span>{slug}</span>}
+            {type && <span>{type}</span>}
+            {addition?.map((item, index) => (
+              <span key={index}>{item}</span>
+            ))}
+
+            {updatedDate && (
+              <p className={styles["post-page-article-header-time"]}>
+                {moment(updatedDate).format("YYYY-MM-DD HH:mm:ss")}
+              </p>
+            )}
+          </header>
+          <section className={styles["post-page-article-body"]}>
+            {content?.repeat(100)}
+          </section>
         </article>
 
         <CopyRight
@@ -40,12 +62,14 @@ const PostPage: FC<PostPageProps> = ({
               imageUrl={relativeArticles[0]?.imageUrl}
               updatedDate={relativeArticles[0]?.updatedDate}
               type={relativeArticles[0]?.type}
+              slug={relativeArticles[0]?.slug}
             />
             <RelativeArticle
               title={relativeArticles[1]?.title}
               imageUrl={relativeArticles[1]?.imageUrl}
               updatedDate={relativeArticles[1]?.updatedDate}
               type={relativeArticles[1]?.type}
+              slug={relativeArticles[1]?.slug}
             />
           </div>
         )}

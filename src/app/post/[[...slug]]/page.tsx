@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { getDefaultPostData } from "@/data-fetching/post/getDefaultData";
 import { getDefaultHomeData } from "@/data-fetching/home/getDefaultData";
 import PostView from "@/views/PostView";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = async (props: {
   params: {
@@ -21,6 +22,9 @@ export const generateMetadata = async (props: {
 
 const Page: FC<PostPageProps> = async ({ params }) => {
   const { slug } = params || { slug: "" };
+
+  if (!slug) notFound();
+
   const defaultData = await getDefaultHomeData();
   const defaultPostData = await getDefaultPostData(slug);
 

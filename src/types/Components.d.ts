@@ -117,6 +117,7 @@ declare module "Components" {
     type: string;
     slug: string;
     relativeArticles: RelativeArticleProps[];
+    addition?: string[];
   }
 
   interface RelativeArticleProps {
@@ -124,6 +125,7 @@ declare module "Components" {
     updatedDate: string | number | Date;
     imageUrl: string;
     type: "pre" | "next" | string;
+    slug: string;
   }
 
   interface PostViewProps {

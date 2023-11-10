@@ -12,12 +12,14 @@ export const POST = async (request: NextRequest) => {
       updatedDate: articles[0]?.updatedDate,
       imageUrl: articles[0]?.imageUrl || "https://picsum.photos/950/150",
       type: "pre",
+      slug: articles[0]?.slug,
     };
     const next = {
       title: articles[1]?.title,
       updatedDate: articles[1]?.updatedDate,
       imageUrl: articles[1]?.imageUrl || "https://picsum.photos/950/150",
       type: "next",
+      slug: articles[0]?.slug,
     };
 
     const result: PostDetailResponse = {
