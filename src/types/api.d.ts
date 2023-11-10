@@ -6,6 +6,7 @@ declare module "Api" {
     ArticleDisplayProps,
     Article,
     WebsiteStatsProps,
+    PostPageProps,
   } from "Components";
 
   export type HomeResponse = {
@@ -18,6 +19,8 @@ declare module "Api" {
   };
 
   type PostResponse = ArticleDisplayProps;
+
+  type PostDetailResponse = PostPageProps;
 
   interface RequestConfig extends AxiosRequestConfig {
     data?: {

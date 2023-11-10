@@ -1,5 +1,6 @@
 declare module "Post" {
   import { ReactNode } from "react";
+  import { PostPageProps as ComponentPostPageProps } from "Components";
 
   interface PostPageProps {
     params: {
@@ -37,4 +38,6 @@ declare module "Post" {
   type Posts = Post[];
 
   type MatterResult = Omit<Post, "id">;
+
+  type PostDetailProps = ComponentPostPageProps;
 }

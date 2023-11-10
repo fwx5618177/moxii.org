@@ -6,15 +6,26 @@ import PostPage from "@/components/PostPage";
 import ProfileCard from "@/components/ProfileCard";
 import NewPress from "@/components/NewPress";
 import { FaHistory } from "react-icons/fa";
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { PostViewProps } from "Components";
 import TagCloud from "@/components/TagCloud";
 import WebsiteStats from "@/components/WebsiteStats";
+import { useFetchDetailData } from "@/services/Post/PostService";
 
-const PostView: FC<PostViewProps> = ({ children, defaultData, postData }) => {
+const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
     defaultData;
   const { small } = imageData;
+
+  const { data } = useFetchDetailData<{
+    slug: string | number;
+  }>({
+    slug: postData?.slug,
+  });
+
+  console.log({
+    data,
+  });
 
   return (
     <>
@@ -68,7 +79,15 @@ const PostView: FC<PostViewProps> = ({ children, defaultData, postData }) => {
             />
           </div>
           <div className={styles["list-section"]}>
-            <PostPage>{children}</PostPage>
+            <PostPage
+              content={data?.content}
+              title={data?.title}
+              updatedDate={data?.updatedDate}
+              author={data?.author}
+              type={data?.type}
+              slug={data?.slug}
+              relativeArticles={data?.relativeArticles}
+            />
           </div>
         </div>
       </main>

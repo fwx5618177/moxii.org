@@ -110,11 +110,20 @@ declare module "Components" {
   }
 
   interface PostPageProps {
-    content?: string;
-    title?: string;
-    date?: string;
-    author?: string;
-    children?: ReactNode;
+    content: string;
+    title: string;
+    updatedDate: string | number | Date;
+    author: string;
+    type: string;
+    slug: string;
+    relativeArticles: RelativeArticleProps[];
+  }
+
+  interface RelativeArticleProps {
+    title: string;
+    updatedDate: string | number | Date;
+    imageUrl: string;
+    type: "pre" | "next" | string;
   }
 
   interface PostViewProps {

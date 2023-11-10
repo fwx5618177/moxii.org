@@ -1,0 +1,27 @@
+.post-page-container {
+    width: 100%;
+
+    .post-page-article {
+        color: #4c4948;
+        font-size: 14px;
+        line-height: 2;
+        word-spacing: 12px;
+
+    }
+
+    &>*::selection {
+        background-color: #00c4b6;
+        color: #f7f7f7;
+    }
+
+    .post-page-relative-article {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        border-top: 1px solid #00c4b6;
+        border-style: dashed;
+        padding: 20px;
+    }
+}

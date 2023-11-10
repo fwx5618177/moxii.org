@@ -24,11 +24,7 @@ const Page: FC<PostPageProps> = async ({ params }) => {
   const defaultData = await getDefaultHomeData();
   const defaultPostData = await getDefaultPostData(slug);
 
-  return (
-    <PostView defaultData={defaultData} postData={defaultPostData}>
-      {slug}
-    </PostView>
-  );
+  return <PostView defaultData={defaultData} postData={defaultPostData} />;
 };
 
 export default Page;
