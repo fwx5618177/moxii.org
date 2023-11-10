@@ -5,6 +5,7 @@ import { PostPageProps } from "Components";
 import CopyRight from "@/components/copyright";
 import RelativeArticle from "../RelativeArticle";
 import moment from "moment";
+import Recommend from "../Recommend";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -73,6 +74,12 @@ const PostPage: FC<PostPageProps> = ({
             />
           </div>
         )}
+
+        <Recommend
+          updatedDate={undefined}
+          title={undefined}
+          imageUrl={undefined}
+        />
       </div>
     </InfoBox>
   );
