@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { ssgData } from "@/app/api/post/route";
+import { ssgData } from "@/app/api/post/ssgData";
 import { PostResponse } from "Api";
 import { useFetchData } from "../fetchData";
 

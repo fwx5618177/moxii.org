@@ -19,6 +19,7 @@ declare module "Components" {
   export interface MetaDataProps {
     isSticky?: boolean; // 可选属性，默认为false
     type: string;
+    date?: string | Date | number;
     readCount?: string | number;
     wordCount?: string | number;
     readTimeCost?: string | number;

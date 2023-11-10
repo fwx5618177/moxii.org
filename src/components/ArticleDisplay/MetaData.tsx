@@ -8,7 +8,9 @@ const MetaData: React.FC<MetaDataProps> = ({
   isSticky = false,
   date,
   type,
-  count = 0,
+  readCount = 0,
+  wordCount = 0,
+  readTimeCost = 0,
 }) => {
   return (
     <div className={styles.date}>
@@ -36,7 +38,7 @@ const MetaData: React.FC<MetaDataProps> = ({
         发表于 {moment(date).format("YYYY-MM-DD HH:mm:ss")} |{" "}
       </span>
       <span>类型: {type} | </span>
-      <span>人气: {count}</span>
+      <span>人气: {readCount}</span>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ssgData } from "@/app/api/home/route";
+import { ssgData } from "@/app/api/home/ssgData";
 import { cache } from "react";
 import { HomeResponse } from "Api";
 import { useFetchData } from "../fetchData";

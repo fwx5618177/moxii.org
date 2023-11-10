@@ -8,7 +8,7 @@ import {
   profileInfo,
 } from "@/mocks/ssg";
 
-export async function GET(request: NextRequest) {
+export async function ssgData() {
   try {
     return new NextResponse(
       JSON.stringify({
