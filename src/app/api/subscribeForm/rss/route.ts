@@ -6,11 +6,6 @@ export async function GET(_request: NextRequest) {
   try {
     const posts = PostActions.getAllPostsData();
 
-    console.log({
-      posts,
-      meta: posts[0]?.metadata,
-    });
-
     const feed = new Feed({
       title: "Moxi RSS Feed",
       description: "This is my personal feed!",
@@ -30,12 +25,12 @@ export async function GET(_request: NextRequest) {
 
     posts.forEach((post) => {
       feed.addItem({
-        title: post.metadata.title,
+        title: post.title,
         id: post.id,
-        link: `https://moxixii.com/posts/${post.metadata.slug}`,
-        description: post.metadata.description,
+        link: `https://moxixii.com/posts/${post.slug}`,
+        description: post.description,
         content: post.content,
-        date: new Date(post.metadata.date),
+        date: new Date(post.date),
       });
     });
 

@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { Post, PostMetadata, Posts } from "Post";
+import { Post, PostMetaDataStore, Posts } from "Post";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
@@ -41,22 +41,32 @@ export class PostActions {
       .digest("hex")
       .substring(0, 16);
 
-    const metadata: PostMetadata = {
-      title: data.title || fileName || "No Title",
+    const metadata: PostMetaDataStore = {
       slug: data.slug || PostActions.generateSlug(data.title || ""),
-      excerpt: data.excerpt || "",
-      coverImage: data.coverImage || "default-cover.jpg",
+      imageUrl: data.imageUrl || "https://picsum.photos/400/300",
+      title: data.title || fileName || "Untitled",
       date: data.date || new Date().toISOString(),
-      updateDate: data.updateDate || "",
+      publishedDate: data.publishedDate || "",
+      updatedDate: data.updatedDate || "",
+      content: content || "",
+      position: data.position || "left",
+      excerpt: data.excerpt || "",
       author: data.author || { name: "Unknown Author" },
       tags: data.tags || [],
       readCount: data.readCount || 0,
       commentsCount: data.commentsCount || 0,
       status: data.status || "draft",
       description: data.description || "",
+      meta: {
+        articleCount: 0,
+        totalWordCount: 0,
+        totalVisitors: 0,
+        totalVisits: 0,
+        lastUpdated: new Date().toISOString(),
+      },
     };
 
-    return { id: id, content, metadata };
+    return { id: id, ...metadata };
   }
 
   static getAllPostsData(): Posts {
@@ -76,9 +86,9 @@ export class PostActions {
       })
       .filter((post): post is Post => post !== null)
       .sort((a, b) => {
-        if (a.metadata.date < b.metadata.date) {
+        if (a.date < b.date) {
           return 1;
-        } else if (a.metadata.date > b.metadata.date) {
+        } else if (a.date > b.date) {
           return -1;
         } else {
           return 0;
