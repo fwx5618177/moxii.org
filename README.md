@@ -13,3 +13,4 @@
   - [ ] IPv6
 - [ ] Dashboard
 - [ ] Render Blog method
+- [ ] About
