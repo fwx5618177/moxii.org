@@ -6,6 +6,7 @@ import CopyRight from "@/components/copyright";
 import RelativeArticle from "../RelativeArticle";
 import moment from "moment";
 import Recommend from "../Recommend";
+import Comment from "../Comment";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -97,6 +98,8 @@ const PostPage: FC<PostPageProps> = ({
             },
           ]}
         />
+
+        <Comment />
       </div>
     </InfoBox>
   );
