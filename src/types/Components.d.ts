@@ -33,9 +33,10 @@ declare module "Components" {
     date: string | Date | number;
     publishedDate?: string | Date | number;
     updatedDate?: string | Date | number;
-    content: string;
+    content?: string;
     position?: "left" | "right";
     meta: MetaDataProps;
+    description: string;
   }
 
   export type WebsiteStatsProps = {

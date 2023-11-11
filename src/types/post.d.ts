@@ -24,7 +24,6 @@ declare module "Post" {
     readCount?: number;
     commentsCount?: number;
     status: "published" | "draft" | "archived";
-    description?: string;
   };
 
   type PostMetaDataStore = PostMetadata & {
@@ -33,7 +32,6 @@ declare module "Post" {
 
   type Post = PostMetaDataStore & {
     id: string;
-    content: string;
   };
 
   // 用于描述getAllPosts函数返回值的类型

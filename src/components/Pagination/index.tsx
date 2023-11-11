@@ -72,7 +72,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
       {/* 总页数 */}
       <span className={styles["total-page"]}>
-        共 {page?.total} 页 {page.pageSize * page.total} 条
+        共 {page?.total} 页 {totalPages} 条
       </span>
 
       {/* 下一页 */}

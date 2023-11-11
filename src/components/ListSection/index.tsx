@@ -55,7 +55,7 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
               imageUrl={article.imageUrl}
               title={article.title}
               date={article.date}
-              content={article.content}
+              description={article.description}
               position={article.position}
               meta={article.meta}
               slug={article.slug}

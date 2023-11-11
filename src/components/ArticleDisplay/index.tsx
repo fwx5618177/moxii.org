@@ -9,7 +9,7 @@ import Link from "next/link";
 const ArticleDisplay: FC<ArticleDisplayProps> = ({
   imageUrl,
   title,
-  content,
+  description,
   position = "left",
   meta,
   date,
@@ -33,7 +33,7 @@ const ArticleDisplay: FC<ArticleDisplayProps> = ({
             <h2 className={styles.title}>{title}</h2>
           </Link>
           <MetaData date={date} {...meta} />
-          <p className={styles.content}>{content}</p>
+          <p className={styles.description}>{description}</p>
         </div>
       </div>
     </InfoBox>

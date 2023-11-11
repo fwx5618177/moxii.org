@@ -41,6 +41,11 @@ export class PostActions {
       .digest("hex")
       .substring(0, 16);
 
+    console.log({
+      data,
+      content,
+    });
+
     const metadata: PostMetaDataStore = {
       slug: data.slug || PostActions.generateSlug(data.title || ""),
       imageUrl: data.imageUrl || "https://picsum.photos/400/300",
