@@ -26,12 +26,11 @@ export const sendEmail = async (
       to: recipientEmail, // 接收者的邮箱
       subject: subject, // 邮件主题
       text: content, // 纯文本内容
-      html: `<p>${content}</p>`, // HTML内容
+      html: template({
+        content,
+        user: recipientEmail,
+      }), // HTML内容
     };
-
-    console.log({
-      config,
-    });
 
     // 使用Promise.race实现超时机制，设置超时时间为10秒
     const sendPromise: Promise<SMTPTransport.SentMessageInfo> =
