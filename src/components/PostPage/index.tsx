@@ -76,9 +76,26 @@ const PostPage: FC<PostPageProps> = ({
         )}
 
         <Recommend
-          updatedDate={undefined}
-          title={undefined}
-          imageUrl={undefined}
+          data={[
+            {
+              updatedDate: Date.now(),
+              title: "这是一篇文章, 这是一篇文章",
+              imageUrl: "https://picsum.photos/256/200",
+              language: "Chinese",
+            },
+            {
+              updatedDate: Date.now(),
+              title: "这是一篇文章, 这是一篇文章",
+              imageUrl: "https://picsum.photos/256/200",
+              language: "English",
+            },
+            {
+              updatedDate: Date.now(),
+              title: "这是一篇文章, 这是一篇文章",
+              imageUrl: "https://picsum.photos/256/200",
+              language: "English",
+            },
+          ]}
         />
       </div>
     </InfoBox>
