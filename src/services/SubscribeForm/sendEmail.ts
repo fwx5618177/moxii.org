@@ -1,6 +1,7 @@
 import { config } from "@/config/dev";
 import nodemailer from "nodemailer";
 import SMTPTransport from "nodemailer/lib/smtp-transport";
+import { template } from "./template";
 
 export const sendEmail = async (
   recipientEmail: any,

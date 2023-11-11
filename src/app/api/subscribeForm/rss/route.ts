@@ -1,47 +1,71 @@
-import { getAllPosts } from "@/services/Post/getAllPosts";
+import { PostActions } from "@/actions/post/PostActions";
 import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const posts = await getAllPosts();
+export async function GET(_request: NextRequest) {
+  try {
+    const posts = PostActions.getAllPostsData();
 
-  const feed = new Feed({
-    title: "Your Site's Title",
-    description: "This is my personal feed!",
-    id: "https://yoursite.com/",
-    link: "https://yoursite.com/",
-    language: "en",
-    feedLinks: {
-      rss2: "https://yoursite.com/rss.xml",
-    },
-    author: {
-      name: "Your Name",
-      email: "Your Email",
-      link: "https://yourlink.com",
-    },
-    copyright: "",
-  });
-
-  posts.forEach((post) => {
-    feed.addItem({
-      title: post.metadata.title,
-      id: post.id,
-      link: `https://yoursite.com/posts/${post.metadata.slug}`,
-      description: post.metadata.description,
-      content: post.content,
-      date: new Date(post.metadata.date),
+    console.log({
+      posts,
+      meta: posts[0]?.metadata,
     });
-  });
 
-  return new NextResponse(
-    JSON.stringify({
-      status: "success",
-      code: 999,
-      data: feed.rss2(),
-    })
-  );
+    const feed = new Feed({
+      title: "Moxi RSS Feed",
+      description: "This is my personal feed!",
+      id: "https://moxixii.com/",
+      link: "https://moxixii.com/",
+      language: "en",
+      feedLinks: {
+        rss2: "https://moxixii.com/rss.xml",
+      },
+      author: {
+        name: "moxixii",
+        email: "fengwenxuan2006@126.com",
+        link: "https://moxixii.com",
+      },
+      copyright: "Moxi",
+    });
 
-  // res.setHeader("Content-Type", "application/rss+xml");
-  // res.write(feed.rss2());
-  // res.end();
+    posts.forEach((post) => {
+      feed.addItem({
+        title: post.metadata.title,
+        id: post.id,
+        link: `https://moxixii.com/posts/${post.metadata.slug}`,
+        description: post.metadata.description,
+        content: post.content,
+        date: new Date(post.metadata.date),
+      });
+    });
+
+    return new NextResponse(
+      JSON.stringify({
+        status: "success",
+        code: 200,
+        data: feed.rss2(),
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/rss+xml",
+        },
+      }
+    );
+  } catch (error) {
+    console.error("Error sending rss: ", error);
+    return new NextResponse(
+      JSON.stringify({
+        status: "error",
+        code: 500,
+        message: "Error sending rss",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
 }
