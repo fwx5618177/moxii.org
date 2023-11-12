@@ -36,18 +36,13 @@ declare module "Components" {
     profileInfo: ProfileCardProps;
   }
 
-  interface ArticleDisplayProps {
-    key?: number;
-    slug?: string;
-    imageUrl: string;
-    title: string;
+  interface MetaDataProps {
+    isSticky: boolean;
+    type: string;
     date: string | Date | number;
-    publishedDate?: string | Date | number;
-    updatedDate?: string | Date | number;
-    content?: string;
-    position?: "left" | "right";
-    meta: MetaDataResponse;
-    description: string;
+    readCount: string | number;
+    wordCount: string | number;
+    readTimeCost: string | number;
   }
 
   type WebsiteStatsProps = {
@@ -57,6 +52,69 @@ declare module "Components" {
     totalVisits: number;
     lastUpdated: string | Date | number;
   };
+
+  interface Author {
+    url?: string | URL;
+    name?: string;
+  }
+
+  interface RelativeArticleProps {
+    title: string;
+    updatedDate: string | number | Date;
+    imageUrl: string;
+    type: "pre" | "next" | string;
+    slug: string;
+  }
+
+  type RelativeArticleListProps = RelativeArticleProps[];
+
+  interface ArticleDisplayProps {
+    id: string;
+    key?: number;
+    slug: string;
+    imageUrl: string;
+    title: string;
+    createdDate: string | Date | number;
+    publishedDate: string | Date | number;
+    updatedDate: string | Date | number;
+    content: string;
+    position: "left" | "right";
+    meta: MetaDataProps;
+    description: string;
+    excerpt: string;
+    author: Author | Array<Author>;
+    tags: string[];
+    readCount: number;
+    commentsCount: number;
+    status: "published" | "draft" | "archived";
+    type: string;
+    addition: string[];
+    websiteStats: WebsiteStatsProps;
+    relatives?: RelativeArticleListProps;
+  }
+
+  interface PostPageParmaProps {
+    params: {
+      slug: string;
+    };
+  }
+
+  interface PostViewProps {
+    children?: ReactNode;
+    defaultData: HomePageProps;
+    postData?: ArticleDisplayProps;
+  }
+
+  interface PostPageProps {
+    content: string;
+    slug: string;
+    title: string;
+    updatedDate: string | Date | number;
+    author: Author | Array<Author>;
+    type: string;
+    addition?: string[];
+    relatives: RelativeArticleListProps;
+  }
 
   type TagCloudProps = {
     tags: string[];
@@ -106,31 +164,6 @@ declare module "Components" {
     height?: number;
     isPost?: boolean;
     postData?: ArticleDisplayProps;
-  }
-
-  interface PostPageProps {
-    content: string;
-    title: string;
-    updatedDate: string | number | Date;
-    author: string;
-    type: string;
-    slug: string;
-    relativeArticles: RelativeArticleProps[];
-    addition?: string[];
-  }
-
-  interface RelativeArticleProps {
-    title: string;
-    updatedDate: string | number | Date;
-    imageUrl: string;
-    type: "pre" | "next" | string;
-    slug: string;
-  }
-
-  interface PostViewProps {
-    children?: ReactNode;
-    defaultData: HomeResponse;
-    postData?: PostResponse;
   }
 
   interface InfoBoxProps {

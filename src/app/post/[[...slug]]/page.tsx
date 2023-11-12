@@ -1,10 +1,10 @@
-import { PostPageProps } from "Post";
 import { FC } from "react";
 import type { Metadata } from "next";
 import { getDefaultPostData } from "@/data-fetching/post/getDefaultData";
 import { getDefaultHomeData } from "@/data-fetching/home/getDefaultData";
 import PostView from "@/views/PostView";
 import { notFound } from "next/navigation";
+import { PostPageParmaProps } from "Components";
 
 export const generateMetadata = async (props: {
   params: {
@@ -17,23 +17,18 @@ export const generateMetadata = async (props: {
 
   return {
     title: defaultPostData?.title || "",
-    authors: defaultPostData?.author || [],
+    authors: defaultPostData?.author,
     description: defaultPostData?.description || "",
   };
 };
 
-const Page: FC<PostPageProps> = async ({ params }) => {
+const Page: FC<PostPageParmaProps> = async ({ params }) => {
   const { slug } = params || { slug: "" };
 
   if (!slug) notFound();
 
   const defaultData = await getDefaultHomeData();
   const defaultPostData = await getDefaultPostData(slug);
-
-  console.log({
-    defaultData,
-    defaultPostData,
-  });
 
   return <PostView defaultData={defaultData} postData={defaultPostData} />;
 };

@@ -1,8 +1,8 @@
 import { createHash } from "crypto";
-import { Post, PostMetaDataStore, Posts } from "Post";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
+import { ArticleListResponse, DetailArticleDisplayResponse } from "Response";
 
 export class PostActions {
   static postsDirectory = path.join(process.cwd(), "posts");
@@ -32,7 +32,10 @@ export class PostActions {
    * @param markdownContent The markdown content of the post
    * @returns The Post object
    */
-  static parsePost(fileName: string, markdownContent: string): Post {
+  static parsePost(
+    fileName: string,
+    markdownContent: string
+  ): DetailArticleDisplayResponse {
     const { data, content } = matter(markdownContent);
 
     // 使用title生成一个特殊的id值
@@ -41,42 +44,49 @@ export class PostActions {
       .digest("hex")
       .substring(0, 16);
 
-    console.log({
-      data,
-      content,
-    });
-
-    const metadata: PostMetaDataStore = {
+    const metadata: DetailArticleDisplayResponse = {
+      id: "",
+      key: 0,
+      type: "article",
       slug: data.slug || PostActions.generateSlug(data.title || ""),
       imageUrl: data.imageUrl || "https://picsum.photos/400/300",
       title: data.title || fileName || "Untitled",
-      date: data.date || new Date().toISOString(),
+      createdDate: data.date || new Date().toISOString(),
       publishedDate: data.publishedDate || "",
       updatedDate: data.updatedDate || "",
       content: content || "",
       position: data.position || "left",
       excerpt: data.excerpt || "",
-      author: data.author || { name: "Unknown Author" },
+      author: data.author || { name: "Unknown Author", url: "" },
       tags: data.tags || [],
       readCount: data.readCount || 0,
       commentsCount: data.commentsCount || 0,
       status: data.status || "draft",
       description: data.description || "",
-      meta: {
+      websiteStats: {
         articleCount: 0,
         totalWordCount: 0,
         totalVisitors: 0,
         totalVisits: 0,
         lastUpdated: new Date().toISOString(),
       },
+      meta: {
+        isSticky: false,
+        type: "article",
+        date: new Date().toISOString(),
+        readCount: 0,
+        wordCount: 0,
+        readTimeCost: 0,
+      },
+      addition: [],
     };
 
     return { id: id, ...metadata };
   }
 
-  static getAllPostsData(): Posts {
+  static getAllPostsData(): ArticleListResponse {
     const filenames = fs.readdirSync(PostActions.postsDirectory);
-    const allPostsData: Posts = filenames
+    const allPostsData: ArticleListResponse = filenames
       .filter((filename) => filename.endsWith(".md"))
       .map((filename) => {
         const slug = filename.replace(/\.md$/, "");
@@ -89,11 +99,11 @@ export class PostActions {
           return null;
         }
       })
-      .filter((post): post is Post => post !== null)
+      .filter((post): post is DetailArticleDisplayResponse => post !== null)
       .sort((a, b) => {
-        if (a.date < b.date) {
+        if (a.createdDate < b.createdDate) {
           return 1;
-        } else if (a.date > b.date) {
+        } else if (a.createdDate > b.createdDate) {
           return -1;
         } else {
           return 0;

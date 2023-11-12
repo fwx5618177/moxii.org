@@ -1,9 +1,14 @@
 import { localDataList } from "@/actions/post/cache";
+import { DetailArticleDisplayResponse } from "Response";
 import { NextResponse } from "next/server";
 
-export const ssgData = async (slug: string | number) => {
+export const ssgData = async (
+  slug: string | number
+): Promise<NextResponse<DetailArticleDisplayResponse>> => {
   try {
-    const findData = localDataList.find((item) => item?.slug === String(slug));
+    const findData: DetailArticleDisplayResponse = localDataList.find(
+      (item) => item?.slug === String(slug)
+    );
 
     return new NextResponse(
       JSON.stringify({

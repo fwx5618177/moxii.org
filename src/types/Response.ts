@@ -17,6 +17,13 @@ declare module "Response" {
     welcome: string;
   }
 
+  interface AuthorResponse {
+    name: string;
+    avatarUrl: string;
+    description: string;
+    url: string;
+  }
+
   interface MetaDataResponse {
     isSticky: boolean;
     type: string;
@@ -25,6 +32,16 @@ declare module "Response" {
     wordCount: string | number;
     readTimeCost: string | number;
   }
+
+  interface RelativeArticleResponse {
+    title: string;
+    updatedDate: string | number | Date;
+    imageUrl: string;
+    type: "pre" | "next" | string;
+    slug: string;
+  }
+
+  type RelativeArticleList = RelativeArticleResponse[];
 
   interface DetailArticleDisplayResponse {
     id: string;
@@ -38,15 +55,17 @@ declare module "Response" {
     content: string;
     position: "left" | "right";
     meta: MetaDataResponse;
+    websiteStats: WebsiteStatsResponse;
     description: string;
     excerpt: string;
-    author: string;
+    author: AuthorResponse | Array<AuthorResponse>;
     tags: string[];
     readCount: number;
     commentsCount: number;
     status: "published" | "draft" | "archived";
     type: string;
     addition: string[];
+    relatives?: RelativeArticleList;
   }
 
   type ArticleListResponse = DetailArticleDisplayResponse[];

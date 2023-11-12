@@ -1,17 +1,18 @@
 import { UseQueryResult, useQuery } from "react-query";
 import { PostServiceApi } from "./api";
-import { PostDetailResponse } from "Api";
+import { DetailArticleDisplayResponse } from "Response";
 
 export const useFetchDetailData = <T>(
   params: T,
   content: string
-): UseQueryResult<PostDetailResponse> => {
+): UseQueryResult<DetailArticleDisplayResponse> => {
   return useQuery(
     ["detail", params],
     async () => {
-      const res = await PostServiceApi.getDetailPost<PostDetailResponse, T>(
-        params
-      );
+      const res = await PostServiceApi.getDetailPost<
+        DetailArticleDisplayResponse,
+        T
+      >(params);
 
       return res;
     },

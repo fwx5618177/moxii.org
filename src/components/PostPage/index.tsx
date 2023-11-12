@@ -1,12 +1,12 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
 import InfoBox from "@/components/InfoBox";
-import { PostPageProps } from "Components";
 import CopyRight from "@/components/copyright";
 import RelativeArticle from "../RelativeArticle";
 import moment from "moment";
 import Recommend from "../Recommend";
 import Comment from "../Comment";
+import { PostPageProps } from "Components";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -14,12 +14,12 @@ const PostPage: FC<PostPageProps> = ({
   title,
   updatedDate,
   author,
-  relativeArticles,
+  relatives,
   type,
   addition = ["Chinese"],
 }) => {
   console.log({
-    relativeArticles,
+    relatives,
   });
 
   return (
@@ -57,21 +57,21 @@ const PostPage: FC<PostPageProps> = ({
           email="fengwenxuan2006@126.com"
         />
 
-        {relativeArticles?.length && (
+        {relatives?.length && (
           <div className={styles["post-page-relative-article"]}>
             <RelativeArticle
-              title={relativeArticles[0]?.title}
-              imageUrl={relativeArticles[0]?.imageUrl}
-              updatedDate={relativeArticles[0]?.updatedDate}
-              type={relativeArticles[0]?.type}
-              slug={relativeArticles[0]?.slug}
+              title={relatives[0]?.title}
+              imageUrl={relatives[0]?.imageUrl}
+              updatedDate={relatives[0]?.updatedDate}
+              type={relatives[0]?.type}
+              slug={relatives[0]?.slug}
             />
             <RelativeArticle
-              title={relativeArticles[1]?.title}
-              imageUrl={relativeArticles[1]?.imageUrl}
-              updatedDate={relativeArticles[1]?.updatedDate}
-              type={relativeArticles[1]?.type}
-              slug={relativeArticles[1]?.slug}
+              title={relatives[1]?.title}
+              imageUrl={relatives[1]?.imageUrl}
+              updatedDate={relatives[1]?.updatedDate}
+              type={relatives[1]?.type}
+              slug={relatives[1]?.slug}
             />
           </div>
         )}

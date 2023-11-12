@@ -30,7 +30,7 @@ export async function GET(_request: NextRequest) {
         link: `https://moxixii.com/posts/${post.slug}`,
         description: post.description,
         content: post.content,
-        date: new Date(post.date),
+        date: new Date(post.createdDate),
       });
     });
 

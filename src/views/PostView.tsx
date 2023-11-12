@@ -89,7 +89,7 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
               author={data?.author}
               type={data?.type}
               slug={data?.slug}
-              relativeArticles={data?.relativeArticles}
+              relatives={data?.relatives}
             />
           </div>
         </div>

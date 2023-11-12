@@ -50,16 +50,7 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
       >
         {articles?.length > 0 ? (
           articles.map((article: ArticleDisplayProps, index: number) => (
-            <ArticleDisplay
-              key={index}
-              imageUrl={article.imageUrl}
-              title={article.title}
-              date={article.date}
-              description={article.description}
-              position={article.position}
-              meta={article.meta}
-              slug={article.slug}
-            />
+            <ArticleDisplay key={index} {...article} />
           ))
         ) : (
           <Empty width="800px" height={minHeight} iconSize={"20rem"} />

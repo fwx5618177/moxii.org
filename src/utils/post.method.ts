@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { message } from "antd";
 import { CODE_CONFIG, CODE_MESSAGE_CONFIG } from "./code.config";
 import { config } from "@/config/dev";
-import { RequestConfig } from "Api";
+import { ResponseConfig } from "Response";
 
 const service = axios.create({
   timeout: 10000, // 设置请求超时时间10秒
@@ -71,13 +71,13 @@ service.interceptors.response.use(
 );
 
 // 封装 get, post, put, delete 方法
-const get = <T = RequestConfig>(url: string, params?: any): Promise<T> =>
+const get = <T = ResponseConfig<any>>(url: string, params?: any): Promise<T> =>
   service.get<T>(url, { params }).then((response) => response.data);
-const post = <T = RequestConfig>(url: string, data?: any): Promise<T> =>
+const post = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
   service.post<T>(url, data).then((response) => response.data);
-const put = <T = RequestConfig>(url: string, data?: any): Promise<T> =>
+const put = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
   service.put<T>(url, data).then((response) => response.data);
-const remove = <T = RequestConfig>(url: string, data?: any): Promise<T> =>
+const remove = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
   service.delete<T>(url, { data }).then((response) => response.data);
 
 export { get, post, put, remove };
