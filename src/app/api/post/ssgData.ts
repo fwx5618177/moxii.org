@@ -1,11 +1,9 @@
-import { PostActions } from "@/actions/post/PostActions";
-import { articles } from "@/mocks/ssg";
+import { localDataList } from "@/actions/post/cache";
 import { NextResponse } from "next/server";
 
 export const ssgData = async (slug: string | number) => {
   try {
-    // const list = PostActions.getAllPostsData();
-    const findData = articles.find((item) => item?.slug === String(slug));
+    const findData = localDataList.find((item) => item?.slug === String(slug));
 
     return new NextResponse(
       JSON.stringify({

@@ -3,7 +3,8 @@ import { PostServiceApi } from "./api";
 import { PostDetailResponse } from "Api";
 
 export const useFetchDetailData = <T>(
-  params: T
+  params: T,
+  content: string
 ): UseQueryResult<PostDetailResponse> => {
   return useQuery(
     ["detail", params],
@@ -19,7 +20,7 @@ export const useFetchDetailData = <T>(
       refetchOnMount: false,
       refetchOnReconnect: false,
       staleTime: 1000 * 60 * 60 * 24,
-      enabled: !!params,
+      enabled: !content || !!params,
     }
   );
 };

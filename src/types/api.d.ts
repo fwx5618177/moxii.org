@@ -8,17 +8,18 @@ declare module "Api" {
     WebsiteStatsProps,
     PostPageProps,
   } from "Components";
+  import { Posts } from "Post";
 
   export type HomeResponse = {
     imageData: ImageResponse;
-    list: ArticleDisplayProps[];
+    list: Posts;
     recentArticles: Article[];
     tags: string[];
     websiteStats: WebsiteStatsProps;
     profileInfo: ProfileCardProps;
   };
 
-  type PostResponse = ArticleDisplayProps;
+  type PostResponse = Post;
 
   type PostDetailResponse = PostPageProps;
 

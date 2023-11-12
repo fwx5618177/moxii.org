@@ -19,9 +19,12 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
 
   const { data } = useFetchDetailData<{
     slug: string | number;
-  }>({
-    slug: postData?.slug,
-  });
+  }>(
+    {
+      slug: postData?.slug,
+    },
+    postData?.content
+  );
 
   console.log({
     data,

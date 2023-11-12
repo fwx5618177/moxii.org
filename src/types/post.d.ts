@@ -24,6 +24,7 @@ declare module "Post" {
     readCount?: number;
     commentsCount?: number;
     status: "published" | "draft" | "archived";
+    type: string;
   };
 
   type PostMetaDataStore = PostMetadata & {

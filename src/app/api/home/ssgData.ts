@@ -6,20 +6,18 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
-import { PostActions } from "@/actions/post/PostActions";
 import { HomeResponse } from "Api";
+import { localDataList } from "@/actions/post/cache";
 
 export async function ssgData(): Promise<NextResponse<HomeResponse>> {
   try {
-    const list = PostActions.getAllPostsData();
-
     return new NextResponse(
       JSON.stringify({
         status: "success",
         code: "200",
         data: {
           imageData,
-          list,
+          list: localDataList,
           recentArticles,
           tags,
           websiteStats,

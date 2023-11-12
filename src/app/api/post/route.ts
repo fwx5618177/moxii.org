@@ -1,4 +1,4 @@
-import { articles } from "@/mocks/ssg";
+import { localDataList } from "@/actions/post/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
@@ -7,7 +7,7 @@ export const GET = async (request: NextRequest) => {
       JSON.stringify({
         status: "success",
         code: "200",
-        data: articles,
+        data: localDataList,
       })
     );
   } catch (error) {
