@@ -1,31 +1,42 @@
 declare module "Components" {
   import { ReactNode } from "react";
-  import { HomeResponse } from "Api";
 
-  export interface ImageResponse {
+  type PaginationProps = {
+    currentPage: number;
+    totalPages: number;
+    pageSize: number;
+    onPageChange: (page: number, pageSize?: number, total?: number) => void;
+  };
+
+  interface PageSet {
+    page: number;
+    pageSize: number;
+    total: number;
+  }
+
+  interface HomeImageProps {
     id: string;
     link: string;
     small: string;
     welcome: string;
   }
 
-  export interface BackScrollProps {
+  interface BackScrollProps {
     children?: ReactNode;
     header?: ReactNode;
-    imageData: ImageResponse;
+    imageData: HomeImageProps;
   }
 
-  // 定义组件props的接口
-  export interface MetaDataProps {
-    isSticky?: boolean; // 可选属性，默认为false
-    type: string;
-    date?: string | Date | number;
-    readCount?: string | number;
-    wordCount?: string | number;
-    readTimeCost?: string | number;
+  interface HomePageProps {
+    imageData: HomeImageProps;
+    list: ArticleDisplayProps[];
+    recentArticles: Article[];
+    tags: string[];
+    websiteStats: WebsiteStatsProps;
+    profileInfo: ProfileCardProps;
   }
 
-  export interface ArticleDisplayProps {
+  interface ArticleDisplayProps {
     key?: number;
     slug?: string;
     imageUrl: string;
@@ -35,11 +46,11 @@ declare module "Components" {
     updatedDate?: string | Date | number;
     content?: string;
     position?: "left" | "right";
-    meta: MetaDataProps;
+    meta: MetaDataResponse;
     description: string;
   }
 
-  export type WebsiteStatsProps = {
+  type WebsiteStatsProps = {
     articleCount: number;
     totalWordCount: number;
     totalVisitors: number;
@@ -47,29 +58,16 @@ declare module "Components" {
     lastUpdated: string | Date | number;
   };
 
-  export type TagCloudProps = {
+  type TagCloudProps = {
     tags: string[];
     title: string;
   };
 
-  export type PaginationProps = {
-    currentPage: number;
-    totalPages: number;
-    pageSize: number;
-    onPageChange: (page: number, pageSize?: number, total?: number) => void;
-  };
-
-  export interface PageSet {
-    page: number;
-    pageSize: number;
-    total: number;
-  }
-
-  export interface ListSectionProps {
+  interface ListSectionProps {
     defaultArticles: ArticleDisplayProps[];
   }
 
-  export interface DetailInfoProps {
+  interface DetailInfoProps {
     data?: ArticleDisplayProps[];
     recentArticles?: Article[];
     tags?: string[];
@@ -79,13 +77,13 @@ declare module "Components" {
     children?: ReactNode;
   }
 
-  export interface Article {
+  interface Article {
     title: string;
     date: string;
     imageUrl: string;
   }
 
-  export interface NewPressProps {
+  interface NewPressProps {
     title: string | ReactNode;
     articles: Article[];
   }

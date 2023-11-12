@@ -6,8 +6,8 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
-import { HomeResponse } from "Api";
 import { localDataList } from "@/actions/post/cache";
+import { HomeResponse } from "Response";
 
 export async function ssgData(): Promise<NextResponse<HomeResponse>> {
   try {

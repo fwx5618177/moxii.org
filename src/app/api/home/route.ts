@@ -7,8 +7,11 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
+import { HomeResponse } from "Response";
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  _request: NextRequest
+): Promise<NextResponse<HomeResponse>> {
   try {
     return new NextResponse(
       JSON.stringify({

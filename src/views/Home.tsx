@@ -4,9 +4,9 @@ import React, { FC } from "react";
 import NonScroll from "@/components/FullScroll/NonScroll";
 import BackScroll from "@/components/FullScroll/BackScroll";
 import DetailInfo from "./DetailInfo";
-import { HomeResponse } from "Api";
+import { HomePageProps } from "Components";
 
-const HomePage: FC<HomeResponse> = ({
+const HomePage: FC<HomePageProps> = ({
   imageData,
   list,
   recentArticles,
