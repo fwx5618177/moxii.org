@@ -13,14 +13,14 @@ export const POST = async (
 
     const pre = {
       title: localDataList[0]?.title,
-      updatedDate: localDataList[0]?.updatedDate,
+      updatedDate: localDataList[0]?.updatedDate || Date.now(),
       imageUrl: localDataList[0]?.imageUrl || "https://picsum.photos/950/150",
       type: "pre",
       slug: localDataList[0]?.slug,
     };
     const next = {
-      title: localDataList[1]?.title,
-      updatedDate: localDataList[1]?.updatedDate,
+      title: localDataList[1]?.title || "没有了",
+      updatedDate: localDataList[1]?.updatedDate || Date.now(),
       imageUrl: localDataList[1]?.imageUrl || "https://picsum.photos/950/150",
       type: "next",
       slug: localDataList[1]?.slug,

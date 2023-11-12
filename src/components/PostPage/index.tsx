@@ -47,7 +47,7 @@ const PostPage: FC<PostPageProps> = ({
             )}
           </header>
           <section className={styles["post-page-article-body"]}>
-            {content?.repeat(100)}
+            {content}
           </section>
         </article>
 

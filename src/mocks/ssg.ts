@@ -15,7 +15,7 @@ export const articles = [
     slug: "1122334455666",
     imageUrl: "https://picsum.photos/400/300",
     title: "探秘ElegantPaper的美学设计",
-    date: "2022-11-27",
+    createdDate: "2022-11-27",
     publishedDate: "2022-11-27",
     updatedDate: "2022-11-27",
     content: "精美的排版设计和卓越的阅读体验。",
@@ -33,7 +33,7 @@ export const articles = [
     slug: "112233445533",
     imageUrl: "https://picsum.photos/400/300",
     title: "探美学设计",
-    date: "2022-11-27",
+    createdDate: "2022-11-27",
     publishedDate: "2022-11-27",
     updatedDate: "2022-11-27",
     content: "不断探索设计的边界。",
@@ -51,7 +51,7 @@ export const articles = [
     slug: "112233445544",
     imageUrl: "https://picsum.photos/400/300",
     title: "艺术与技术的融合",
-    date: "2022-12-01",
+    createdDate: "2022-12-01",
     publishedDate: "2022-11-27",
     updatedDate: "2022-11-27",
     content: "当艺术遇上技术，创新无限。",
@@ -69,7 +69,7 @@ export const articles = [
     slug: "112233445555",
     imageUrl: "https://picsum.photos/400/300",
     title: "数字化转型的先行者",
-    date: "2023-01-15",
+    createdDate: "2023-01-15",
     content: "引领企业数字化转型的关键因素。",
     position: "right",
     meta: {
@@ -85,7 +85,7 @@ export const articles = [
     slug: "112233445577",
     imageUrl: "https://picsum.photos/400/300",
     title: "可持续设计的未来",
-    date: "2023-02-20",
+    createdDate: "2023-02-20",
     content: "环境友好型设计将如何改变世界。",
     position: "left",
     meta: {
@@ -101,7 +101,7 @@ export const articles = [
     slug: "112233445588",
     imageUrl: "https://picsum.photos/400/300",
     title: "可持续设计的未来",
-    date: "2023-02-20",
+    createdDate: "2023-02-20",
     content: "环境友好型设计将如何改变世界。",
     position: "left",
     meta: {
@@ -117,17 +117,17 @@ export const articles = [
 export const recentArticles = [
   {
     title: "探秘ElegantPaper的美学设计",
-    date: "2023-02-07",
+    createdDate: "2023-02-07",
     imageUrl: "https://picsum.photos/200/300?random=1",
   },
   {
     title: "现代Web开发趋势分析",
-    date: "2022-11-27",
+    createdDate: "2022-11-27",
     imageUrl: "https://picsum.photos/200/300?random=2",
   },
   {
     title: "使用React构建高性能应用",
-    date: "2022-11-27",
+    createdDate: "2022-11-27",
     imageUrl: "https://picsum.photos/200/300?random=3",
   },
 ];

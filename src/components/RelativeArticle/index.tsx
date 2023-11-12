@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const RelativeArticle: FC<RelativeArticleProps> = ({
   title,
-  updatedDate,
+  updatedDate = Date.now(),
   imageUrl,
   type = "pre",
   slug,

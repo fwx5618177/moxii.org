@@ -33,8 +33,11 @@ export class PostActions {
    * @returns The Post object
    */
   static parsePost(
-    fileName: string,
-    markdownContent: string
+    markdownContent: string,
+    options?: {
+      fileName: string;
+      fileCreationDate: string;
+    }
   ): DetailArticleDisplayResponse {
     const { data, content } = matter(markdownContent);
 
@@ -49,9 +52,12 @@ export class PostActions {
       key: 0,
       type: "article",
       slug: data.slug || PostActions.generateSlug(data.title || ""),
-      imageUrl: data.imageUrl || "https://picsum.photos/400/300",
-      title: data.title || fileName || "Untitled",
-      createdDate: data.date || new Date().toISOString(),
+      imageUrl: data.imageUrl || "https://picsum.photos/950/300",
+      title: data.title || options?.fileName || "Untitled",
+      createdDate:
+        data.createdDate ||
+        options?.fileCreationDate ||
+        new Date().toISOString(),
       publishedDate: data.publishedDate || "",
       updatedDate: data.updatedDate || "",
       content: content || "",
@@ -93,7 +99,15 @@ export class PostActions {
         const fullPath = path.join(PostActions.postsDirectory, filename);
         try {
           const fileContents = fs.readFileSync(fullPath, "utf8");
-          return PostActions.parsePost(slug, fileContents);
+          // 获取文件的状态信息
+          const stats = fs.statSync(fullPath);
+          // 将文件创建时间转换为 ISO 格式字符串
+          const fileCreationDate = stats.birthtime.toISOString();
+
+          return PostActions.parsePost(fileContents, {
+            fileName: slug,
+            fileCreationDate,
+          });
         } catch (error) {
           console.error(`Error reading file ${filename}:`, error);
           return null;
