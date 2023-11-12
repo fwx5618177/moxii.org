@@ -10,9 +10,9 @@
 
 ### Important and Easy to Solve
 
-1. - [ ] Types and declare refactor
-2. - [ ] API refactor
-3. - [ ] API keywords
+1. - [x] Types and declare refactor
+2. - [x] API refactor
+3. - [x] API keywords
 
 - [ ] SpringBoot for this render layer
 - [ ] Go SSO store for comment
