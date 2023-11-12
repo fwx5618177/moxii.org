@@ -1,8 +1,10 @@
+import { PostActions } from "@/actions/post/PostActions";
 import { articles } from "@/mocks/ssg";
 import { NextResponse } from "next/server";
 
 export const ssgData = async (slug: string | number) => {
   try {
+    // const list = PostActions.getAllPostsData();
     const findData = articles.find((item) => item?.slug === String(slug));
 
     return new NextResponse(

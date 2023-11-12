@@ -2,17 +2,17 @@ declare module "Components" {
   import { ReactNode } from "react";
   import { HomeResponse } from "Api";
 
-  export interface BackScrollProps {
-    children?: ReactNode;
-    header?: ReactNode;
-    imageData: ImageResponse;
-  }
-
   export interface ImageResponse {
     id: string;
     link: string;
     small: string;
     welcome: string;
+  }
+
+  export interface BackScrollProps {
+    children?: ReactNode;
+    header?: ReactNode;
+    imageData: ImageResponse;
   }
 
   // 定义组件props的接口

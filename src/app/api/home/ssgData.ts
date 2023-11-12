@@ -1,15 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import {
   imageData,
-  articles,
   recentArticles,
   tags,
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
 import { PostActions } from "@/actions/post/PostActions";
-import { Posts } from "Post";
-import { ArticleDisplayProps } from "Components";
 import { HomeResponse } from "Api";
 
 export async function ssgData(): Promise<NextResponse<HomeResponse>> {
@@ -38,7 +35,7 @@ export async function ssgData(): Promise<NextResponse<HomeResponse>> {
         code: "999",
         data: {
           imageData,
-          list: articles,
+          list: [],
           recentArticles,
           tags,
           websiteStats,
