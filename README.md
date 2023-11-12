@@ -13,6 +13,7 @@
 1. - [x] Types and declare refactor
 2. - [x] API refactor
 3. - [x] API keywords
+4. - [ ] Remove API default value, set it in front
 
 - [ ] SpringBoot for this render layer
 - [ ] Go SSO store for comment
