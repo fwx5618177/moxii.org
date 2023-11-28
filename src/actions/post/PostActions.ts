@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+import { createHash, randomUUID } from "crypto";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
@@ -48,8 +48,7 @@ export class PostActions {
       .substring(0, 16);
 
     const metadata: DetailArticleDisplayResponse = {
-      id: "",
-      key: 0,
+      id: randomUUID(),
       type: "article",
       slug: data.slug || PostActions.generateSlug(data.title || ""),
       imageUrl: data.imageUrl || "https://picsum.photos/950/300",

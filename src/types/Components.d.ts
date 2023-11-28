@@ -69,8 +69,7 @@ declare module "Components" {
   type RelativeArticleListProps = RelativeArticleProps[];
 
   interface ArticleDisplayProps {
-    id: string;
-    key?: number;
+    id: string | number;
     slug: string;
     imageUrl: string;
     title: string;

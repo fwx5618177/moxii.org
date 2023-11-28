@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   imageData,
-  articles,
   recentArticles,
   tags,
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
+import { localDataList } from "@/actions/post/cache";
 import { HomeResponse } from "Response";
 
 export async function GET(
@@ -19,7 +19,7 @@ export async function GET(
         code: "200",
         data: {
           imageData,
-          list: articles,
+          list: localDataList,
           recentArticles,
           tags,
           websiteStats,
@@ -35,7 +35,7 @@ export async function GET(
         code: "999",
         data: {
           imageData,
-          list: articles,
+          list: localDataList,
           recentArticles,
           tags,
           websiteStats,

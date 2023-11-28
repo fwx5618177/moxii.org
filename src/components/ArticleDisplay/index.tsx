@@ -24,10 +24,12 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
           <Image
             width={377}
             height={252}
+            style={{
+              height: 252,
+            }}
             src={imageUrl}
             alt={title}
             priority
-            layout="responsive"
           />
         </div>
         <div className={styles.contentContainer}>

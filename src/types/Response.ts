@@ -45,7 +45,6 @@ declare module "Response" {
 
   interface DetailArticleDisplayResponse {
     id: string;
-    key: number;
     slug: string;
     imageUrl: string;
     title: string;
