@@ -6,9 +6,9 @@ export const useFetchDetailData = <T>(
   params: T,
   content: string
 ): UseQueryResult<DetailArticleDisplayResponse> => {
-  return useQuery(
-    ["detail", params],
-    async () => {
+  return useQuery({
+    queryKey: ["detail", params],
+    queryFn: async () => {
       const res = await PostServiceApi.getDetailPost<
         DetailArticleDisplayResponse,
         T
@@ -16,12 +16,11 @@ export const useFetchDetailData = <T>(
 
       return res;
     },
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      staleTime: 1000 * 60 * 60 * 24,
-      enabled: !content || !!params,
-    }
-  );
+
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    staleTime: 1000 * 60 * 60 * 24,
+    enabled: !content || !!params,
+  });
 };
