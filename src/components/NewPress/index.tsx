@@ -3,6 +3,7 @@ import InfoBox from "@/components/InfoBox";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import { NewPressProps } from "Components";
+import moment from "moment";
 
 // 文章列表组件
 const NewPress: React.FC<NewPressProps> = ({ title, articles }) => {
@@ -24,7 +25,9 @@ const NewPress: React.FC<NewPressProps> = ({ title, articles }) => {
               </div>
               <div className={styles.articleContent}>
                 <h3 className={styles.articleTitle}>{article.title}</h3>
-                <time className={styles.articleDate}>{article.date}</time>
+                <time className={styles.articleDate}>
+                  {moment(article.date).format("YYYY-MM-DD")}
+                </time>
               </div>
             </div>
           ))}

@@ -59,10 +59,10 @@ const SubscribeButtons = () => {
 
   return (
     <div className={styles.buttonsContainer}>
-      <div onClick={() => subscribeRss()} className={styles.rssButton}>
+      {/* <div onClick={() => subscribeRss()} className={styles.rssButton}>
         <FaRss />
         RSS
-      </div>
+      </div> */}
 
       <SubscribeForm onSubscribe={onEmailSubscribe} />
     </div>

@@ -74,7 +74,7 @@ service.interceptors.response.use(
 const get = <T = ResponseConfig<any>>(url: string, params?: any): Promise<T> =>
   service.get<T>(url, { params }).then((response) => response.data);
 const post = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
-  service.post<T>(url, data).then((response) => response.data);
+  service.post<T>(url, JSON.stringify(data)).then((response) => response.data);
 const put = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
   service.put<T>(url, data).then((response) => response.data);
 const remove = <T = ResponseConfig<any>>(url: string, data?: any): Promise<T> =>
