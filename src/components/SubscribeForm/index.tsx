@@ -2,19 +2,24 @@ import React from "react";
 import styles from "./index.module.scss";
 import SubscribeForm from "./SubscribeButtons";
 import { FaRss } from "react-icons/fa";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { message } from "antd";
-import { SubscribeEmailApi } from "@/services/SubscribeForm/api";
+import { SubscribeEmailApi } from "@/services/SubscribeForm/SubscribeServiceApi";
+import { useSubscribeEmail } from "@/services/SubscribeForm/hooks";
 
 const SubscribeButtons = () => {
-  const { mutate: subscribe } = useMutation(
-    SubscribeEmailApi.subscribeEmail<any, { recipientEmail: string }>
-  );
+  const { mutate: subscribe } = useSubscribeEmail<
+    string,
+    {
+      recipientEmail: string;
+    }
+  >();
+
   const { mutate: subscribeRss } = useMutation(
     SubscribeEmailApi.subscribeRss<any>,
     {
       onSuccess: (data) => {
-        message.success("Subscribed successfully.");
+        message.success("Subscribed RSS successfully.");
         parseRssFeed(data);
       },
       onError: () => {
