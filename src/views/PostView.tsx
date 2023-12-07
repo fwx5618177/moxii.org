@@ -6,18 +6,18 @@ import PostPage from "@/components/PostPage";
 import ProfileCard from "@/components/ProfileCard";
 import NewPress from "@/components/NewPress";
 import { FaHistory } from "react-icons/fa";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { PostViewProps } from "Components";
 import TagCloud from "@/components/TagCloud";
 import WebsiteStats from "@/components/WebsiteStats";
-import { useFetchDetailData } from "@/services/Post/PostService";
+import { useLocalFetchDetailData } from "@/services/Local/hooks";
 
 const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
     defaultData;
   const { small } = imageData;
 
-  const { data } = useFetchDetailData<{
+  const { data } = useLocalFetchDetailData<{
     slug: string | number;
   }>(
     {
@@ -25,10 +25,6 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
     },
     postData?.content
   );
-
-  console.log({
-    data,
-  });
 
   return (
     <>
