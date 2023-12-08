@@ -9,20 +9,23 @@
         margin: 2.5rem auto;
 
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
+        gap: .3rem;
 
         font-family: 'Arial', sans-serif;
 
         .info-section {
-            width: 370px;
-
+            flex: 1;
+            max-width: 370px;
+            min-width: 210px;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
 
             gap: 2rem; // 间距
-            margin: 0rem .7rem; // 边距
+            margin: 0rem .3rem; // 边距
 
             .info-tips {
                 position: fixed;
@@ -31,9 +34,27 @@
         }
 
         .list-section {
-            width: 65rem;
-            max-width: 1100px;
-            margin: 0rem .7rem; // 边距
+            flex: 1;
+            max-width: 900px;
+            min-width: 650px;
+            margin: 0rem .3rem; // 边距
+        }
+    }
+}
+
+@media (max-width: 950px) {
+
+    .detail-container {
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+
+        .info-section,
+        .list-section {
+            flex-basis: 100%;
+            margin: 0;
+            max-width: none !important;
+            min-width: 0 !important;
+            flex: auto;
         }
     }
 }

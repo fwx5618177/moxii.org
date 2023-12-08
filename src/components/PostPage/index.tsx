@@ -23,13 +23,7 @@ const PostPage: FC<PostPageProps> = ({
   });
 
   return (
-    <InfoBox
-      width={"100%"}
-      height={"auto"}
-      infoBoxStyle={{
-        padding: "50px 40px",
-      }}
-    >
+    <InfoBox width={"95%"} height={"auto"}>
       <div className={styles["post-page-container"]}>
         <article className={styles["post-page-article"]}>
           <header className={styles["post-page-article-header"]}>

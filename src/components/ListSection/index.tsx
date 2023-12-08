@@ -1,7 +1,7 @@
 import { ListSectionProps, ArticleDisplayProps, PageSet } from "Components";
 import Pagination from "@/components/Pagination";
 import ArticleDisplay from "@/components/ArticleDisplay";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from "./index.module.scss";
 import Empty from "@/components/Empty";
 
@@ -13,20 +13,23 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
     pageSize: 5,
     total: Math.ceil(defaultArticles?.length / 5),
   };
+
   const [page, setPage] = useState<PageSet>(pageSet);
   const [articles, setArticles] = useState(
     defaultArticles.slice(0, page.pageSize)
   );
+  const articleList = useMemo(() => {
+    return articles?.map((article: ArticleDisplayProps, index: number) => ({
+      ...article,
+      position: index % 2 === 0 ? "left" : "right",
+    }));
+  }, [articles]);
 
   const onPageChange = (page: number, pageSize: number) => {
     queryList({ page, pageSize });
   };
 
   const queryList = async ({ page, pageSize }) => {
-    // const res = await fetch(
-    //   `http://localhost:3000/api/articles?page=${page?.page}&pageSize=${page?.pageSize}`
-    // );
-    // const data = await res.json();
     const start = (page - 1) * pageSize;
     const result = defaultArticles?.slice(start, start + pageSize);
     const total = Math.ceil(defaultArticles?.length / pageSize);
@@ -48,8 +51,8 @@ const ListSection: React.FC<ListSectionProps> = ({ defaultArticles }) => {
           minHeight: minHeight,
         }}
       >
-        {articles?.length > 0 ? (
-          articles.map((article: ArticleDisplayProps, index: number) => (
+        {articleList?.length > 0 ? (
+          articleList.map((article: ArticleDisplayProps, index: number) => (
             <ArticleDisplay key={index} {...article} />
           ))
         ) : (

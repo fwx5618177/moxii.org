@@ -16,6 +16,7 @@ const InfoBox: React.FC<InfoBoxProps> = ({
         width,
         height,
         overflow: scrollable ? "auto" : "hidden",
+        boxSizing: "content-box",
         ...infoBoxStyle,
       }}
     >

@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Moxi - A simple blog",
+    default: "Moxi - 技术档案",
     template: "%s - Moxi",
   },
   description: "A simple blog by Moxi",
@@ -15,7 +15,16 @@ export const metadata: Metadata = {
     url: "https://moxixii.com",
     name: "Moxi",
   },
-  keywords: ["blog", "moxi", "moxixii", "hyou", "bunken", "hyoubunken"],
+  keywords: [
+    "blog",
+    "moxi",
+    "moxixii",
+    "hyou",
+    "bunken",
+    "hyoubunken",
+    "博客",
+    "个人站",
+  ],
   icons: "/moxi_transparent.ico",
 };
 
