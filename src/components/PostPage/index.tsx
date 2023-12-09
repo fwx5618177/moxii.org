@@ -7,6 +7,7 @@ import moment from "moment";
 import Recommend from "../Recommend";
 import Comment from "../Comment";
 import { PostPageProps } from "Components";
+import useContentParse from "@/hooks/useContentParse";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -18,6 +19,8 @@ const PostPage: FC<PostPageProps> = ({
   type,
   addition = ["Chinese"],
 }) => {
+  const parsedContent = useContentParse(content);
+
   console.log({
     relatives,
   });
@@ -41,7 +44,7 @@ const PostPage: FC<PostPageProps> = ({
             )}
           </header>
           <section className={styles["post-page-article-body"]}>
-            {content}
+            {parsedContent}
           </section>
         </article>
 
