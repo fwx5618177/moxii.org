@@ -1,3 +1,4 @@
+import lodash from "lodash";
 import { ActionTypes } from "Reducer";
 import { initialTocState } from "./initialTocState";
 
@@ -8,11 +9,16 @@ export const tocReducer = (state = initialTocState, action: ActionTypes) => {
         ...state,
         toc: [...state.toc, action.payload],
       };
-    case "ADD_MULTIPLE_TOC":
+    case "ADD_MULTIPLE_TOC": {
+      const filteredToc = lodash.filter(action.payload, (item) => {
+        return !state.toc.some((tocItem) => tocItem.key === item.key);
+      });
+
       return {
         ...state,
-        toc: [...state.toc, ...action.payload],
+        toc: [...state.toc, ...filteredToc],
       };
+    }
     case "REMOVE_FROM_TOC":
       return {
         ...state,

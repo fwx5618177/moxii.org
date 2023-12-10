@@ -4,9 +4,6 @@ declare module "Reducer" {
 
   type TocState = {
     toc: TocTypes[];
-    isLoading: boolean;
-    isError: boolean;
-    isSuccess: boolean;
   };
 
   type ActionTypes =

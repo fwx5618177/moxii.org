@@ -13,10 +13,6 @@ const TocProvider: FC<{
 }> = ({ children }) => {
   const [tocState, tocDispatch] = useReducer(tocReducer, initialTocState);
 
-  console.log({
-    tocState,
-  });
-
   return (
     <TocContext.Provider value={{ tocState, tocDispatch }}>
       {children}

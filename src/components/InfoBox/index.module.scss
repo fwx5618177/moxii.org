@@ -21,7 +21,7 @@ $transition-duration: 0.3s;
         bottom: -2px;
         left: -2px;
         z-index: -1;
-        background: linear-gradient(45deg, #f06, #aef);
+        // background: linear-gradient(45deg, #f06, #aef);
         border-radius: 14px; // 比.infoBox的border-radius大一点，形成边框效果
         opacity: 0;
         transition: opacity 0.3s;

@@ -12,12 +12,12 @@ import TagCloud from "@/components/TagCloud";
 import WebsiteStats from "@/components/WebsiteStats";
 import { useLocalFetchDetailData } from "@/services/Local/hooks";
 import TocProvider from "@/contexts/TocContext";
+import TocMention from "@/components/TocMention";
 
 const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
     defaultData;
   const { small } = imageData;
-
   const { data } = useLocalFetchDetailData<{
     slug: string | number;
   }>(
@@ -45,6 +45,8 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
               emailLink={profileInfo?.emailLink}
               githubLink={profileInfo?.githubLink}
             />
+
+            <TocMention />
 
             <NewPress
               title={

@@ -187,11 +187,17 @@ declare module "Components" {
   interface TocTypes {
     key: string;
     level: number;
-    text: number;
+    text: string;
+    href: string;
   }
 
   interface TocContextType {
     tocState: TocState;
     tocDispatch: React.Dispatch<ActionTypes>;
+  }
+
+  interface TocProgressProps {
+    active: string;
+    total: TocTypes[];
   }
 }
