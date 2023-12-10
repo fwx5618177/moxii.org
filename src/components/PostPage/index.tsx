@@ -10,6 +10,8 @@ import Recommend from "../Recommend";
 import Comment from "../Comment";
 import { PostPageProps } from "Components";
 import useContentParse from "@/hooks/useContentParse";
+import useExactToc from "@/hooks/useExactToc";
+import { useToc } from "@/contexts/TocContext";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -22,6 +24,8 @@ const PostPage: FC<PostPageProps> = ({
   addition = ["Chinese"],
 }) => {
   const parsedContent = useContentParse(content);
+  const toc = useExactToc(parsedContent);
+  const { tocDispatch } = useToc();
 
   console.log({
     relatives,
@@ -43,6 +47,13 @@ const PostPage: FC<PostPageProps> = ({
       clipboard.destroy(); // 清理资源
     };
   }, []);
+
+  useEffect(() => {
+    tocDispatch({
+      type: "ADD_MULTIPLE_TOC",
+      payload: toc,
+    });
+  }, [toc, tocDispatch]);
 
   return (
     <InfoBox width={"95%"} height={"auto"}>

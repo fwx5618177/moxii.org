@@ -1,10 +1,11 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
 import MarkdownIt from "markdown-it";
+import anchor from "markdown-it-anchor";
 import hljs from "highlight.js";
 import "highlight.js/styles/dark.css";
 
 const useContentParse = (content: string) => {
-  const parseContent = useCallback(() => {
+  const parseContent = useMemo(() => {
     if (!content) {
       return null;
     }
@@ -39,12 +40,21 @@ const useContentParse = (content: string) => {
 
         return template(str, codeChunk, lang);
       },
+    }).use(anchor, {
+      level: [1, 2, 3, 4, 5, 6], // 从哪个级别的标题开始插入锚点（例如 1 就是从 <h1> 开始）
+      permalink: anchor.permalink.linkInsideHeader({
+        symbol: "¶",
+        renderAttrs: (slug) => ({ "data-slug": slug }),
+        space: true,
+      }),
+      permalinkBefore: true, // 链接是否出现在标题文本之前
+      slugify: (s) => s.trim().toLowerCase().replace(/\s+/g, "-"),
     });
 
     return markdownContent.render(content);
   }, [content]);
 
-  return parseContent();
+  return parseContent;
 };
 
 export default useContentParse;

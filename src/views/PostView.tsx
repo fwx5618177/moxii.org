@@ -11,6 +11,7 @@ import { PostViewProps } from "Components";
 import TagCloud from "@/components/TagCloud";
 import WebsiteStats from "@/components/WebsiteStats";
 import { useLocalFetchDetailData } from "@/services/Local/hooks";
+import TocProvider from "@/contexts/TocContext";
 
 const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
@@ -27,68 +28,70 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   );
 
   return (
-    <main className={styles["detail-post"]}>
-      <Header small={small} height={400} isPost postData={postData} />
+    <TocProvider>
+      <main className={styles["detail-post"]}>
+        <Header small={small} height={400} isPost postData={postData} />
 
-      <div className={styles["detail-container"]}>
-        <div className={styles["info-section"]}>
-          <ProfileCard
-            avatarUrl={profileInfo?.avatarUrl}
-            name={profileInfo?.name}
-            description={profileInfo?.description}
-            articlesCount={profileInfo?.articlesCount}
-            tagsCount={profileInfo?.tagsCount}
-            categoriesCount={profileInfo?.categoriesCount}
-            qqLink={profileInfo?.qqLink}
-            emailLink={profileInfo?.emailLink}
-            githubLink={profileInfo?.githubLink}
-          />
+        <div className={styles["detail-container"]}>
+          <div className={styles["info-section"]}>
+            <ProfileCard
+              avatarUrl={profileInfo?.avatarUrl}
+              name={profileInfo?.name}
+              description={profileInfo?.description}
+              articlesCount={profileInfo?.articlesCount}
+              tagsCount={profileInfo?.tagsCount}
+              categoriesCount={profileInfo?.categoriesCount}
+              qqLink={profileInfo?.qqLink}
+              emailLink={profileInfo?.emailLink}
+              githubLink={profileInfo?.githubLink}
+            />
 
-          <NewPress
-            title={
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-              >
-                <FaHistory className={styles} color="#4c4948" />
-                <span
+            <NewPress
+              title={
+                <div
                   style={{
-                    marginLeft: 5,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
                   }}
                 >
-                  最新文章
-                </span>
-              </div>
-            }
-            articles={recentArticles}
-          />
+                  <FaHistory className={styles} color="#4c4948" />
+                  <span
+                    style={{
+                      marginLeft: 5,
+                    }}
+                  >
+                    最新文章
+                  </span>
+                </div>
+              }
+              articles={recentArticles}
+            />
 
-          <TagCloud tags={tags} title={"热门标签"} />
+            <TagCloud tags={tags} title={"热门标签"} />
 
-          <WebsiteStats
-            articleCount={websiteStats?.articleCount}
-            totalWordCount={websiteStats?.totalVisitors}
-            totalVisitors={websiteStats?.totalVisitors}
-            totalVisits={websiteStats?.totalVisits}
-            lastUpdated={websiteStats?.lastUpdated}
-          />
+            <WebsiteStats
+              articleCount={websiteStats?.articleCount}
+              totalWordCount={websiteStats?.totalVisitors}
+              totalVisitors={websiteStats?.totalVisitors}
+              totalVisits={websiteStats?.totalVisits}
+              lastUpdated={websiteStats?.lastUpdated}
+            />
+          </div>
+          <div className={styles["list-section"]}>
+            <PostPage
+              content={data?.content}
+              title={data?.title}
+              updatedDate={data?.updatedDate}
+              author={data?.author}
+              type={data?.type}
+              slug={data?.slug}
+              relatives={data?.relatives}
+            />
+          </div>
         </div>
-        <div className={styles["list-section"]}>
-          <PostPage
-            content={data?.content}
-            title={data?.title}
-            updatedDate={data?.updatedDate}
-            author={data?.author}
-            type={data?.type}
-            slug={data?.slug}
-            relatives={data?.relatives}
-          />
-        </div>
-      </div>
-    </main>
+      </main>
+    </TocProvider>
   );
 };
 

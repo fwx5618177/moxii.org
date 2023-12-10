@@ -1,5 +1,6 @@
 declare module "Components" {
   import { ReactNode } from "react";
+  import { TocState, ActionTypes } from "Reducer";
 
   type PaginationProps = {
     currentPage: number;
@@ -181,5 +182,16 @@ declare module "Components" {
     wordCount: string | number;
     readTimeCost: string | number;
     type: string | ReactNode;
+  }
+
+  interface TocTypes {
+    key: string;
+    level: number;
+    text: number;
+  }
+
+  interface TocContextType {
+    tocState: TocState;
+    tocDispatch: React.Dispatch<ActionTypes>;
   }
 }
