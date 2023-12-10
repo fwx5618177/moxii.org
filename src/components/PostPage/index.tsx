@@ -1,9 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import styles from "./index.module.scss";
+import markdownStyle from "@/styles/markdownStyles.module.scss";
 import InfoBox from "@/components/InfoBox";
 import CopyRight from "@/components/copyright";
 import RelativeArticle from "../RelativeArticle";
 import moment from "moment";
+import ClipboardJS from "clipboard";
 import Recommend from "../Recommend";
 import Comment from "../Comment";
 import { PostPageProps } from "Components";
@@ -23,7 +25,24 @@ const PostPage: FC<PostPageProps> = ({
 
   console.log({
     relatives,
+    parsedContent,
   });
+
+  useEffect(() => {
+    const clipboard = new ClipboardJS(".copy-button");
+    clipboard.on("success", (e) => {
+      console.log("Text copied: ", e.text);
+      e.clearSelection();
+    });
+
+    clipboard.on("error", (e) => {
+      console.log("Copy failed: ", e);
+    });
+
+    return () => {
+      clipboard.destroy(); // 清理资源
+    };
+  }, []);
 
   return (
     <InfoBox width={"95%"} height={"auto"}>
@@ -44,7 +63,12 @@ const PostPage: FC<PostPageProps> = ({
             )}
           </header>
           <section className={styles["post-page-article-body"]}>
-            {parsedContent}
+            <div
+              dangerouslySetInnerHTML={{
+                __html: parsedContent,
+              }}
+              className={markdownStyle["markdown-body"]}
+            ></div>
           </section>
         </article>
 
