@@ -10,7 +10,7 @@ const useExactToc = (parsedContent: string) => {
       // 获取标题的级别和文本内容
       const level = match[1];
       const href = match[2];
-      const text = href.replace("#", "");
+      const text = href.replace(/[\W|\s|\D]/, "");
       // 将提取的标题信息添加到数组中
       titles.push({
         key: `h${level}-${href}`,

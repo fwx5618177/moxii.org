@@ -46,7 +46,7 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
               githubLink={profileInfo?.githubLink}
             />
 
-            <TocMention />
+            <TocMention title={"目录"} />
 
             <NewPress
               title={

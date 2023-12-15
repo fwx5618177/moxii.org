@@ -200,4 +200,13 @@ declare module "Components" {
     active: string;
     total: TocTypes[];
   }
+
+  interface TocAccordionProps {
+    toc: TocTypes[];
+    currentTitle: string;
+  }
+
+  type HocTree = TocTypes & {
+    children: TocTypes[];
+  };
 }

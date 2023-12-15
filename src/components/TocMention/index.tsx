@@ -1,71 +1,48 @@
+import { FaAlignLeft } from "react-icons/fa";
 import { useToc } from "@/contexts/TocContext";
 import InfoBox from "../InfoBox";
 import useScrollSpy from "@/hooks/useScrollSPy";
 import ProgressArticle from "../TocProgress/TocProgress";
-import { useEffect, useRef } from "react";
+import { useMemo, useRef } from "react";
+import useAutoScroll from "./useAutoScroll";
+import styles from "./index.module.scss";
+import TocAccordion from "./TocAccordion";
 
-const TocMention = () => {
+const TocMention = ({ title }) => {
   const { tocState } = useToc();
   const { toc } = tocState;
+  const tocMemo = useMemo(() => toc.filter((item) => item?.level !== 0), [toc]);
   const currentTitle = useScrollSpy(tocState.toc);
   const tocBoxRef = useRef(null);
-
-  console.log({
-    toc,
-  });
-
-  useEffect(() => {
-    const activeElement = tocBoxRef.current?.querySelector(
-      `li[data-key="${currentTitle}"]`
-    );
-    if (activeElement && tocBoxRef.current) {
-      const elementPosition = activeElement.offsetTop;
-      tocBoxRef.current.scrollTo({
-        top: elementPosition - tocBoxRef.current.clientHeight / 2,
-        behavior: "smooth",
-      });
-    }
-  }, [currentTitle]);
+  const selectName = `li[data-key="${currentTitle}"]`;
+  useAutoScroll(tocBoxRef, currentTitle, selectName);
 
   return (
-    <>
-      {toc?.length > 0 && (
-        <InfoBox
-          height={400}
-          scrollable
-          infoBoxStyle={{
-            position: "fixed",
-            right: 20,
-            top: 50,
-            zIndex: 999,
-          }}
-          ref={tocBoxRef}
-        >
-          <div
-            style={{
-              margin: 10,
-            }}
-          >
-            <h1>{currentTitle}</h1>
-            <ProgressArticle active={currentTitle} total={tocState.toc} />
-            <ul>
-              {toc.map((item) => (
-                <li
-                  key={item.key}
-                  style={{
-                    marginLeft: `${item.level - 1}em`,
-                    color: item.key === currentTitle ? "red" : "black",
-                  }}
-                  data-key={item.key}
-                >
-                  <a href={item?.href}>{item.text}</a>
-                </li>
-              ))}
-            </ul>
+    <InfoBox
+      height={400}
+      infoBoxStyle={{
+        // position: "fixed",
+        right: 20,
+        top: 50,
+        zIndex: 999,
+        marginTop: 10,
+        minHeight: 400,
+        maxHeight: 500,
+      }}
+    >
+      <div className={styles.tocBox}>
+        <header className={styles.header}>
+          <div className={styles["header-title"]}>
+            <FaAlignLeft />
+            {title}
           </div>
-        </InfoBox>
-      )}
-    </>
+          <ProgressArticle active={currentTitle} total={tocMemo} />
+        </header>
+        <div className={styles["toc-body"]} ref={tocBoxRef}>
+          <TocAccordion toc={tocMemo} currentTitle={currentTitle} />
+        </div>
+      </div>
+    </InfoBox>
   );
 };
 
