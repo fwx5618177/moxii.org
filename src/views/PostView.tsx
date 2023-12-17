@@ -23,12 +23,9 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
   const { small } = imageData;
   const { data } = useLocalFetchDetailData<{
     slug: string | number;
-  }>(
-    {
-      slug: postData?.slug,
-    },
-    postData?.content
-  );
+  }>({
+    slug: postData?.slug,
+  });
 
   useFixOnScroll(parentRef, tocRef);
 
@@ -94,6 +91,8 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
               type={data?.type}
               slug={data?.slug}
               relatives={data?.relatives}
+              excerpt={data?.excerpt}
+              addition={data?.addition}
             />
           </div>
         </div>

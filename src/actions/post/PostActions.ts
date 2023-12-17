@@ -57,8 +57,8 @@ export class PostActions {
         data.createdDate ||
         options?.fileCreationDate ||
         new Date().toISOString(),
-      publishedDate: data.publishedDate || "",
-      updatedDate: data.updatedDate || "",
+      publishedDate: data.publishedDate || new Date().toISOString(),
+      updatedDate: data.updatedDate || new Date().toISOString(),
       content: content || "",
       position: data.position || "left",
       excerpt: data.excerpt || "",
@@ -77,13 +77,13 @@ export class PostActions {
       },
       meta: {
         isSticky: false,
-        type: "article",
+        type: data?.meta?.type || "article",
         date: new Date().toISOString(),
         readCount: 0,
         wordCount: 0,
         readTimeCost: 0,
       },
-      addition: [],
+      addition: data?.addition || [],
     };
 
     return { id: id, ...metadata };

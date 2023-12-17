@@ -114,6 +114,7 @@ declare module "Components" {
     type: string;
     addition?: string[];
     relatives: RelativeArticleListProps;
+    excerpt?: string;
   }
 
   type TagCloudProps = {

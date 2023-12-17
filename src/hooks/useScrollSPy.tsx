@@ -5,15 +5,13 @@ const useScrollSpy = (titles: TocTypes[]) => {
   const [currentTitle, setCurrentTitle] = useState<string>("");
 
   useEffect(() => {
-    const bodyElement = document.body;
-
     const handleScroll = () => {
       let newCurrentTitle = null;
       // 遍历所有标题
       for (let title of titles) {
         const element = document.getElementById(title.text);
 
-        if (element && bodyElement.scrollTop >= element.offsetTop - 100) {
+        if (element && window.scrollY >= element.offsetTop - 100) {
           newCurrentTitle = title.key;
         } else {
           break;
@@ -24,8 +22,8 @@ const useScrollSpy = (titles: TocTypes[]) => {
       }
     };
 
-    bodyElement.addEventListener("scroll", handleScroll);
-    return () => bodyElement.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [titles, currentTitle]);
 
   return currentTitle;

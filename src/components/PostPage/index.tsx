@@ -21,16 +21,17 @@ const PostPage: FC<PostPageProps> = ({
   author,
   relatives,
   type,
+  excerpt,
   addition = ["Chinese"],
 }) => {
   const parsedContent = useContentParse(content);
   const toc = useExactToc(parsedContent);
   const { tocDispatch } = useToc();
 
-  console.log({
-    relatives,
-    parsedContent,
-  });
+  // console.log({
+  //   relatives,
+  //   parsedContent,
+  // });
 
   useEffect(() => {
     const clipboard = new ClipboardJS(".copy-button");
@@ -74,6 +75,11 @@ const PostPage: FC<PostPageProps> = ({
             )}
           </header>
           <section className={styles["post-page-article-body"]}>
+            {excerpt && (
+              <blockquote className={styles["post-page-article-body-excerpt"]}>
+                {excerpt}
+              </blockquote>
+            )}
             <div
               dangerouslySetInnerHTML={{
                 __html: parsedContent,
@@ -89,7 +95,7 @@ const PostPage: FC<PostPageProps> = ({
           email="fengwenxuan2006@126.com"
         />
 
-        {relatives?.length && (
+        {!!relatives?.length && (
           <div className={styles["post-page-relative-article"]}>
             <RelativeArticle
               title={relatives[0]?.title}

@@ -9,8 +9,7 @@ import { DetailArticleDisplayResponse, ResponseConfig } from "Response";
  * @returns
  */
 export const useLocalFetchDetailData = <T>(
-  params: T,
-  content: string
+  params: T
 ): UseQueryResult<DetailArticleDisplayResponse> => {
   return useQuery({
     queryKey: ["detail", params],
@@ -32,6 +31,6 @@ export const useLocalFetchDetailData = <T>(
     refetchOnMount: false,
     refetchOnReconnect: false,
     staleTime: 1000 * 60 * 60 * 24,
-    enabled: !content || !!params,
+    enabled: !!params,
   });
 };

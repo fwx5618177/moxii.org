@@ -17,12 +17,6 @@ const TocMention = ({ title, innerRef }) => {
   const selectName = `li[data-key="${currentTitle}"]`;
   useAutoScroll(tocBoxRef, currentTitle, selectName);
 
-  console.log({
-    currentTitle,
-    selectName,
-    toc,
-  });
-
   return (
     <InfoBox
       height={400}

@@ -24,11 +24,9 @@ const useFixOnScroll = (
   }, [componentRef, parentRef]);
 
   useEffect(() => {
-    const bodyElement = document.body;
-
-    bodyElement.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      bodyElement.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [componentRef, handleScroll, parentRef]);
 };

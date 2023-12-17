@@ -8,14 +8,19 @@
 
 ## 2. TODO
 
+- [ ] 10 条默认 SSG 文档。多于 10 条从 API 获取。
+- [ ] 修改默认 SSG 数据。大于 10 条的从后端获取内容。
+- [ ] 修改本地 API 的数据读取和存储
+- [ ] 增加 API 请求
+
 ### Important and Easy to Solve
 
 1. - [x] Types and declare refactor
 2. - [x] API refactor
 3. - [x] API keywords
-4. - [ ] Remove API default value, set it in front
+4. - [x] Remove API default value, set it in front
 
-- [ ] SpringBoot for this render layer
+- [x] SpringBoot for this render layer
 - [ ] Go SSO store for comment
   - [ ] IPv6
 - [ ] Dashboard
