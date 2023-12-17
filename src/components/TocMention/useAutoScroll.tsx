@@ -6,7 +6,17 @@ const useAutoScroll = (
   selectName: string
 ) => {
   useEffect(() => {
+    console.log({
+      currentTitle,
+      selectName,
+    });
+
     const activeElement = ref.current?.querySelector(selectName);
+    console.log({
+      currentTitle,
+      selectName,
+      status: !!(activeElement && ref.current),
+    });
     if (activeElement && ref.current) {
       const elementPosition = activeElement.offsetTop;
       ref.current.scrollTo({

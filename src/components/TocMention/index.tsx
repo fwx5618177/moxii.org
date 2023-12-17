@@ -8,7 +8,7 @@ import useAutoScroll from "./useAutoScroll";
 import styles from "./index.module.scss";
 import TocAccordion from "./TocAccordion";
 
-const TocMention = ({ title }) => {
+const TocMention = ({ title, innerRef }) => {
   const { tocState } = useToc();
   const { toc } = tocState;
   const tocMemo = useMemo(() => toc.filter((item) => item?.level !== 0), [toc]);
@@ -17,18 +17,22 @@ const TocMention = ({ title }) => {
   const selectName = `li[data-key="${currentTitle}"]`;
   useAutoScroll(tocBoxRef, currentTitle, selectName);
 
+  console.log({
+    currentTitle,
+    selectName,
+    toc,
+  });
+
   return (
     <InfoBox
       height={400}
       infoBoxStyle={{
-        // position: "fixed",
-        right: 20,
-        top: 50,
         zIndex: 999,
         marginTop: 10,
         minHeight: 400,
         maxHeight: 500,
       }}
+      ref={innerRef}
     >
       <div className={styles.tocBox}>
         <header className={styles.header}>

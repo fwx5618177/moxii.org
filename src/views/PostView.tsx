@@ -6,15 +6,18 @@ import PostPage from "@/components/PostPage";
 import ProfileCard from "@/components/ProfileCard";
 import NewPress from "@/components/NewPress";
 import { FaHistory } from "react-icons/fa";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { PostViewProps } from "Components";
 import TagCloud from "@/components/TagCloud";
 import WebsiteStats from "@/components/WebsiteStats";
 import { useLocalFetchDetailData } from "@/services/Local/hooks";
 import TocProvider from "@/contexts/TocContext";
 import TocMention from "@/components/TocMention";
+import useFixOnScroll from "@/hooks/useFixedOnScroll";
 
 const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const tocRef = useRef<HTMLDivElement>(null);
   const { recentArticles, imageData, websiteStats, profileInfo, tags } =
     defaultData;
   const { small } = imageData;
@@ -27,13 +30,15 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
     postData?.content
   );
 
+  useFixOnScroll(parentRef, tocRef);
+
   return (
     <TocProvider>
       <main className={styles["detail-post"]}>
         <Header small={small} height={400} isPost postData={postData} />
 
         <div className={styles["detail-container"]}>
-          <div className={styles["info-section"]}>
+          <div className={styles["info-section"]} ref={parentRef}>
             <ProfileCard
               avatarUrl={profileInfo?.avatarUrl}
               name={profileInfo?.name}
@@ -46,7 +51,7 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
               githubLink={profileInfo?.githubLink}
             />
 
-            <TocMention title={"目录"} />
+            <TocMention title={"目录"} innerRef={tocRef} />
 
             <NewPress
               title={

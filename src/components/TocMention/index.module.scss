@@ -21,10 +21,23 @@
     }
 
     .toc-body {
-        // overflow-y: scroll;
-        overflow: hidden;
+        overflow-y: auto;
         margin: 0 14px;
         max-height: calc(100% - 60px);
+
+        &::-webkit-scrollbar {
+            width: 2px;
+            height: 1px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #00c4b6;
+
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: #fff;
+        }
     }
 
     .toc-ul {
@@ -77,4 +90,5 @@
             }
         }
     }
+
 }

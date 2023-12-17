@@ -15,14 +15,12 @@ $transition-duration: 0.3s;
     // 利用伪元素添加装饰效果
     &:before {
         content: "";
-        position: absolute;
         top: -2px; // 正好在边框之外
         right: -2px;
         bottom: -2px;
         left: -2px;
         z-index: -1;
-        // background: linear-gradient(45deg, #f06, #aef);
-        border-radius: 14px; // 比.infoBox的border-radius大一点，形成边框效果
+        border-radius: 14px;
         opacity: 0;
         transition: opacity 0.3s;
     }
