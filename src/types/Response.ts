@@ -66,7 +66,7 @@ declare module "Response" {
     // position: "left" | "right"; // front 使用
     meta: MetaDataResponse;
     websiteStats: WebsiteStatsResponse;
-    author: AuthorResponse | Array<AuthorResponse>;
+    author: AuthorResponse;
     readCount: number;
     commentsCount: number;
     status: "published" | "draft" | "archived";
