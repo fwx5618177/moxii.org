@@ -28,11 +28,6 @@ const PostPage: FC<PostPageProps> = ({
   const toc = useExactToc(parsedContent);
   const { tocDispatch } = useToc();
 
-  // console.log({
-  //   relatives,
-  //   parsedContent,
-  // });
-
   useEffect(() => {
     const clipboard = new ClipboardJS(".copy-button");
     clipboard.on("success", (e) => {
@@ -90,7 +85,7 @@ const PostPage: FC<PostPageProps> = ({
         </article>
 
         <CopyRight
-          author={author}
+          author={author?.name}
           articleLink={"https://github.com/fwx5618177"}
           email="fengwenxuan2006@126.com"
         />

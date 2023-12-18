@@ -2,7 +2,11 @@ import { createHash, randomUUID } from "crypto";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
-import { ArticleListResponse, DetailArticleDisplayResponse } from "Response";
+import {
+  ArticleListResponse,
+  BaseLocalDataResponse,
+  DetailArticleDisplayResponse,
+} from "Response";
 
 export class PostActions {
   static postsDirectory = path.join(process.cwd(), "posts");
@@ -47,27 +51,34 @@ export class PostActions {
       .digest("hex")
       .substring(0, 16);
 
+    // 读取的本地文件数据
+    const { title, date, author, tags, description, excerpt, addition, type } =
+      data as BaseLocalDataResponse;
+
+    // 数据组合
     const metadata: DetailArticleDisplayResponse = {
       id: randomUUID(),
-      type: "article",
-      slug: data.slug || PostActions.generateSlug(data.title || ""),
-      imageUrl: data.imageUrl || "https://picsum.photos/950/300",
-      title: data.title || options?.fileName || "Untitled",
+      type: type || "article",
+      slug: PostActions.generateSlug(data.title || ""),
+      imageUrl: "https://picsum.photos/950/300",
+      title: title || options?.fileName || "Untitled",
       createdDate:
-        data.createdDate ||
-        options?.fileCreationDate ||
-        new Date().toISOString(),
-      publishedDate: data.publishedDate || new Date().toISOString(),
-      updatedDate: data.updatedDate || new Date().toISOString(),
+        date || options?.fileCreationDate || new Date().toISOString(),
+      publishedDate: new Date().toISOString(),
+      updatedDate: new Date().toISOString(),
       content: content || "",
-      position: data.position || "left",
-      excerpt: data.excerpt || "",
-      author: data.author || { name: "Unknown Author", url: "" },
-      tags: data.tags || [],
-      readCount: data.readCount || 0,
-      commentsCount: data.commentsCount || 0,
-      status: data.status || "draft",
-      description: data.description || "",
+      excerpt: excerpt || "",
+      author: {
+        name: author,
+        url: "",
+        avatarUrl: "",
+        description: "",
+      },
+      tags: tags || [],
+      readCount: 0,
+      commentsCount: 0,
+      status: "draft",
+      description: description || "",
       websiteStats: {
         articleCount: 0,
         totalWordCount: 0,
@@ -83,7 +94,7 @@ export class PostActions {
         wordCount: 0,
         readTimeCost: 0,
       },
-      addition: data?.addition || [],
+      addition: addition || [],
     };
 
     return { id: id, ...metadata };

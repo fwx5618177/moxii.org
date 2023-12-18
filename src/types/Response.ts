@@ -26,7 +26,7 @@ declare module "Response" {
 
   interface MetaDataResponse {
     isSticky: boolean;
-    type: string;
+    type: string; // 文章的类型
     date: string | Date | number;
     readCount: string | number;
     wordCount: string | number;
@@ -43,27 +43,33 @@ declare module "Response" {
 
   type RelativeArticleList = RelativeArticleResponse[];
 
-  interface DetailArticleDisplayResponse {
+  interface BaseLocalDataResponse {
+    title: string;
+    date: string | Date | number;
+    author: string;
+    tags: string[];
+    description: string;
+    excerpt: string;
+    addition: string[];
+    type: string; // 文章的类型
+  }
+
+  interface DetailArticleDisplayResponse
+    extends Omit<BaseLocalDataResponse, "author" | "date"> {
     id: string;
     slug: string;
     imageUrl: string;
-    title: string;
     createdDate: string | Date | number;
     publishedDate: string | Date | number;
     updatedDate: string | Date | number;
     content: string;
-    position: "left" | "right";
+    // position: "left" | "right"; // front 使用
     meta: MetaDataResponse;
     websiteStats: WebsiteStatsResponse;
-    description: string;
-    excerpt: string;
     author: AuthorResponse | Array<AuthorResponse>;
-    tags: string[];
     readCount: number;
     commentsCount: number;
     status: "published" | "draft" | "archived";
-    type: string;
-    addition: string[];
     relatives?: RelativeArticleList;
   }
 

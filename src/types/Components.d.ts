@@ -82,7 +82,7 @@ declare module "Components" {
     meta: MetaDataProps;
     description: string;
     excerpt: string;
-    author: Author | Array<Author>;
+    author: Author;
     tags: string[];
     readCount: number;
     commentsCount: number;
@@ -110,7 +110,7 @@ declare module "Components" {
     slug: string;
     title: string;
     updatedDate: string | Date | number;
-    author: Author | Array<Author>;
+    author: Author;
     type: string;
     addition?: string[];
     relatives: RelativeArticleListProps;

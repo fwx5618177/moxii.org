@@ -12,6 +12,7 @@
 - [ ] 修改默认 SSG 数据。大于 10 条的从后端获取内容。
 - [ ] 修改本地 API 的数据读取和存储
 - [ ] 增加 API 请求
+- [ ] PDF 阅读
 
 ### Important and Easy to Solve
 
