@@ -8,7 +8,14 @@ import {
   DetailArticleDisplayResponse,
 } from "Response";
 
-export class PostActions {
+enum PostStatusEnum {
+  PUBLISHED = "published",
+  DRAFT = "draft",
+  ARCHIVED = "archived",
+  UPLOAD = "upload",
+}
+
+export class LocalPostActions {
   static postsDirectory = path.join(process.cwd(), "posts");
 
   /**
@@ -59,7 +66,7 @@ export class PostActions {
     const metadata: DetailArticleDisplayResponse = {
       id: randomUUID(),
       type: type || "article",
-      slug: PostActions.generateSlug(data.title || ""),
+      slug: LocalPostActions.generateSlug(data.title || ""),
       imageUrl: "https://picsum.photos/950/300",
       title: title || options?.fileName || "Untitled",
       createdDate:
@@ -77,7 +84,7 @@ export class PostActions {
       tags: tags || [],
       readCount: 0,
       commentsCount: 0,
-      status: "draft",
+      status: PostStatusEnum.UPLOAD,
       description: description || "",
       websiteStats: {
         articleCount: 0,
@@ -100,29 +107,66 @@ export class PostActions {
     return { id: id, ...metadata };
   }
 
-  static getAllPostsData(): ArticleListResponse {
-    const filenames = fs.readdirSync(PostActions.postsDirectory);
-    const allPostsData: ArticleListResponse = filenames
-      .filter((filename) => filename.endsWith(".md"))
-      .map((filename) => {
-        const slug = filename.replace(/\.md$/, "");
-        const fullPath = path.join(PostActions.postsDirectory, filename);
-        try {
-          const fileContents = fs.readFileSync(fullPath, "utf8");
-          // 获取文件的状态信息
-          const stats = fs.statSync(fullPath);
-          // 将文件创建时间转换为 ISO 格式字符串
-          const fileCreationDate = stats.birthtime.toISOString();
+  /**
+   * 递归读取目录下的所有文件。一边扫描一边处理文件
+   * @param dirPath 目录路径
+   * @param callback 回调函数-读取到文件后的处理
+   */
+  static readDirRecursively(
+    dirPath: string,
+    callback: (filePath: string) => void
+  ): void {
+    fs.readdirSync(dirPath).forEach((file) => {
+      const fullPath = path.join(dirPath, file);
+      const stat = fs.statSync(fullPath);
 
-          return PostActions.parsePost(fileContents, {
-            fileName: slug,
-            fileCreationDate,
-          });
-        } catch (error) {
-          console.error(`Error reading file ${filename}:`, error);
-          return null;
-        }
-      })
+      if (stat && stat.isDirectory()) {
+        LocalPostActions.readDirRecursively(fullPath, callback);
+      } else if (fullPath.endsWith(".md")) {
+        callback(fullPath);
+      }
+    });
+  }
+
+  /**
+   * 处理目录下的文件内容
+   * @param filePath 目录路径
+   * @param type 文件类型
+   * @returns
+   */
+  static processFile(filePath: string, type = ".md") {
+    try {
+      const slug = path.basename(filePath, type);
+      const fileContents = fs.readFileSync(filePath, "utf8");
+      const stats = fs.statSync(filePath);
+      const fileCreationDate = stats.birthtime.toISOString();
+
+      return this.parsePost(fileContents, {
+        fileName: slug,
+        fileCreationDate,
+      });
+    } catch (error) {
+      console.error(`Error reading file ${filePath}:`, error);
+      return null;
+    }
+  }
+
+  /**
+   * 获取所有文章的数据
+   * @returns {ArticleListResponse} An array of Post objects
+   */
+  static getAllPostsData(): ArticleListResponse {
+    const allPostsData: ArticleListResponse = [];
+
+    this.readDirRecursively(this.postsDirectory, (filePath) => {
+      const postData = this.processFile(filePath);
+
+      if (postData) {
+        allPostsData.push(postData);
+      }
+    });
+
+    return allPostsData
       .filter((post): post is DetailArticleDisplayResponse => post !== null)
       .sort((a, b) => {
         if (a.createdDate < b.createdDate) {
@@ -133,8 +177,6 @@ export class PostActions {
           return 0;
         }
       });
-
-    return allPostsData;
   }
 
   /**
@@ -142,7 +184,7 @@ export class PostActions {
    * @returns {fileName[]} An array of fileName derived from the file names
    */
   static getListOfSlugs(): string[] {
-    const filenames = fs.readdirSync(PostActions.postsDirectory);
+    const filenames = fs.readdirSync(LocalPostActions.postsDirectory);
     const fileName = filenames
       .filter((filename) => filename.endsWith(".md"))
       .map((filename) => filename.replace(/\.md$/, ""));

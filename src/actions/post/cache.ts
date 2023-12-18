@@ -1,3 +1,3 @@
-import { PostActions } from "./PostActions";
+import { LocalPostActions } from "./LocalPostActions";
 
-export const localDataList = PostActions.getAllPostsData();
+export const localDataList = LocalPostActions.getAllPostsData();

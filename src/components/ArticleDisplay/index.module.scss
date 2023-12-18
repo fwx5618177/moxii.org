@@ -1,4 +1,5 @@
 .articleDisplay {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,5 +65,11 @@
             font-size: 0.6em;
             color: #333;
         }
+    }
+
+    .status {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 }

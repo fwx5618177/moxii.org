@@ -5,6 +5,8 @@ import Image from "next/image";
 import MetaData from "./MetaData";
 import { ArticleDisplayProps } from "Components";
 import Link from "next/link";
+import ArticleStatus from "../ArticleStatus";
+import { PostStatusEnum } from "@/types/common";
 
 const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
   const {
@@ -15,6 +17,7 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
     meta,
     createdDate,
     slug,
+    status,
   } = props;
 
   return (
@@ -38,6 +41,16 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
           </Link>
           <MetaData date={createdDate} {...meta} />
           <p className={styles.description}>{description}</p>
+        </div>
+        <div className={styles["status"]}>
+          {status === PostStatusEnum.UPLOAD && (
+            <ArticleStatus
+              status={status}
+              onStatusChange={(status) => {
+                console.log(status, props);
+              }}
+            />
+          )}
         </div>
       </div>
     </InfoBox>

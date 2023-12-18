@@ -86,7 +86,7 @@ declare module "Components" {
     tags: string[];
     readCount: number;
     commentsCount: number;
-    status: "published" | "draft" | "archived";
+    status: PostStatusEnum;
     type: string;
     addition: string[];
     websiteStats: WebsiteStatsProps;
@@ -210,4 +210,9 @@ declare module "Components" {
   type HocTree = TocTypes & {
     children: TocTypes[];
   };
+
+  interface ArticleStatus {
+    status: PostStatusEnum;
+    onStatusChange?: (newStatus: PostStatusEnum) => void;
+  }
 }

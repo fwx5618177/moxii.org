@@ -69,7 +69,7 @@ declare module "Response" {
     author: AuthorResponse;
     readCount: number;
     commentsCount: number;
-    status: "published" | "draft" | "archived";
+    status: PostStatusEnum;
     relatives?: RelativeArticleList;
   }
 

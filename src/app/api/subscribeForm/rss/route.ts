@@ -1,10 +1,10 @@
-import { PostActions } from "@/actions/post/PostActions";
+import { LocalPostActions } from "@/actions/post/LocalPostActions";
 import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(_request: NextRequest) {
   try {
-    const posts = PostActions.getAllPostsData();
+    const posts = LocalPostActions.getAllPostsData();
 
     const feed = new Feed({
       title: "Moxi RSS Feed",
