@@ -1,7 +1,7 @@
 import { FC } from "react";
 import type { Metadata } from "next";
-import { getDefaultPostData } from "@/data-fetching/post/getDefaultData";
-import { getDefaultHomeData } from "@/data-fetching/home/getDefaultData";
+import { getDefaultPostData } from "@/services/fetchInitialProps/post/getDefaultData";
+import { getDefaultHomeData } from "@/services/fetchInitialProps/home/getDefaultData";
 import PostView from "@/views/PostView";
 import { notFound } from "next/navigation";
 import { PostPageParmaProps } from "Components";

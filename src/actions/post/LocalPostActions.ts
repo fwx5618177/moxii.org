@@ -34,7 +34,8 @@ export class LocalPostActions {
     // 创建一个 SHA-256 哈希
     const hash = createHash("sha256").update(title).digest("hex");
     // 返回前8个字符作为slug
-    return hash.substring(0, 16);
+    return hash;
+    // .substring(0, 16);
   }
 
   /**

@@ -119,4 +119,8 @@ declare module "Response" {
     websiteStats: WebsiteStatsResponse;
     profileInfo: ProfileCardResponse;
   };
+
+  interface LoginResponse {
+    backgroundImage: string;
+  }
 }

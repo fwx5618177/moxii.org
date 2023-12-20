@@ -1,4 +1,4 @@
-import { getDefaultHomeData } from "@/data-fetching/home/getDefaultData";
+import { getDefaultHomeData } from "@/services/fetchInitialProps/home/getDefaultData";
 import HomePage from "@/views/Home";
 
 export default async function Page() {
