@@ -16,6 +16,8 @@
     align-items: center;
     backdrop-filter: blur(2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom, rgba(23, 42, 58, 0.4), rgba(23, 42, 58, 0.8));
+    border-radius: 6px;
 
     .ant-form-item {
         margin-bottom: 10px;
@@ -85,12 +87,17 @@
 
     .loginButton {
         width: 300px;
+        color: #ffffffaf;
 
         &:hover {
             background-color: #3a3eae;
-            color: #fff !important;
+            color: #ffffff !important;
             border: 0;
         }
+    }
+
+    .login-checkbox {
+        color: #fff;
     }
 
     .options {

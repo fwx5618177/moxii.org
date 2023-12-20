@@ -9,9 +9,10 @@ import { LoginResponse } from "Response";
 
 const LoginView = () => {
   const { data, isError } = useLoginBgImage<LoginResponse>();
-  const { backgroundImage } = data || {
-    backgroundImage: "https://picsum.photos/2560/1600",
-  };
+  const backgroundImage =
+    data?.backgroundImage ||
+    "/login_bg_default.jpg" ||
+    "https://picsum.photos/2560/1600";
 
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -26,7 +27,7 @@ const LoginView = () => {
       className={styles.loginBackground}
       style={{
         backgroundImage: isError
-          ? `url(https://picsum.photos/2560/1600)`
+          ? `url("/login_bg_default.jpg")`
           : `url(${backgroundImage})`,
       }}
     >
@@ -63,7 +64,7 @@ const LoginView = () => {
           </Form.Item>
 
           <Form.Item name="remember" valuePropName="checked">
-            <Checkbox>记住我</Checkbox>
+            <Checkbox className={styles["login-checkbox"]}>记住我</Checkbox>
           </Form.Item>
 
           <Form.Item>
@@ -78,14 +79,14 @@ const LoginView = () => {
           </Form.Item>
         </Form>
 
-        <div className={styles.options}>
+        {/* <div className={styles.options}>
           <a href="#">忘记密码?</a>
           <a href="#">没有账号? 注册</a>
-        </div>
+        </div> */}
 
         <div className={styles.ssoLogin}>
-          <Button icon={<FaGithub />} />
-          <Button icon={<FaGoogle />} />
+          <Button icon={<FaGithub color="#fff" />} />
+          <Button icon={<FaGoogle color="#fff" />} />
         </div>
       </div>
     </div>
