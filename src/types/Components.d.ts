@@ -88,6 +88,7 @@ declare module "Components" {
     commentsCount: number;
     status: PostStatusEnum;
     type: string;
+    language: string;
     addition: string[];
     websiteStats: WebsiteStatsProps;
     relatives?: RelativeArticleListProps;

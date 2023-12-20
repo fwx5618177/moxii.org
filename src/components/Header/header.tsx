@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = ({
     <div
       className={styles["bg-image-small"]}
       style={{
-        height,
+        minHeight: height,
         backgroundImage: small ? `url(${small})` : undefined,
       }}
     >

@@ -17,6 +17,7 @@ enum PostStatusEnum {
 
 export class LocalPostActions {
   static postsDirectory = path.join(process.cwd(), "posts");
+  static maxSubstringLength = 30;
 
   /**
    * Generate a slug from a title by hashing it, or directly use a provided slug
@@ -33,9 +34,8 @@ export class LocalPostActions {
     // 如果没有提供slug，根据title生成一个哈希值
     // 创建一个 SHA-256 哈希
     const hash = createHash("sha256").update(title).digest("hex");
-    // 返回前8个字符作为slug
-    return hash;
-    // .substring(0, 16);
+    // 返回前16个字符作为slug
+    return hash.substring(0, this.maxSubstringLength);
   }
 
   /**
@@ -49,6 +49,7 @@ export class LocalPostActions {
     options?: {
       fileName: string;
       fileCreationDate: string;
+      updateDate: string;
     }
   ): DetailArticleDisplayResponse {
     const { data, content } = matter(markdownContent);
@@ -57,11 +58,20 @@ export class LocalPostActions {
     const id = createHash("sha256")
       .update(data.title || "")
       .digest("hex")
-      .substring(0, 16);
+      .substring(0, this.maxSubstringLength);
 
     // 读取的本地文件数据
-    const { title, date, author, tags, description, excerpt, addition, type } =
-      data as BaseLocalDataResponse;
+    const {
+      title,
+      date,
+      author,
+      tags,
+      description,
+      excerpt,
+      addition,
+      type,
+      language,
+    } = data as BaseLocalDataResponse;
 
     // 数据组合
     const metadata: DetailArticleDisplayResponse = {
@@ -70,10 +80,11 @@ export class LocalPostActions {
       slug: LocalPostActions.generateSlug(data.title || ""),
       imageUrl: "https://picsum.photos/950/300",
       title: title || options?.fileName || "Untitled",
+      language: language || "中文",
       createdDate:
         date || options?.fileCreationDate || new Date().toISOString(),
       publishedDate: new Date().toISOString(),
-      updatedDate: new Date().toISOString(),
+      updatedDate: options?.updateDate || new Date().toISOString(),
       content: content || "",
       excerpt: excerpt || "",
       author: {
@@ -137,14 +148,16 @@ export class LocalPostActions {
    */
   static processFile(filePath: string, type = ".md") {
     try {
-      const slug = path.basename(filePath, type);
+      const fileName = path.basename(filePath, type);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const stats = fs.statSync(filePath);
       const fileCreationDate = stats.birthtime.toISOString();
+      const updateDate = stats.mtime.toISOString();
 
       return this.parsePost(fileContents, {
-        fileName: slug,
+        fileName,
         fileCreationDate,
+        updateDate,
       });
     } catch (error) {
       console.error(`Error reading file ${filePath}:`, error);
@@ -170,13 +183,10 @@ export class LocalPostActions {
     return allPostsData
       .filter((post): post is DetailArticleDisplayResponse => post !== null)
       .sort((a, b) => {
-        if (a.createdDate < b.createdDate) {
-          return 1;
-        } else if (a.createdDate > b.createdDate) {
-          return -1;
-        } else {
-          return 0;
-        }
+        const dateA = new Date(a.updatedDate).getTime();
+        const dateB = new Date(b.updatedDate).getTime();
+
+        return dateB - dateA;
       });
   }
 

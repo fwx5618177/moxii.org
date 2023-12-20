@@ -1,3 +1,14 @@
+---
+title: Understanding JavaScript Error Stack Traces (Call Frames) for Capturing Decorator Error Locations
+date: 2023-12-20 23:28:00
+author: fwx
+language: English
+tags: ["Js", "Error Stack"]
+description: It's a simple introduction about how to catch the error by stack.
+addition: ["English"]
+type: Article
+---
+
 # Understanding JavaScript Error Stack Traces (Call Frames) for Capturing Decorator Error Locations
 
 ## Abstract

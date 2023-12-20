@@ -17,6 +17,7 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
     meta,
     createdDate,
     slug,
+    language,
     status,
   } = props;
 
@@ -37,12 +38,12 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
         </div>
         <div className={styles.contentContainer}>
           <Link href={`/post/${slug}`}>
-            <h2 className={styles.title}>{title}</h2>
+            <span className={styles.title}>{title}</span>
           </Link>
           <MetaData date={createdDate} {...meta} />
           <p className={styles.description}>{description}</p>
         </div>
-        <div className={styles["status"]}>
+        {/* <div className={styles["status"]}>
           {status === PostStatusEnum.UPLOAD && (
             <ArticleStatus
               status={status}
@@ -51,7 +52,8 @@ const ArticleDisplay: FC<ArticleDisplayProps> = (props) => {
               }}
             />
           )}
-        </div>
+        </div> */}
+        <div className={styles["language"]}>{language}</div>
       </div>
     </InfoBox>
   );

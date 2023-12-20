@@ -13,6 +13,11 @@
         margin-top: 24px;
         margin-bottom: 16px;
         font-weight: bold;
+        line-height: 1.2;
+        word-spacing: normal;
+        word-break: break-all;
+        word-wrap: break-word;
+        text-transform: capitalizes;
 
         &:hover {
             color: #56B6C2;
@@ -100,7 +105,7 @@
     pre {
         position: relative;
 
-        overflow-x: auto;
+        overflow: auto;
         border-radius: 4px;
         margin: 8px 0;
         padding: 8px;

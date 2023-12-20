@@ -14,17 +14,16 @@ $word-select-color: #f7f7f7;
         .post-page-article-header {
             box-sizing: border-box;
             position: relative;
-
             margin-bottom: 16px;
             padding-bottom: 16px;
             border-bottom: 3px solid $common-word-color;
             border-style: dashed;
 
-
             &>h1 {
+                margin-bottom: 5px;
                 font-size: 2.1rem;
                 font-weight: 600;
-
+                line-height: 1.4;
                 transition: color .6s ease-in-out;
                 cursor: pointer;
 

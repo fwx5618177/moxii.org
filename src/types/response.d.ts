@@ -52,6 +52,7 @@ declare module "Response" {
     excerpt: string;
     addition: string[];
     type: string; // 文章的类型
+    language: string; // 文章的语言
   }
 
   interface DetailArticleDisplayResponse
