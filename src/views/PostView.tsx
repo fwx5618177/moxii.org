@@ -27,6 +27,10 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
     slug: postData?.slug,
   });
 
+  console.log({
+    data,
+  });
+
   useFixOnScroll(parentRef, tocRef);
 
   return (

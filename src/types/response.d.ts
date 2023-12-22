@@ -121,7 +121,11 @@ declare module "Response" {
     profileInfo: ProfileCardResponse;
   };
 
-  interface LoginResponse {
+  interface LoginSettingResponse {
     backgroundImage: string;
+  }
+
+  interface LoginResponse {
+    token: string;
   }
 }

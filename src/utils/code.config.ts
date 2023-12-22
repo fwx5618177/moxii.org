@@ -7,6 +7,7 @@ export const enum CODE_CONFIG {
   BAD_GATEWAY = 502,
   SERVICE_UNAVAILABLE = 503,
   GATEWAY_TIMEOUT = 504,
+  NOT_AUTHORIZED = 401,
 }
 
 export const enum CODE_MESSAGE_CONFIG {
@@ -18,4 +19,5 @@ export const enum CODE_MESSAGE_CONFIG {
   BAD_GATEWAY = "错误的网关",
   SERVICE_UNAVAILABLE = "服务不可用",
   GATEWAY_TIMEOUT = "网关超时",
+  NOT_AUTHORIZED = "未授权",
 }

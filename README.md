@@ -2,6 +2,11 @@
 
 1. Support SSR/SSG/ISR
 
+## Rule
+
+- BFF 内使用 fetch
+- 外部 API 请求使用封装的 API 接口
+
 ## 1. Installation
 
 1. pnpm i

@@ -1,14 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { FaGithub, FaGoogle, FaUser, FaLock } from "react-icons/fa";
 import styles from "@/styles/loginView.module.scss";
 import { useLoginBgImage } from "@/services/Login/hooks";
-import { LoginResponse } from "Response";
+import { LoginSettingResponse } from "Response";
+import useLogin from "@/hooks/useLogin";
+import useAuth from "@/hooks/useAuth";
+import { redirect } from "next/navigation";
 
 const LoginView = () => {
-  const { data, isError } = useLoginBgImage<LoginResponse>();
+  const { login } = useLogin();
+  useAuth();
+  const { data, isError } = useLoginBgImage<LoginSettingResponse>();
   const backgroundImage =
     data?.backgroundImage ||
     "/login_bg_default.jpg" ||

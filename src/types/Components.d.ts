@@ -216,4 +216,9 @@ declare module "Components" {
     status: PostStatusEnum;
     onStatusChange?: (newStatus: PostStatusEnum) => void;
   }
+
+  interface LoginRequest {
+    username: string;
+    password: string;
+  }
 }

@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import { message } from "antd";
 import { CODE_CONFIG, CODE_MESSAGE_CONFIG } from "./code.config";
 import { config } from "@/config/dev";
@@ -13,16 +13,18 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     // token setting
-    // const token = localStorage.getItem("token"); // 你可以根据实际情况更改token的获取方式
-    // if (token) {
-    //   config.headers["Authorization"] = `Bearer ${token}`;
-    // }
+    const token = localStorage.getItem("token"); // 你可以根据实际情况更改token的获取方式
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
 
     config.headers["Content-Type"] = "application/json;charset=UTF-8";
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
 // 响应拦截器
@@ -55,6 +57,14 @@ service.interceptors.response.use(
       case CODE_CONFIG.GATEWAY_TIMEOUT:
         message.error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT);
         return Promise.reject(new Error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT));
+      case CODE_CONFIG.NOT_AUTHORIZED:
+        message.error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED);
+        localStorage.removeItem("token");
+
+        if (typeof window !== "undefined") {
+          window.location.href = "/login";
+        }
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED));
       default:
         return response.data;
     }

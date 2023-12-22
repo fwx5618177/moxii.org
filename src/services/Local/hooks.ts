@@ -14,6 +14,9 @@ export const useLocalFetchDetailData = <T>(
   return useQuery({
     queryKey: ["detail", params],
     queryFn: async () => {
+      console.log({
+        ApiLocalService: ApiLocalService.localPostDetail,
+      });
       const response = await fetch(ApiLocalService.localPostDetail, {
         cache: "no-cache",
         method: "POST",
