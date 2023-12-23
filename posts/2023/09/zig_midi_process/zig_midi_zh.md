@@ -1,3 +1,15 @@
+---
+title: 【Zig 音频】乐器数字接口-Midi
+date: 2023-09-01 00:00:00
+author: fwx
+language: 中文
+tags: ["Zig", "MIDI"]
+description: 乐器数字接口-Midi
+excerpt: Zig-awesome中比较靠前的项目
+addition: ["中文"]
+type: 文章
+---
+
 # 【Zig 音频】乐器数字接口-Midi
 
 MIDI 是“乐器数字接口”的缩写，是一种用于音乐设备之间通信的协议。这个项目主要是对 MIDI 做了一些处理，针对元数据、音频头等的处理。

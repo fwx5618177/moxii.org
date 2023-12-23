@@ -3,6 +3,8 @@ import MarkdownIt from "markdown-it";
 import anchor from "markdown-it-anchor";
 import hljs from "highlight.js";
 import "highlight.js/styles/dark.css";
+import "@/styles/zigStyle.css";
+import { zigLanguageSupport } from "@/lib/ZigLanguageSupport";
 
 const useContentParse = (content: string) => {
   const parseContent = useMemo(() => {
@@ -29,6 +31,8 @@ const useContentParse = (content: string) => {
         <button class="copy-button" data-clipboard-text='${str}'>
           <p>${lang}</p>
         </button>`;
+
+        hljs.registerLanguage("zig", zigLanguageSupport);
 
         if (lang && hljs.getLanguage(lang)) {
           codeChunk = hljs.highlight(str, {
