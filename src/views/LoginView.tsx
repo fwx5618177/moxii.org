@@ -6,13 +6,15 @@ import { FaGithub, FaGoogle, FaUser, FaLock } from "react-icons/fa";
 import styles from "@/styles/loginView.module.scss";
 import { useLoginBgImage } from "@/services/Login/hooks";
 import { LoginSettingResponse } from "Response";
-import useLogin from "@/hooks/useLogin";
-import useAuth from "@/hooks/useAuth";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 const LoginView = () => {
   const [form] = Form.useForm();
-  const { login } = useLogin();
-  useAuth();
+  // TODO: remove hooks from deprecated hooks
+  // const { login } = useLogin();
+  // useAuth();
+
+  const { login } = useAuthContext();
   const { data, isError } = useLoginBgImage<LoginSettingResponse>();
   const backgroundImage =
     data?.backgroundImage ||

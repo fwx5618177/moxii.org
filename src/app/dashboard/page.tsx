@@ -1,12 +1,13 @@
-import { redirect } from "next/navigation";
-import { getLoginStatus } from "@/services/fetchInitialProps/login/getLoginStatus";
+import theme from "@/theme/themeConfig";
 import DashBoardView from "@/views/DashBoardView";
+import { ConfigProvider } from "antd";
 
-const Page = async (props) => {
-  // const response = await getLoginStatus("123456");
-  // if (response.code === "401") redirect("/login");
-
-  return <DashBoardView />;
+const Page = async () => {
+  return (
+    <ConfigProvider theme={theme}>
+      <DashBoardView />
+    </ConfigProvider>
+  );
 };
 
 export default Page;

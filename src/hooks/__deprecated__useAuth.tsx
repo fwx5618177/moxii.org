@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import useLogin from "@/hooks/useLogin";
+import useLogin from "@/hooks/__deprecated__useLogin";
 
 const useAuth = () => {
   const params = usePathname();

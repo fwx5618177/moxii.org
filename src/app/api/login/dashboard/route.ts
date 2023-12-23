@@ -3,13 +3,17 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
   try {
-    const data = request.body;
+    const data: {
+      username: string;
+      password: string;
+      rememberMe: boolean;
+    } = await request.json();
 
     return NextResponse.json({
       code: "200",
       status: "success",
       data: {
-        token: "Bearer 123456",
+        token: `Bearer ${data?.password}`,
       },
       messages: null,
     });

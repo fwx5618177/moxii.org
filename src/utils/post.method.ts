@@ -30,7 +30,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response: AxiosResponse) => {
-    const code = response?.data?.code;
+    const code = +response?.data?.code;
     switch (code) {
       case CODE_CONFIG.ERROR:
         message.error(
@@ -59,12 +59,10 @@ service.interceptors.response.use(
         return Promise.reject(new Error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT));
       case CODE_CONFIG.NOT_AUTHORIZED:
         message.error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED);
-        localStorage.removeItem("token");
-
-        if (typeof window !== "undefined") {
-          window.location.href = "/login";
-        }
         return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED));
+      case CODE_CONFIG.FORBIDDEN:
+        message.error(CODE_MESSAGE_CONFIG.FORBIDDEN);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.FORBIDDEN));
       default:
         return response.data;
     }
