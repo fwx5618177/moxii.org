@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { Form, Input, Button, Checkbox } from "antd";
+import React from "react";
+import { Form, Input, Button, Checkbox, message } from "antd";
 import { FaGithub, FaGoogle, FaUser, FaLock } from "react-icons/fa";
 import styles from "@/styles/loginView.module.scss";
 import { useLoginBgImage } from "@/services/Login/hooks";
 import { LoginSettingResponse } from "Response";
 import useLogin from "@/hooks/useLogin";
 import useAuth from "@/hooks/useAuth";
-import { redirect } from "next/navigation";
 
 const LoginView = () => {
+  const [form] = Form.useForm();
   const { login } = useLogin();
   useAuth();
   const { data, isError } = useLoginBgImage<LoginSettingResponse>();
@@ -19,12 +19,22 @@ const LoginView = () => {
     "/login_bg_default.jpg" ||
     "https://picsum.photos/2560/1600";
 
+  const initialValues = {
+    remember: false,
+  };
+
   const onFinish = (values) => {
     console.log("Success:", values);
+    login({
+      username: values?.username,
+      password: values?.password,
+      remember: values?.remember,
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    message.error("登录失败");
   };
 
   return (
@@ -39,20 +49,22 @@ const LoginView = () => {
       <div className={styles.loginContainer}>
         <Form
           name="basic"
-          initialValues={{ remember: true }}
+          initialValues={initialValues}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+          form={form}
         >
           <Form.Item
-            name="email"
-            rules={[{ required: true, message: "请输入您的邮箱!" }]}
+            name="username"
+            rules={[{ required: true, message: "请输入您的邮箱或用户名!" }]}
           >
             <Input
               className={styles.inputField}
               size="large"
               prefix={<FaUser />}
-              placeholder="Email"
+              placeholder="Email or Username"
+              allowClear
             />
           </Form.Item>
 
@@ -65,11 +77,14 @@ const LoginView = () => {
               size="large"
               prefix={<FaLock />}
               placeholder="Password"
+              allowClear
             />
           </Form.Item>
 
           <Form.Item name="remember" valuePropName="checked">
-            <Checkbox className={styles["login-checkbox"]}>记住我</Checkbox>
+            <Checkbox className={styles["login-checkbox"]}>
+              30天内免密登录
+            </Checkbox>
           </Form.Item>
 
           <Form.Item>

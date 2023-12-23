@@ -3,9 +3,12 @@
 import { useLoginDashboard } from "@/services/Login/hooks";
 import { LoginRequest } from "Components";
 import { LoginResponse } from "Response";
+import { message } from "antd";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState, useRef } from "react";
 
 const useLogin = () => {
+  const router = useRouter();
   const [token, setToken] = useState(() => {
     if (typeof window !== "undefined") {
       return window.localStorage.getItem("token");
@@ -20,22 +23,23 @@ const useLogin = () => {
   >();
 
   const login = useCallback(
-    async (credentials: LoginRequest, rememberMe: boolean) => {
+    async (credentials: LoginRequest) => {
       loginDashboard(credentials, {
         onSuccess: (data) => {
           setToken(data?.token);
           setIsLoggedIn(true);
+          window.localStorage.setItem("token", data?.token);
 
-          if (rememberMe) {
-            window.localStorage.setItem("token", data?.token);
-          }
+          message.success("登录成功");
+          router.push("/dashboard");
         },
-        onError: (error) => {
+        onError: (error: any) => {
           console.log(error);
+          message.error("登录失败:" + error?.message);
         },
       });
     },
-    [loginDashboard]
+    [loginDashboard, router]
   );
 
   const logout = useCallback(() => {
@@ -65,6 +69,8 @@ const useLogin = () => {
       });
 
       if (!response.ok) throw new Error("Invalid token");
+      const result = await response.json();
+      if (result.code === "401") throw new Error("Invalid token");
     } catch (error) {
       console.error("Auth check failed:", error);
 

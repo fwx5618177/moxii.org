@@ -4,10 +4,6 @@ export const GET = async (request: NextRequest) => {
   try {
     const authToken = request.headers.get("Authorization");
 
-    console.log({
-      authToken,
-    });
-
     if (!authToken) {
       return NextResponse.json(
         {

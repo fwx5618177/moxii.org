@@ -220,5 +220,6 @@ declare module "Components" {
   interface LoginRequest {
     username: string;
     password: string;
+    remember: boolean;
   }
 }
