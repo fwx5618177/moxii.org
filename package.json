@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.1",
+    "@ant-design/icons": "^5.2.6",
     "@types/lodash": "^4.14.202",
     "@types/markdown-it": "^13.0.7",
     "@types/react-highlight-words": "^0.16.7",

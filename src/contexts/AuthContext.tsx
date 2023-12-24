@@ -7,7 +7,7 @@ import React, {
   useCallback,
   useEffect,
 } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { message } from "antd";
 import { useLoginDashboard } from "@/services/Login/hooks";
 import { LoginRequest } from "Components";
@@ -24,6 +24,7 @@ export const useAuthContext = () =>
   }>(AuthContext);
 
 export const AuthProvider = ({ children }) => {
+  const params = usePathname();
   const router = useRouter();
   const [token, setToken] = useState(() =>
     typeof window !== "undefined" ? window.localStorage.getItem("token") : null
@@ -91,6 +92,15 @@ export const AuthProvider = ({ children }) => {
       checkAuth();
     }
   }, [token, logout, checkAuth]);
+
+  // 检查认证状态
+  useEffect(() => {
+    if (!isLoggedIn && params === "/dashboard") {
+      router.push("/login");
+    } else if (isLoggedIn && params === "/login") {
+      router.push("/dashboard");
+    }
+  }, [isLoggedIn, params, router, token]);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout, token }}>

@@ -10,11 +10,7 @@ import { useAuthContext } from "@/contexts/AuthContext";
 
 const LoginView = () => {
   const [form] = Form.useForm();
-  // TODO: remove hooks from deprecated hooks
-  // const { login } = useLogin();
-  // useAuth();
-
-  const { login } = useAuthContext();
+  const { login, isLoggedIn } = useAuthContext();
   const { data, isError } = useLoginBgImage<LoginSettingResponse>();
   const backgroundImage =
     data?.backgroundImage ||
@@ -107,8 +103,8 @@ const LoginView = () => {
         </div> */}
 
         <div className={styles.ssoLogin}>
-          <Button icon={<FaGithub color="#fff" />} />
-          <Button icon={<FaGoogle color="#fff" />} />
+          <Button icon={<FaGithub />} />
+          <Button icon={<FaGoogle />} />
         </div>
       </div>
     </div>

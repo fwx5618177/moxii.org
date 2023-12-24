@@ -1,4 +1,4 @@
-import { HLJSApi, Language } from "highlight.js";
+import hljs, { HLJSApi, Language } from "highlight.js";
 
 export const zigLanguageSupport = (hljs: HLJSApi): Language => {
   const LITERALS = ["true", "false", "null", "undefined"];
@@ -35,6 +35,7 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
     "c_double",
     "c_void",
     "mem",
+    "print",
   ];
   const TYPES = [
     "anytype",
@@ -92,8 +93,8 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
     "void",
     "type",
     "blk",
+    "var",
   ];
-
   const OPERATORS = ["+", "-", "*", "/", "%", "==", "!=", "<", ">", "<=", ">="];
 
   const KEYWORDS = {
@@ -110,6 +111,11 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
     keywords: KEYWORDS,
     illegal: /\/\*/,
     contains: [
+      hljs.C_LINE_COMMENT_MODE,
+      hljs.QUOTE_STRING_MODE,
+      hljs.APOS_STRING_MODE,
+      hljs.C_NUMBER_MODE,
+
       // built-in
       {
         className: "built_in",
@@ -151,7 +157,22 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
         className: "property",
         begin: /\.\w+/,
       },
-      // 数字
+      {
+        className: "string",
+        begin: "@[a-zA-Z_]\\w*",
+      },
+      {
+        className: "meta",
+        begin: /@[a-zA-Z_]\w*/,
+      },
+      {
+        className: "symbol",
+        begin: /'[a-zA-Z_][a-zA-Z0-9_]*'/,
+      },
+      {
+        className: "literal",
+        begin: /\\[xuU][a-fA-F0-9]+/,
+      },
       {
         className: "number",
         variants: [
@@ -189,7 +210,7 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
       {
         className: "function-call",
         begin: /[a-zA-Z_][a-zA-Z0-9_]*\(/, // 匹配函数名和左括号
-        end: /\)/,
+        end: /\)?/,
         excludeEnd: true,
         contains: [
           {

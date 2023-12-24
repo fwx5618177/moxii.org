@@ -1,13 +1,7 @@
-import theme from "@/theme/themeConfig";
-import DashBoardView from "@/views/DashBoardView";
-import { ConfigProvider } from "antd";
+import DashBoardRootView from "@/views/DashBoard/DashBoardRootView";
 
 const Page = async () => {
-  return (
-    <ConfigProvider theme={theme}>
-      <DashBoardView />
-    </ConfigProvider>
-  );
+  return <DashBoardRootView />;
 };
 
 export default Page;

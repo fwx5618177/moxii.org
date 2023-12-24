@@ -222,4 +222,8 @@ declare module "Components" {
     password: string;
     remember: boolean;
   }
+
+  interface DashboardLayoutProps {
+    children?: ReactNode;
+  }
 }
