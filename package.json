@@ -28,7 +28,6 @@
     "next": "13.5.6",
     "nodemailer": "^6.9.7",
     "numeral": "^2.0.6",
-    "postcss-antd-fixes": "^0.2.0",
     "prism-react-renderer": "^2.3.0",
     "prismjs": "^1.29.0",
     "react": "^18",

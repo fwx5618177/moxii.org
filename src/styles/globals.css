@@ -2,20 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root, body, * {
+:root,
+body,
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 ::-webkit-scrollbar {
   width: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
   width: 2px;
   height: 2px;
@@ -30,4 +34,3 @@ html, body {
 ::-webkit-scrollbar-track {
   background-color: #49b1f5b3;
 }
-

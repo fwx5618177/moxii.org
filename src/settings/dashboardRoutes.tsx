@@ -1,9 +1,13 @@
-import { ComponentMap, MenuProps } from "Components";
+import { ComponentMap } from "Components";
 import dynamic from "next/dynamic";
-import React from "react";
 
 export const routes: ComponentMap = {
-  home: dynamic(() => import("@/views/DashBoard/DashBoardRootView")),
+  home: dynamic(() => import("@/views/DashBoard/DashBoardRootView"), {
+    ssr: false,
+  }),
+  userList: dynamic(() => import("@/views/DashBoard/User/User"), {
+    ssr: false,
+  }),
 };
 
 export const dynamicRoutes = (key: string) => {
@@ -15,20 +19,20 @@ export const dynamicRoutes = (key: string) => {
   );
 };
 
-export const filterRoutes = (
-  permission: string,
-  items: MenuProps[],
-  forbiddenKeys: string[] = []
-): MenuProps[] => {
-  if (permission === "SALE") {
-    return items.map((item) => {
-      if (item.items) {
-        item.items = item.items.filter(
-          (subItem) => !forbiddenKeys.includes(subItem.key)
-        );
-      }
-      return item;
-    });
-  }
-  return items;
-};
+// export const filterRoutes = (
+//   permission: string,
+//   items: MenuProps[],
+//   forbiddenKeys: string[] = []
+// ): MenuProps[] => {
+//   if (permission === "SALE") {
+//     return items.map((item) => {
+//       if (item.items) {
+//         item.items = item.items.filter(
+//           (subItem) => !forbiddenKeys.includes(subItem.key)
+//         );
+//       }
+//       return item;
+//     });
+//   }
+//   return items;
+// };

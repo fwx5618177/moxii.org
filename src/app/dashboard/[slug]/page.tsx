@@ -1,9 +1,10 @@
 "use client";
 
 import { dynamicRoutes } from "@/settings/dashboardRoutes";
-import { usePathname, notFound } from "next/navigation";
+import { usePathname, notFound, useRouter } from "next/navigation";
 
 export default function DashboardPage({ params }) {
+  const router = useRouter();
   const pathname = usePathname();
   const key = pathname.split("/").pop();
   const Component = dynamicRoutes(key);
@@ -11,5 +12,5 @@ export default function DashboardPage({ params }) {
 
   if (!slug) notFound();
 
-  return <>{Component && <Component />}</>;
+  return Component ? <Component /> : null;
 }
