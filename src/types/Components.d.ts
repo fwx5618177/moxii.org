@@ -226,4 +226,22 @@ declare module "Components" {
   interface DashboardLayoutProps {
     children?: ReactNode;
   }
+
+  interface ComponentMap {
+    [key: string]: React.ComponentType<any>;
+  }
+
+  interface MenuProps {
+    name: string;
+    key: string;
+    icon: JSX.Element;
+    href?: string;
+    children?: MenuProps[];
+    label?: ReactNode;
+  }
+  [];
+
+  interface MenuItemProps extends MenuProps {
+    active?: boolean;
+  }
 }

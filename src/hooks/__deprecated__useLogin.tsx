@@ -31,7 +31,7 @@ const useLogin = () => {
           window.localStorage.setItem("token", data?.token);
 
           message.success("登录成功");
-          router.push("/dashboard");
+          router.push("/dashboard/home");
         },
         onError: (error: any) => {
           console.log(error);

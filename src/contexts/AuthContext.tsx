@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
           setIsLoggedIn(true);
           window.localStorage.setItem("token", data?.token);
 
-          router.push("/dashboard");
+          router.push("/dashboard/home");
         },
         onError: (error: any) => {
           console.log(error);
@@ -95,10 +95,10 @@ export const AuthProvider = ({ children }) => {
 
   // 检查认证状态
   useEffect(() => {
-    if (!isLoggedIn && params === "/dashboard") {
+    if (!isLoggedIn && params === "/dashboard/home") {
       router.push("/login");
     } else if (isLoggedIn && params === "/login") {
-      router.push("/dashboard");
+      router.push("/dashboard/home");
     }
   }, [isLoggedIn, params, router, token]);
 

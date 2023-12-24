@@ -13,9 +13,9 @@ const useAuth = () => {
     // 如果token不存在且当前页面不是登录页，则重定向到登录页
     if (!isLoggedIn && params !== "/login") {
       router.push("/login");
-    } else if (isLoggedIn && params !== "/dashboard") {
+    } else if (isLoggedIn && params !== "/dashboard/home") {
       // 如果token存在且当前页面是登录页，则重定向到首页
-      router.push("/dashboard");
+      router.push("/dashboard/home");
     }
   }, [isLoggedIn, params, router]);
 };
