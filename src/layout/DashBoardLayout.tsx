@@ -26,7 +26,12 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
     >
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" items={SideItem} />
+        <Menu
+          theme="dark"
+          mode="inline"
+          items={SideItem}
+          selectedKeys={[uriParams?.split("/")?.pop()]}
+        />
       </Sider>
       <Layout>
         <Header
@@ -44,9 +49,10 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
           />
           <div
             style={{
+              width: "100%",
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-end",
+              flexDirection: "row-reverse",
             }}
           >
             <Button
@@ -75,7 +81,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
+            // background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
