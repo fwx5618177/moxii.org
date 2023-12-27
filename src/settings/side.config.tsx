@@ -16,6 +16,28 @@ export const SideItem: MenuProps[] = [
     href: "/dashboard/home",
   },
   {
+    name: "文章",
+    key: "post",
+    label: "文章",
+    icon: <FcSearch />,
+    children: [
+      {
+        name: "文章列表",
+        key: "postList",
+        label: <Link href="/dashboard/postList">文章列表</Link>,
+        href: "/dashboard/postList",
+        icon: <FcSearch />,
+      },
+      {
+        name: "创建文章",
+        key: "createPost",
+        label: <Link href="/dashboard/createPost">创建文章</Link>,
+        href: "/dashboard/createPost",
+        icon: <FcSearch />,
+      },
+    ],
+  },
+  {
     name: "用户",
     key: "users",
     label: "用户",

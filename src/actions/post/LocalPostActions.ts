@@ -56,7 +56,7 @@ export class LocalPostActions {
 
     // 使用title生成一个特殊的id值
     const id = createHash("sha256")
-      .update(data.title || "")
+      .update(data?.title || options?.fileName)
       .digest("hex")
       .substring(0, this.maxSubstringLength);
 
@@ -77,13 +77,13 @@ export class LocalPostActions {
     const metadata: DetailArticleDisplayResponse = {
       id: randomUUID(),
       type: type || "article",
-      slug: LocalPostActions.generateSlug(data.title || ""),
+      slug: LocalPostActions.generateSlug(data.title || options?.fileName),
       imageUrl: "https://picsum.photos/950/300",
       title: title || options?.fileName || "Untitled",
       language: language || "中文",
       createdDate:
         date || options?.fileCreationDate || new Date().toISOString(),
-      publishedDate: new Date().toISOString(),
+      publishedDate: null,
       updatedDate: options?.updateDate || new Date().toISOString(),
       content: content || "",
       excerpt: excerpt || "",

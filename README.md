@@ -2,6 +2,10 @@
 
 1. Support SSR/SSG/ISR
 
+## TOC
+
+- actions: 本地处理函数
+
 ## Rule
 
 - BFF 内使用 fetch

@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { ssgData } from "@/app/api/post/ssgData";
+import { ssgData } from "@/actions/post/ssgData";
 import { ArticleDisplayProps } from "Components";
 
 export const revalidate = 3600;

@@ -1,18 +1,46 @@
 "use client";
 
 import ArticleInfoCard from "@/components/ArticleInfoCard";
-import { Row, Col, Card } from "antd";
-import { useState } from "react";
+import { useLocalPostList } from "@/services/Local/hooks";
+import { useMemo } from "react";
 
 const DashBoardRootView = () => {
-  const [loading, isLoading] = useState<boolean>(false);
+  const { data } = useLocalPostList();
+  const { latestLastPublished, uniqueTypes, totalCount } = useMemo(() => {
+    const typesSet: Set<string> = new Set();
+    let latestDate = { date: new Date(0), name: "", slug: "" };
+
+    data?.forEach((item) => {
+      // 更新去重后的type集合
+      if (item?.type) {
+        typesSet.add(item.type);
+      }
+
+      // 查找最新的lastPublished日期
+      const itemDate = new Date(item?.updatedDate);
+      if (itemDate > latestDate?.date) {
+        latestDate = {
+          date: itemDate,
+          name: item?.title,
+          slug: item?.slug,
+        };
+      }
+    });
+
+    return {
+      latestLastPublished: latestDate,
+      uniqueTypes: Array.from(typesSet),
+      totalCount: data?.length || 0,
+    };
+  }, [data]);
 
   return (
     <div>
       <ArticleInfoCard
-        articleCount={320}
-        lastPublished={new Date()}
-        authorCount={5}
+        title="文章"
+        articleCount={totalCount}
+        lastPublished={latestLastPublished}
+        typeCount={uniqueTypes}
       />
     </div>
   );

@@ -34,6 +34,8 @@ export const AuthProvider = ({ children }) => {
     LoginResponse,
     LoginRequest
   >();
+  const isCheckAuthRoute =
+    params.includes("/dashboard") || params.includes("/login");
 
   const login = useCallback(
     async (credentials: LoginRequest) => {
@@ -88,10 +90,10 @@ export const AuthProvider = ({ children }) => {
 
   // 检查认证状态
   useEffect(() => {
-    if (token) {
+    if (token && isCheckAuthRoute) {
       checkAuth();
     }
-  }, [token, logout, checkAuth]);
+  }, [token, logout, checkAuth, isCheckAuthRoute]);
 
   // 检查认证状态
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { ssgData } from "@/app/api/home/ssgData";
+import { ssgData } from "@/actions/home/ssgData";
 import { cache } from "react";
 import { HomeResponse } from "Response";
 import { NextResponse } from "next/server";

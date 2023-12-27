@@ -8,6 +8,12 @@ export const routes: ComponentMap = {
   userList: dynamic(() => import("@/views/DashBoard/User/User"), {
     ssr: false,
   }),
+  postList: dynamic(() => import("@/views/DashBoard/Post/PostList"), {
+    ssr: false,
+  }),
+  createPost: dynamic(() => import("@/views/DashBoard/Post/CreatePost"), {
+    ssr: false,
+  }),
 };
 
 export const dynamicRoutes = (key: string) => {

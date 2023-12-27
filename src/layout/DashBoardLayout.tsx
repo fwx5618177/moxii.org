@@ -9,6 +9,7 @@ import { SideItem } from "@/settings/side.config";
 import { useAuthContext } from "@/contexts/AuthContext";
 
 const { Header, Sider, Content } = Layout;
+const { Item } = Breadcrumb;
 
 const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -17,6 +18,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   } = theme.useToken();
   const uriParams = usePathname();
   const { logout } = useAuthContext();
+  const uriList = uriParams?.split("/");
 
   return (
     <Layout
@@ -30,9 +32,10 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
           theme="dark"
           mode="inline"
           items={SideItem}
-          selectedKeys={[uriParams?.split("/")?.pop()]}
+          selectedKeys={[uriList?.[uriList?.length - 1]]}
         />
       </Sider>
+
       <Layout>
         <Header
           style={{ padding: 0, background: colorBgContainer, display: "flex" }}
@@ -67,11 +70,10 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
           </div>
         </Header>
 
-        {uriParams && (
+        {uriList?.length > 0 && (
           <Breadcrumb style={{ margin: 16 }}>
-            {uriParams?.split("/")?.map((item, index) => {
-              if (!!item)
-                return <Breadcrumb.Item key={index}>{item}</Breadcrumb.Item>;
+            {uriList?.map((item) => {
+              if (item) return <Item key={"_uri"}>{item}</Item>;
             })}
           </Breadcrumb>
         )}

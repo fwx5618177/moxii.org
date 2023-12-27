@@ -1,5 +1,5 @@
 ---
-title: Spring Cloud 微服务架构进阶
+title: Spring Cloud 微服务架构进阶 - 模板
 date: 2023-11-17 00:12:00
 author: "fwx"
 language: 中文
