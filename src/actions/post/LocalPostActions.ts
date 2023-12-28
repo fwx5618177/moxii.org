@@ -72,6 +72,8 @@ export class LocalPostActions {
       type,
       language,
     } = data as BaseLocalDataResponse;
+    const wordCount = content.split(/\s+/gu).length;
+    const readTimeCost = Math.ceil(wordCount / 200);
 
     // 数据组合
     const metadata: DetailArticleDisplayResponse = {
@@ -110,8 +112,8 @@ export class LocalPostActions {
         type: data?.meta?.type || "article",
         date: new Date().toISOString(),
         readCount: 0,
-        wordCount: 0,
-        readTimeCost: 0,
+        wordCount,
+        readTimeCost,
       },
       addition: addition || [],
     };
