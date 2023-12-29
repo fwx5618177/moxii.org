@@ -85,6 +85,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
             minHeight: 280,
             // background: colorBgContainer,
             borderRadius: borderRadiusLG,
+            overflow: "auto",
           }}
         >
           {children}
