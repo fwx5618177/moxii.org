@@ -128,4 +128,19 @@ declare module "Response" {
   interface LoginResponse {
     token: string;
   }
+
+  interface DashBoardDetailModifyProps {
+    isSticky: boolean;
+    title: string;
+    cover: string;
+    status: string;
+    type: string;
+    language: string;
+    description: string;
+    excerpt: string;
+    name: string;
+    tags: string[];
+    addition: string[];
+    content: string;
+  }
 }

@@ -8,7 +8,8 @@ import { PostEditFormProps } from "Dashboard";
 
 const EditPost = ({ setVisible, data }) => {
   const [form] = Form.useForm();
-  const { mutateAsync, isLoading, isError, error } = useLocalPostUpdate();
+  const { mutateAsync, isLoading, isError, isIdle } = useLocalPostUpdate();
+
   const initialValues = {
     ...data,
     ...data?.meta,
@@ -17,20 +18,18 @@ const EditPost = ({ setVisible, data }) => {
   };
 
   const onFinish = async (values: PostEditFormProps) => {
-    console.log("Success:", values);
+    console.log("Success:", values, isIdle);
     try {
       // 执行异步操作
       const result = await mutateAsync(values);
 
-      // 异步操作完成后再输出状态
       console.log({
         isLoading,
         isError,
-        result,
-        error,
+        isIdle,
       });
 
-      if (!isError && !isLoading) {
+      if (result) {
         setVisible(false);
       }
     } catch (error) {

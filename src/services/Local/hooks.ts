@@ -92,13 +92,21 @@ export const useLocalPostUpdate = <T, U>(): UseMutationResult<
 
       return result?.data as U;
     },
+    retryDelay: 1000 * 60 * 60 * 24,
+    retry: false,
+    onSettled: (data, error, _variables, _context) => {
+      if (error) {
+        message.error("Error:" + error.toString());
+      }
+
+      data && message.success("Success");
+
+      return;
+    },
   });
 
   const updateLocalPost = async (params: T): Promise<U> => {
     try {
-      // 重置状态
-      mutation.reset();
-
       const result = await mutation.mutateAsync(params);
 
       return result;
