@@ -13,7 +13,7 @@ export const POST = async (request: NextRequest) => {
       code: "200",
       status: "success",
       data: {
-        token: `Bearer ${data?.password}`,
+        token: data?.password,
       },
       messages: null,
     });

@@ -12,6 +12,7 @@ import { message } from "antd";
 import { useLoginDashboard } from "@/services/Login/hooks";
 import { LoginRequest } from "Components";
 import { LoginResponse } from "Response";
+import { get } from "@/utils/post.method";
 
 const AuthContext = createContext(null);
 
@@ -68,19 +69,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch("/api/login", {
-        cache: "no-store",
-        method: "GET",
-        mode: "same-origin",
-        headers: { Authorization: token },
-        next: {
-          tags: ["token_tags"],
-        },
-      });
-      if (!response.ok) throw new Error("Invalid token");
-
-      const result = await response.json();
-      if (result.code === "401") throw new Error("Invalid token");
+      await get<null>("/api/login");
     } catch (error) {
       console.error("Auth check failed:", error);
       message.error("登录失效，请重新登录");

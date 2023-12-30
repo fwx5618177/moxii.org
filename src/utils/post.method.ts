@@ -31,6 +31,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse) => {
     const code = +response?.data?.code;
+
     switch (code) {
       case CODE_CONFIG.ERROR:
         message.error(
@@ -43,6 +44,10 @@ service.interceptors.response.use(
       case CODE_CONFIG.NOT_FOUND:
         message.error(CODE_MESSAGE_CONFIG.NOT_FOUND);
         return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_FOUND));
+      case CODE_CONFIG.NOT_ALLOWED:
+        console.log(CODE_MESSAGE_CONFIG.NOT_ALLOWED);
+        message.error(CODE_MESSAGE_CONFIG.NOT_ALLOWED);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_ALLOWED));
       case CODE_CONFIG.SERVER_ERROR:
         message.error(CODE_MESSAGE_CONFIG.SERVER_ERROR);
         return Promise.reject(new Error(CODE_MESSAGE_CONFIG.SERVER_ERROR));
@@ -68,13 +73,45 @@ service.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
-    if (
-      error.code === "ECONNABORTED" &&
-      error.message.indexOf("timeout") !== -1
-    ) {
-      message.error(CODE_MESSAGE_CONFIG.TIMEOUT);
+    const code = +error?.code;
+
+    switch (code) {
+      case CODE_CONFIG.ERROR:
+        message.error(`${CODE_MESSAGE_CONFIG.ERROR}:${error?.message}`);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.ERROR));
+      case CODE_CONFIG.TIMEOUT:
+        message.error(CODE_MESSAGE_CONFIG.TIMEOUT);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.TIMEOUT));
+      case CODE_CONFIG.NOT_FOUND:
+        message.error(CODE_MESSAGE_CONFIG.NOT_FOUND);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_FOUND));
+      case CODE_CONFIG.NOT_ALLOWED:
+        console.log(CODE_MESSAGE_CONFIG.NOT_ALLOWED);
+        message.error(CODE_MESSAGE_CONFIG.NOT_ALLOWED);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_ALLOWED));
+      case CODE_CONFIG.SERVER_ERROR:
+        message.error(CODE_MESSAGE_CONFIG.SERVER_ERROR);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.SERVER_ERROR));
+      case CODE_CONFIG.BAD_GATEWAY:
+        message.error(CODE_MESSAGE_CONFIG.BAD_GATEWAY);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.BAD_GATEWAY));
+      case CODE_CONFIG.SERVICE_UNAVAILABLE:
+        message.error(CODE_MESSAGE_CONFIG.SERVICE_UNAVAILABLE);
+        return Promise.reject(
+          new Error(CODE_MESSAGE_CONFIG.SERVICE_UNAVAILABLE)
+        );
+      case CODE_CONFIG.GATEWAY_TIMEOUT:
+        message.error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.GATEWAY_TIMEOUT));
+      case CODE_CONFIG.NOT_AUTHORIZED:
+        message.error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.NOT_AUTHORIZED));
+      case CODE_CONFIG.FORBIDDEN:
+        message.error(CODE_MESSAGE_CONFIG.FORBIDDEN);
+        return Promise.reject(new Error(CODE_MESSAGE_CONFIG.FORBIDDEN));
+      default:
+        return Promise.reject(error);
     }
-    return Promise.reject(error);
   }
 );
 

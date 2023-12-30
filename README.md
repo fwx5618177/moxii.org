@@ -8,7 +8,7 @@
 
 ## Rule
 
-- BFF 内使用 fetch
+- Local 内使用 fetch
 - 外部 API 请求使用封装的 API 接口
 
 ## 1. Installation

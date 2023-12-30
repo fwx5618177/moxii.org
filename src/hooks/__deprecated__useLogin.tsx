@@ -1,6 +1,7 @@
 "use client";
 
 import { useLoginDashboard } from "@/services/Login/hooks";
+import { get } from "@/utils/post.method";
 import { LoginRequest } from "Components";
 import { LoginResponse } from "Response";
 import { message } from "antd";
@@ -56,21 +57,7 @@ const useLogin = () => {
 
     hasCheckedToken.current = true;
     try {
-      const response = await fetch("/api/login", {
-        cache: "no-store",
-        method: "GET",
-        mode: "same-origin",
-        next: {
-          tags: ["token_tags"],
-        },
-        headers: {
-          Authorization: token,
-        },
-      });
-
-      if (!response.ok) throw new Error("Invalid token");
-      const result = await response.json();
-      if (result.code === "401") throw new Error("Invalid token");
+      await get("/api/login");
     } catch (error) {
       console.error("Auth check failed:", error);
 
@@ -83,7 +70,7 @@ const useLogin = () => {
       checkAuth();
     }
   }, [logout, checkAuth, token]);
-  const decrepted = "1";
+
   return { login, logout, token, isLoggedIn };
 };
 

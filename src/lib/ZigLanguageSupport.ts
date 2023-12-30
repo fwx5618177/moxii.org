@@ -231,6 +231,20 @@ export const zigLanguageSupport = (hljs: HLJSApi): Language => {
         className: "macro",
         begin: /@[a-zA-Z_][a-zA-Z0-9_]*/,
       },
+      {
+        // multiline string literals
+        className: "multiline",
+        begin: /\\/,
+        end: /$/,
+        relevance: 0,
+        contains: [
+          {
+            begin: /\\/,
+            end: /$/,
+            relevance: 0,
+          },
+        ],
+      },
     ],
   };
 };

@@ -1,19 +1,46 @@
 import { PostStatusDisplay } from "@/types/common";
 import { Avatar, Button, Form, Input, Select } from "antd";
 import TagsModify from "../TagsModify";
+import MarkdownEditor from "../MarkdownEditor";
+import ImageShow from "../ImageShow";
+import { useLocalPostUpdate } from "@/services/Local/hooks";
+import { PostEditFormProps } from "Dashboard";
 
 const EditPost = ({ setVisible, data }) => {
   const [form] = Form.useForm();
+  const { mutateAsync, isLoading, isError, error } = useLocalPostUpdate();
   const initialValues = {
     ...data,
     ...data?.meta,
     name: data?.author?.name,
+    cover: "https://picsum.photos/950/300",
   };
 
-  console.log({
-    data,
-    initialValues,
-  });
+  const onFinish = async (values: PostEditFormProps) => {
+    console.log("Success:", values);
+    try {
+      // 执行异步操作
+      const result = await mutateAsync(values);
+
+      // 异步操作完成后再输出状态
+      console.log({
+        isLoading,
+        isError,
+        result,
+        error,
+      });
+
+      if (!isError && !isLoading) {
+        setVisible(false);
+      }
+    } catch (error) {
+      console.error("Error updating local post:", error);
+    }
+  };
+
+  const onFinishFailed = (errorInfo: any) => {
+    console.log("Failed:", errorInfo);
+  };
 
   return (
     <div>
@@ -38,6 +65,8 @@ const EditPost = ({ setVisible, data }) => {
         }}
         initialValues={initialValues}
         preserve={false}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
       >
         <Form.Item label="用户">
           <div>
@@ -65,7 +94,8 @@ const EditPost = ({ setVisible, data }) => {
         </Form.Item>
 
         <Form.Item label="封面" name="cover">
-          <Input allowClear placeholder="请输入封面" />
+          {/* <Input allowClear placeholder="请输入封面" /> */}
+          <ImageShow />
         </Form.Item>
 
         <Form.Item label="状态" name="status">
@@ -112,13 +142,13 @@ const EditPost = ({ setVisible, data }) => {
           <TagsModify />
         </Form.Item>
 
+        {/* 
+        <Form.Item label="版本选择" name={"version"}>
+          <VersionSelector />
+        </Form.Item> */}
+
         <Form.Item label="内容" name={"content"}>
-          <Input.TextArea
-            allowClear
-            placeholder="请输入内容"
-            showCount
-            style={{ resize: "none", height: 400 }}
-          />
+          <MarkdownEditor />
         </Form.Item>
 
         <div
@@ -133,7 +163,6 @@ const EditPost = ({ setVisible, data }) => {
             htmlType="submit"
             onClick={() => {
               form.submit();
-              setVisible(false);
             }}
           >
             提交
