@@ -28,7 +28,7 @@ export async function PUT(request: Request) {
     const data: DashBoardDetailModifyProps = await request.json();
 
     if (data.status !== PostStatusEnum.UPLOAD) {
-      // TODO: call remote api
+      // TODO: 调用远端的接口，然后上传当前的数据给远端的接口
       return NextResponse.json(
         {
           status: "success",
@@ -42,8 +42,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    // 修改本地文件
-
+    // TODO: 解析、修改本地文件
     return NextResponse.json(
       {
         status: "success",

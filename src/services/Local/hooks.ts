@@ -100,8 +100,6 @@ export const useLocalPostUpdate = <T, U>(): UseMutationResult<
       }
 
       data && message.success("Success");
-
-      return;
     },
   });
 

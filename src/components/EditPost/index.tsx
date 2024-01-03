@@ -1,5 +1,5 @@
 import { PostStatusDisplay } from "@/types/common";
-import { Avatar, Button, Form, Input, Select } from "antd";
+import { Avatar, Button, Form, Input, Select, message } from "antd";
 import TagsModify from "../TagsModify";
 import MarkdownEditor from "../MarkdownEditor";
 import ImageShow from "../ImageShow";
@@ -21,7 +21,7 @@ const EditPost = ({ setVisible, data }) => {
     console.log("Success:", values, isIdle);
     try {
       // 执行异步操作
-      const result = await mutateAsync(values);
+      await mutateAsync(values);
 
       console.log({
         isLoading,
@@ -29,8 +29,9 @@ const EditPost = ({ setVisible, data }) => {
         isIdle,
       });
 
-      if (result) {
+      if (!isIdle && !isError && isLoading) {
         setVisible(false);
+        message.success("更新成功");
       }
     } catch (error) {
       console.error("Error updating local post:", error);
