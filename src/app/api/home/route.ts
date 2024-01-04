@@ -6,7 +6,7 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
-import { localDataList } from "@/actions/post/cache";
+import { localDataList } from "@/controllers/post/cache";
 import { HomeResponse } from "Response";
 
 export async function GET(

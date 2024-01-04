@@ -66,6 +66,7 @@ const Post = () => {
           style={{
             backgroundColor: "transparent",
           }}
+          loading={isLoading}
           title={
             <div className={styles["card-title"]}>
               本地文章列表(total: {data?.length})
@@ -78,7 +79,7 @@ const Post = () => {
             columns={ops}
             dataSource={data}
             scroll={{
-              y: 600,
+              y: 800,
             }}
             expandable={{
               expandedRowRender: () => (

@@ -142,5 +142,6 @@ declare module "Response" {
     tags: string[];
     addition: string[];
     content: string;
+    slug?: string;
   }
 }

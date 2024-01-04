@@ -38,6 +38,7 @@ declare module "Dashboard" {
     tags: string[];
     addition: string[];
     content: string;
+    slug?: string;
   }
 
   interface UseTagsProps {

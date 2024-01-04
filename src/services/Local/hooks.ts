@@ -96,7 +96,7 @@ export const useLocalPostUpdate = <T, U>(): UseMutationResult<
     retry: false,
     onSettled: (data, error, _variables, _context) => {
       if (error) {
-        message.error("Error:" + error.toString());
+        message.error("Error:" + JSON.stringify(error));
       }
 
       data && message.success("Success");

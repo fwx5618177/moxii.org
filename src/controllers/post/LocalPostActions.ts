@@ -1,4 +1,4 @@
-import { createHash, randomUUID } from "crypto";
+import { randomUUID } from "crypto";
 import matter from "gray-matter";
 import path from "path";
 import fs from "fs";
@@ -7,36 +7,11 @@ import {
   BaseLocalDataResponse,
   DetailArticleDisplayResponse,
 } from "Response";
-
-enum PostStatusEnum {
-  PUBLISHED = "published",
-  DRAFT = "draft",
-  ARCHIVED = "archived",
-  UPLOAD = "upload",
-}
+import { PostStatusEnum } from "@/types/common";
+import GenerateHash from "../utils/GenerateHash";
 
 export class LocalPostActions {
   static postsDirectory = path.join(process.cwd(), "posts");
-  static maxSubstringLength = 30;
-
-  /**
-   * Generate a slug from a title by hashing it, or directly use a provided slug
-   * @param {string} title - The title from which to generate a slug
-   * @param {string | undefined} slug - An optional slug to use directly
-   * @returns {string} - A URL-friendly slug
-   */
-  static generateSlug(title: string, slug?: string): string {
-    // 如果slug参数已经定义，直接使用它
-    if (slug) {
-      return slug.toLowerCase().replace(/\s+/g, "-");
-    }
-
-    // 如果没有提供slug，根据title生成一个哈希值
-    // 创建一个 SHA-256 哈希
-    const hash = createHash("sha256").update(title).digest("hex");
-    // 返回前16个字符作为slug
-    return hash.substring(0, this.maxSubstringLength);
-  }
 
   /**
    * Parse markdown content of a post and extract metadata and content
@@ -54,11 +29,10 @@ export class LocalPostActions {
   ): DetailArticleDisplayResponse {
     const { data, content } = matter(markdownContent);
 
-    // 使用title生成一个特殊的id值
-    const id = createHash("sha256")
-      .update(data?.title || options?.fileName)
-      .digest("hex")
-      .substring(0, this.maxSubstringLength);
+    // 使用title生成一个特殊的slug值
+    const slug = GenerateHash.generateId(
+      data?.title || markdownContent || options?.fileName
+    );
 
     // 读取的本地文件数据
     const {
@@ -79,7 +53,7 @@ export class LocalPostActions {
     const metadata: DetailArticleDisplayResponse = {
       id: randomUUID(),
       type: type || "article",
-      slug: LocalPostActions.generateSlug(data.title || options?.fileName),
+      slug: slug,
       imageUrl: "https://picsum.photos/950/300",
       title: title || options?.fileName || "Untitled",
       language: language || "中文",
@@ -118,7 +92,7 @@ export class LocalPostActions {
       addition: addition || [],
     };
 
-    return { id: id, ...metadata };
+    return metadata;
   }
 
   /**

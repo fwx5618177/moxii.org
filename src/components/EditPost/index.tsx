@@ -1,5 +1,5 @@
 import { PostStatusDisplay } from "@/types/common";
-import { Avatar, Button, Form, Input, Select, message } from "antd";
+import { Avatar, Button, Form, Input, Select, Typography, message } from "antd";
 import TagsModify from "../TagsModify";
 import MarkdownEditor from "../MarkdownEditor";
 import ImageShow from "../ImageShow";
@@ -68,6 +68,10 @@ const EditPost = ({ setVisible, data }) => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <Form.Item label="Slug" name="slug">
+          <Typography.Text>{data?.slug}</Typography.Text>
+        </Form.Item>
+
         <Form.Item label="用户">
           <div>
             <Avatar src={data?.author?.avatarUrl}>{data?.author?.name}</Avatar>

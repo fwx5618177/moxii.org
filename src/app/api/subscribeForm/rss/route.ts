@@ -1,4 +1,4 @@
-import { LocalPostActions } from "@/actions/post/LocalPostActions";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 import { Feed } from "feed";
 import { NextRequest, NextResponse } from "next/server";
 

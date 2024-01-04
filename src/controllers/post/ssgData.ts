@@ -1,4 +1,4 @@
-import { localDataList } from "@/actions/post/cache";
+import { localDataList } from "@/controllers/post/cache";
 import { DetailArticleDisplayResponse } from "Response";
 import { NextResponse } from "next/server";
 

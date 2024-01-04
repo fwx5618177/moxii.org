@@ -1,4 +1,4 @@
-import { localDataList } from "@/actions/post/cache";
+import { localDataList } from "@/controllers/post/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
