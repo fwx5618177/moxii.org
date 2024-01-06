@@ -39,6 +39,57 @@ class LocalMarkdownService {
     return LocalMarkdownService.instance;
   }
 
+  async insertLocalMarkDownIDs(data: PostStatusProps[]): Promise<{
+    message: string;
+    successIds: string[];
+    failedIds: string[];
+  }> {
+    try {
+      const updateTasks = data.map(async (item) => {
+        const { id, title, slug } = item;
+        const matchingMarkdownFiles = await this.findMatchingMarkdownFiles(
+          this.baseDirectory,
+          { id, title, slug }
+        );
+
+        // 处理每个文件的更新
+        const fileUpdateTasks = matchingMarkdownFiles.map(async (filePath) => {
+          try {
+            const updater = MarkdownUpdater.getInstance(filePath);
+            await updater.insertLocalMarkDownID({ id, title, slug });
+            return { id, success: true };
+          } catch (error) {
+            console.error(`更新失败：${error.message}，文件路径：${filePath}`);
+            return { id, success: false };
+          }
+        });
+
+        // 并行执行所有文件的更新任务
+        return Promise.all(fileUpdateTasks);
+      });
+
+      // 并行执行所有数据项的更新任务
+      const results = await Promise.all(updateTasks);
+      const flatResults = results.flat(); // 展平结果
+
+      // 分类成功和失败的ID
+      const successIds = flatResults
+        .filter((result) => result.success)
+        .map((result) => result.id);
+      const failedIds = flatResults
+        .filter((result) => !result.success)
+        .map((result) => result.id);
+
+      return {
+        message: "Markdown文件更新完成",
+        successIds,
+        failedIds,
+      };
+    } catch (error) {
+      throw new Error("Markdown更新失败：" + error.message);
+    }
+  }
+
   async insertLocalMarkDownID({ id, title, slug }): Promise<
     {
       message: string;
@@ -56,17 +107,9 @@ class LocalMarkdownService {
         }
       );
 
-      console.log({
-        matchingMarkdownFiles,
-      });
-
       // 使用 MarkdownUpdater 更新匹配的Markdown文件
       const promises = matchingMarkdownFiles.map(async (filePath) => {
         const updater = MarkdownUpdater.getInstance(filePath);
-
-        console.log({
-          filePath,
-        });
 
         return updater.insertLocalMarkDownID({
           id,
@@ -116,6 +159,27 @@ class LocalMarkdownService {
       console.error("Markdown更新失败：", error);
       throw new Error("Markdown更新失败：" + error.message);
     }
+  }
+
+  private async findAllFiles(directory: string): Promise<string[]> {
+    const allFiles: string[] = [];
+    const files = await fs.readdir(directory);
+
+    for (const file of files) {
+      const filePath = path.join(directory, file);
+      const stats = await fs.stat(filePath);
+
+      if (stats.isDirectory()) {
+        // 如果是目录，则递归查找
+        const subDirectoryFiles = await this.findAllFiles(filePath);
+        allFiles.push(...subDirectoryFiles);
+      } else {
+        // 直接添加文件路径
+        allFiles.push(filePath);
+      }
+    }
+
+    return allFiles;
   }
 
   /**

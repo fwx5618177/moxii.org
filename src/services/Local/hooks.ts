@@ -79,7 +79,7 @@ export const useLocalPostStatus = <T>(): UseMutationResult<LocalPostStatus> => {
     mutationFn: async (params: T) => {
       const response = await fetch(ApiLocalService.localPost, {
         cache: "no-cache",
-        method: "POST",
+        method: "PATCH",
         mode: "same-origin",
         body: JSON.stringify(params),
       });

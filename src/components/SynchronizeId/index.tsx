@@ -8,20 +8,20 @@ const SynchronizeId: FC<Partial<SynchronizedIDProps>> = ({
   value,
   onChange,
 }) => {
-  const { mutateAsync, isLoading, data } = useLocalPostStatus();
-  const { isExist } = data || { isExist: false };
+  //   const { mutateAsync, isLoading, data } = useLocalPostStatus();
+  //   const { isExist } = data || { isExist: false };
 
   return (
     <div className={styles["synchronizedIDBox"]}>
       <span className={styles["synchronized-id"]}>{value}</span>
-      <Button
+      {/* <Button
         type="primary"
         disabled={!isExist}
         loading={isLoading}
         onClick={() => mutateAsync(value)}
       >
         同步
-      </Button>
+      </Button> */}
     </div>
   );
 };

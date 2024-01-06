@@ -6,13 +6,18 @@ language: 中文
 tags:
   - 算法
   - 压缩
+  - lzw
 description: '字符串无损压缩算法-huffman, lzw, deflate, rle, bwt, lzma, lzss, lzo, brotli, zstd'
 excerpt: 压缩算法
 addition:
   - 中文
-type: 文章
+type: article
 id: 79dfd64b-4e27-4829-a768-350173a58361
 slug: dcbdf16561fdf3fe613e06ee4937e0
+isSticky: false
+cover: 'https://picsum.photos/950/300'
+status: upload
+name: fwx
 ---
 
 字符串的无损压缩算法可以有效减少数据的大小而不丢失任何信息。这些算法在解压缩时可以完全恢复原始数据。以下是一些常用的无损压缩算法：
