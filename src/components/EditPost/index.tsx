@@ -5,8 +5,9 @@ import MarkdownEditor from "../MarkdownEditor";
 import ImageShow from "../ImageShow";
 import { useLocalPostUpdate } from "@/services/Local/hooks";
 import { PostEditFormProps } from "Dashboard";
+import SynchronizeId from "../SynchronizeId";
 
-const EditPost = ({ setVisible, data }) => {
+const EditPost = ({ setVisible, data, refetch }) => {
   const [form] = Form.useForm();
   const { mutateAsync, isLoading, isError, isIdle } = useLocalPostUpdate();
 
@@ -18,16 +19,9 @@ const EditPost = ({ setVisible, data }) => {
   };
 
   const onFinish = async (values: PostEditFormProps) => {
-    console.log("Success:", values, isIdle);
     try {
       // 执行异步操作
       await mutateAsync(values);
-
-      console.log({
-        isLoading,
-        isError,
-        isIdle,
-      });
 
       if (!isIdle && !isError && isLoading) {
         setVisible(false);
@@ -35,6 +29,9 @@ const EditPost = ({ setVisible, data }) => {
       }
     } catch (error) {
       console.error("Error updating local post:", error);
+    } finally {
+      console.log("refetch");
+      refetch();
     }
   };
 
@@ -68,8 +65,16 @@ const EditPost = ({ setVisible, data }) => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <Form.Item label="ID" name="id">
+          <SynchronizeId />
+        </Form.Item>
+
         <Form.Item label="Slug" name="slug">
           <Typography.Text>{data?.slug}</Typography.Text>
+        </Form.Item>
+
+        <Form.Item label="Local Path" name={"localPath"}>
+          <Typography.Text>{data?.localPath}</Typography.Text>
         </Form.Item>
 
         <Form.Item label="用户">

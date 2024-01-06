@@ -1,14 +1,15 @@
-import { localDataList } from "@/controllers/post/cache";
 import { DetailArticleDisplayResponse } from "Response";
 import { NextResponse } from "next/server";
+import { LocalPostActions } from "./LocalPostActions";
 
 export const ssgData = async (
   slug: string | number
 ): Promise<NextResponse<DetailArticleDisplayResponse>> => {
   try {
-    const findData: DetailArticleDisplayResponse = localDataList.find(
-      (item) => item?.slug === String(slug)
-    );
+    const findData: DetailArticleDisplayResponse =
+      LocalPostActions.getAllPostsData().find(
+        (item) => item?.slug === String(slug)
+      );
 
     return new NextResponse(
       JSON.stringify({

@@ -1,13 +1,13 @@
-import { localDataList } from "@/controllers/post/cache";
 import { NextResponse } from "next/server";
-import { PostStatusEnum } from "@/types/common";
 import { DashBoardDetailModifyProps } from "Response";
 import LocalMarkdownService from "@/controllers/dashboard/LocalMarkdownService";
 import path from "path";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
+import { PostStatusProps } from "Dashboard";
 
 export const GET = async () => {
   try {
-    const postList = localDataList;
+    const postList = LocalPostActions.getAllPostsData();
 
     return NextResponse.json({
       status: "success",
@@ -78,3 +78,50 @@ export async function PUT(request: Request) {
     );
   }
 }
+
+export const POST = async (request: Request) => {
+  try {
+    const body: PostStatusProps = await request.json();
+    const { id, title, slug } = body;
+
+    // 解析、修改本地文件
+    const baseDirectory = path.join(process.cwd(), "posts");
+    // 使用 LocalMarkdownService 更新Markdown文件
+    const localMarkdownService =
+      LocalMarkdownService.getInstance(baseDirectory);
+
+    const result = await localMarkdownService.insertLocalMarkDownID({
+      id,
+      title,
+      slug,
+    });
+
+    return NextResponse.json(
+      {
+        status: "success",
+        code: "200",
+        data: {
+          isExist: true,
+        },
+        message: "查询成功",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      {
+        status: "error",
+        code: "999",
+        data: null,
+        message: error?.message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+};

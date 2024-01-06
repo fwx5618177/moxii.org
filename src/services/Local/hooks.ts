@@ -8,6 +8,7 @@ import { ApiLocalService } from "./ApiLocalService";
 import {
   ArticleListResponse,
   DetailArticleDisplayResponse,
+  LocalPostStatus,
   ResponseConfig,
 } from "Response";
 import { message } from "antd";
@@ -69,6 +70,53 @@ export const useLocalPostList = (): UseQueryResult<ArticleListResponse> => {
 };
 
 /**
+ * 本地文章数据状态的修改和获取
+ * @returns
+ */
+export const useLocalPostStatus = <T>(): UseMutationResult<LocalPostStatus> => {
+  const mutation = useMutation<LocalPostStatus, unknown, T>({
+    mutationKey: ["localPostStatus"],
+    mutationFn: async (params: T) => {
+      const response = await fetch(ApiLocalService.localPost, {
+        cache: "no-cache",
+        method: "POST",
+        mode: "same-origin",
+        body: JSON.stringify(params),
+      });
+
+      const result = await response?.json();
+
+      return result?.data;
+    },
+    retryDelay: 1000 * 60 * 60 * 24,
+    retry: false,
+    onSettled: (data, error, _variables, _context) => {
+      if (error) {
+        message.error("Error:" + JSON.stringify(error));
+      }
+    },
+  });
+
+  const queryStatus = async (params: T) => {
+    try {
+      const result = await mutation.mutateAsync(params);
+
+      return result;
+    } catch (error) {
+      console.error("Error updating local post:", error);
+      message.error("Error:" + error?.message);
+
+      throw new Error("Call api error");
+    }
+  };
+
+  return {
+    ...mutation,
+    mutateAsync: queryStatus,
+  };
+};
+
+/**
  * 修改本地的文章数据
  */
 export const useLocalPostUpdate = <T, U>(): UseMutationResult<
@@ -98,8 +146,6 @@ export const useLocalPostUpdate = <T, U>(): UseMutationResult<
       if (error) {
         message.error("Error:" + JSON.stringify(error));
       }
-
-      data && message.success("Success");
     },
   });
 

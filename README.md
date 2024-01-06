@@ -2,10 +2,6 @@
 
 1. Support SSR/SSG/ISR
 
-## TOC
-
-- actions: 本地处理函数
-
 ## Rule
 
 - Local 内使用 fetch
@@ -15,7 +11,15 @@
 
 1. pnpm i
 
-## 2. TODO
+## 2. 常见设计
+
+1. SSG - 静态生成本地需要数据
+2. 数据更新
+   1. 文件名 hash
+   2. title hash
+   3. content hash
+
+## 3. TODO
 
 - [x] 默认 SSG 获取基础数据针对 SEO 和本地处理
 - [x] 修改本地 API 的数据读取和存储

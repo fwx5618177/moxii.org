@@ -21,6 +21,11 @@ declare module "Dashboard" {
     onChange: (value: string) => void;
   };
 
+  type SynchronizedIDProps = {
+    value: string;
+    onChange: (value: string) => void;
+  };
+
   // 定义Tag类型
   type TagType = string;
 
@@ -39,11 +44,18 @@ declare module "Dashboard" {
     addition: string[];
     content: string;
     slug?: string;
+    id: string;
   }
 
   interface UseTagsProps {
     tags: TagType[];
     setTags: React.Dispatch<React.SetStateAction<TagType[]>>;
     color?: string;
+  }
+
+  interface PostStatusProps {
+    id: string;
+    title: string;
+    slug: string;
   }
 }

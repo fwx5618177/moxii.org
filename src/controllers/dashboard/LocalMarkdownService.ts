@@ -1,10 +1,10 @@
-import crypto from "crypto";
 import matter from "gray-matter";
 import fs from "fs/promises";
 import path from "path";
 import { DashBoardDetailModifyProps } from "Response";
 import MarkdownUpdater from "./MarkdownUpdater";
 import GenerateHash from "../utils/GenerateHash";
+import { PostStatusProps } from "Dashboard";
 
 /**
  * 本地Markdown文件服务
@@ -37,6 +37,43 @@ class LocalMarkdownService {
       LocalMarkdownService.instance = new LocalMarkdownService(baseDirectory);
     }
     return LocalMarkdownService.instance;
+  }
+
+  async insertLocalMarkDownID({ id, title, slug }): Promise<
+    {
+      message: string;
+      id: string;
+    }[]
+  > {
+    try {
+      // 递归查找Markdown文件并检查是否匹配数据的标识
+      const matchingMarkdownFiles = await this.findMatchingMarkdownFiles(
+        this.baseDirectory,
+        {
+          id,
+          title,
+          slug,
+        }
+      );
+
+      // 使用 MarkdownUpdater 更新匹配的Markdown文件
+      const promises = matchingMarkdownFiles.map(async (filePath) => {
+        const updater = MarkdownUpdater.getInstance(filePath);
+
+        return updater.insertLocalMarkDownID({
+          id,
+          title,
+          slug,
+        });
+      });
+
+      const result = await Promise.all(promises);
+
+      return result;
+    } catch (error) {
+      console.error("Markdown更新失败：", error);
+      throw new Error("Markdown更新失败：" + error.message);
+    }
   }
 
   /**
@@ -78,7 +115,7 @@ class LocalMarkdownService {
    */
   private async findMatchingMarkdownFiles(
     directory: string,
-    data: DashBoardDetailModifyProps
+    data: PostStatusProps
   ): Promise<string[]> {
     const matchingFiles: string[] = [];
     const files = await fs.readdir(directory);
@@ -98,10 +135,15 @@ class LocalMarkdownService {
         // 如果是Markdown文件，检查是否匹配数据的标识
         const markdownContent = await fs.readFile(filePath, "utf-8");
         const isSameFilePath = this.isSameFilePath(filePath, data.title);
+        const iseSameID = this.isSameId(markdownContent, data.id);
         const isMarkdownMatchingData = this.isMarkdownMatchingData(
           markdownContent,
           data
         );
+
+        if (iseSameID) {
+          matchingFiles.push(filePath);
+        }
 
         if (isSameFilePath) {
           matchingFiles.push(filePath);
@@ -114,6 +156,21 @@ class LocalMarkdownService {
     }
 
     return matchingFiles;
+  }
+
+  /**
+   * 检查Markdown文件是否匹配数据的标识
+   * @param content Markdown文件的内容
+   * @param id 数据的标识
+   * @returns {boolean} 返回是否匹配
+   */
+  private isSameId(content: string, id: string): boolean {
+    const parsedData = matter(content);
+    const dataId = parsedData.data.id;
+
+    console.log({ dataId, id });
+
+    return dataId === id;
   }
 
   /**
@@ -136,14 +193,14 @@ class LocalMarkdownService {
   }
 
   /**
-   * 检查Markdown文件是否匹配数据的标识
+   * 检查Markdown文件是否匹配数据的标识 - title, slug
    * @param markdownContent Markdown文件的内容
    * @param data 更新的数据
    * @returns {boolean} 返回是否匹配
    */
   private isMarkdownMatchingData(
     markdownContent: string,
-    data: DashBoardDetailModifyProps
+    data: PostStatusProps
   ): boolean {
     // 解析Markdown内容，获取title字段的值
     const parsedData = matter(markdownContent);

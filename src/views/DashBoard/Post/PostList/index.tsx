@@ -1,17 +1,19 @@
 import { Button, Card, Table } from "antd";
 import styles from "./index.module.scss";
 import { columns, detailColumns } from "./conf";
-import { useLocalPostList } from "@/services/Local/hooks";
+import { useLocalPostList, useLocalPostStatus } from "@/services/Local/hooks";
 import { find } from "lodash";
 import { useState } from "react";
 import { ColumnsType } from "antd/es/table";
 import moment from "moment";
 import "moment/locale/zh-cn";
 import EditPost from "@/components/EditPost";
+import { PostStatusProps } from "Dashboard";
 
 const Post = () => {
   moment.locale("zh-cn");
-  const { data, isLoading } = useLocalPostList();
+  const { data, isLoading, refetch } = useLocalPostList();
+  const { mutateAsync } = useLocalPostStatus<PostStatusProps>();
   const [detailData, setDetailData] = useState([]);
   const [visible, setVisible] = useState<boolean>(false);
   const [modalRecord, setModalRecord] = useState(null);
@@ -32,6 +34,22 @@ const Post = () => {
       render: (_, record) => {
         return (
           <div>
+            <Button
+              style={{
+                marginRight: 5,
+              }}
+              type="primary"
+              size="small"
+              loading={isLoading}
+              onClick={() =>
+                mutateAsync({
+                  id: record?.id,
+                  title: record?.title,
+                })
+              }
+            >
+              同步
+            </Button>
             <Button
               type="primary"
               size="small"
@@ -98,7 +116,13 @@ const Post = () => {
         </Card>
       )}
 
-      {visible && <EditPost setVisible={setVisible} data={modalRecord} />}
+      {visible && (
+        <EditPost
+          setVisible={setVisible}
+          data={modalRecord}
+          refetch={refetch}
+        />
+      )}
     </div>
   );
 };

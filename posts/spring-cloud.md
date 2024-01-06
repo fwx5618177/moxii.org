@@ -1,5 +1,5 @@
 ---
-title: Spring Cloud 微服务架构进阶 - 模板 - 2222
+title: Spring Cloud 微服务架构进阶 - 模板
 date: 2023-11-17T00:12:00.000Z
 author: fwx
 language: 中文
@@ -12,11 +12,12 @@ excerpt: 本文为我在学习 Java Spring Cloud 过程中的一些坑和笔记
 addition:
   - 中文
 type: article
-slug: 97e93323c4c9cef3622d37a51ed961
+slug: ab01d6ab4777c191751ca2206c42ff
 isSticky: false
 cover: 'https://picsum.photos/950/300'
 status: upload
 name: fwx
+id: f32d4b1b-a9a9-4308-b746-efe84d376fc9
 ---
 
 # Spring Cloud 微服务架构进阶

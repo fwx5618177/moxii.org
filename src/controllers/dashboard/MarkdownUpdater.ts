@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import crypto from "crypto";
 import matter, { GrayMatterFile } from "gray-matter";
 import { DashBoardDetailModifyProps } from "Response";
+import { PostStatusProps } from "Dashboard";
 
 class MarkdownUpdater {
   private static instance: MarkdownUpdater;
@@ -16,6 +17,32 @@ class MarkdownUpdater {
       MarkdownUpdater.instance = new MarkdownUpdater(markdownFilePath);
     }
     return MarkdownUpdater.instance;
+  }
+
+  public async insertLocalMarkDownID(updatedData: PostStatusProps) {
+    try {
+      // 读取本地Markdown文件
+      const markdownContent = await this.readMarkdownFile();
+      // 解析Markdown文件的前置元数据
+      const matterData = matter(markdownContent);
+      // 更新每个字段
+      const updatedMatterData = this.updateFields(updatedData, matterData);
+
+      // 生成更新后的Markdown内容
+      const updatedMarkdownContent = matter.stringify(updatedMatterData, {});
+      const localHash = this.calculateHash(markdownContent);
+
+      if (localHash !== updatedData?.slug) {
+        // 如果哈希值不同，更新本地Markdown文件
+        await this.writeMarkdownFile(updatedMarkdownContent);
+        return { message: "Markdown文件已更新", id: updatedData?.id };
+      } else {
+        return { message: "Markdown文件未修改", id: updatedData?.id };
+      }
+    } catch (error) {
+      console.error("处理文件出错：", error);
+      throw new Error("处理文件出错");
+    }
   }
 
   public async updateIfChanged(
@@ -76,13 +103,13 @@ class MarkdownUpdater {
   }
 
   private updateFields(
-    updatedData: DashBoardDetailModifyProps,
+    updatedData: DashBoardDetailModifyProps | PostStatusProps,
     matterData: GrayMatterFile<string>
   ): GrayMatterFile<string> {
     const updatedMatterData = { ...matterData.data };
 
     for (const key in updatedData) {
-      if (key === "content") continue;
+      if (key === "content" || key === "localPath") continue;
       else if (
         updatedData[key] !== undefined &&
         updatedData[key] !== matterData.data[key]

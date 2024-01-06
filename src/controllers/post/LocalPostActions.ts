@@ -25,6 +25,7 @@ export class LocalPostActions {
       fileName: string;
       fileCreationDate: string;
       updateDate: string;
+      filePath: string;
     }
   ): DetailArticleDisplayResponse {
     const { data, content } = matter(markdownContent);
@@ -45,15 +46,17 @@ export class LocalPostActions {
       addition,
       type,
       language,
+      id,
     } = data as BaseLocalDataResponse;
     const wordCount = content.split(/\s+/gu).length;
     const readTimeCost = Math.ceil(wordCount / 200);
 
     // 数据组合
     const metadata: DetailArticleDisplayResponse = {
-      id: randomUUID(),
+      id: id || randomUUID(),
       type: type || "article",
       slug: slug,
+      localPath: options?.filePath,
       imageUrl: "https://picsum.photos/950/300",
       title: title || options?.fileName || "Untitled",
       language: language || "中文",
@@ -134,6 +137,7 @@ export class LocalPostActions {
         fileName,
         fileCreationDate,
         updateDate,
+        filePath,
       });
     } catch (error) {
       console.error(`Error reading file ${filePath}:`, error);

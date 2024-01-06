@@ -53,12 +53,14 @@ declare module "Response" {
     addition: string[];
     type: string; // 文章的类型
     language: string; // 文章的语言
+    id?: string;
   }
 
   interface DetailArticleDisplayResponse
     extends Omit<BaseLocalDataResponse, "author" | "date"> {
     id: string;
     slug: string;
+    localPath?: string;
     imageUrl: string;
     createdDate: string | Date | number;
     publishedDate: string | Date | number;
@@ -142,6 +144,12 @@ declare module "Response" {
     tags: string[];
     addition: string[];
     content: string;
-    slug?: string;
+    slug: string;
+    id: string;
+  }
+
+  interface LocalPostStatus {
+    id: string;
+    isExist: boolean;
   }
 }
