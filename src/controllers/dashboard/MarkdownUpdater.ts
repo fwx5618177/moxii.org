@@ -13,6 +13,7 @@ class MarkdownUpdater {
   }
 
   public static getInstance(markdownFilePath: string): MarkdownUpdater {
+    // TODO: remove singleton
     // if (!MarkdownUpdater.instance) {
     //   MarkdownUpdater.instance = new MarkdownUpdater(markdownFilePath);
     // }
