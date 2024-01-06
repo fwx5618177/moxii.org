@@ -161,14 +161,25 @@ export class LocalPostActions {
       }
     });
 
-    return allPostsData
-      .filter((post): post is DetailArticleDisplayResponse => post !== null)
-      .sort((a, b) => {
-        const dateA = new Date(a.updatedDate).getTime();
-        const dateB = new Date(b.updatedDate).getTime();
+    const stickyPosts = allPostsData
+      .filter(
+        (post): post is DetailArticleDisplayResponse => post?.meta?.isSticky
+      )
+      .sort(
+        (a, b) =>
+          new Date(b.updatedDate).getTime() - new Date(a.updatedDate).getTime()
+      );
 
-        return dateB - dateA;
-      });
+    const normalPosts = allPostsData
+      .filter(
+        (post): post is DetailArticleDisplayResponse => !post?.meta?.isSticky
+      )
+      .sort(
+        (a, b) =>
+          new Date(b.updatedDate).getTime() - new Date(a.updatedDate).getTime()
+      );
+
+    return [...stickyPosts, ...normalPosts];
   }
 
   /**

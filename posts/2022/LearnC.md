@@ -1,7 +1,20 @@
 ---
 id: 6f0f6384-66cc-40a7-9ef0-a1fee890381d
-title: LearnC
-slug: 72ae13c6e3e3c9b7943ca2721634fe
+title: Learn C
+slug: 8d6fcac3cc737df5616b1b0d99f941
+isSticky: true
+cover: 'https://picsum.photos/950/300'
+status: upload
+type: article
+language: 中文
+description: 学习C的过程和教程
+excerpt: 一些简单的介绍
+name: moxi
+tags:
+  - C
+  - C tutorial
+addition:
+  - C
 ---
 # GuideToC
 

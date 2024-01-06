@@ -1,7 +1,18 @@
 ---
 id: fdc92258-a4d5-4953-9285-0017a99b8aeb
-title: LearnAndroid
-slug: 676696e1bded3ff10555b00705ab32
+title: Learn Android
+slug: 5b50cdf60c9795272da0bc170a38bc
+isSticky: false
+cover: 'https://picsum.photos/950/300'
+status: upload
+type: 文章
+language: 中文
+description: 学习安卓的资料
+excerpt: 安卓是一种方向
+name: fwx
+tags:
+  - Android
+addition: []
 ---
 # 深入理解Android
 
