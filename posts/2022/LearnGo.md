@@ -1,3 +1,8 @@
+---
+id: 427fee41-e11e-4eb4-983d-287b6ffd9f84
+title: LearnGo
+slug: 376e1f75e3c128bdef9bd10fffbb7a
+---
 [TOC]
 
 # 目录

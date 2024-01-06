@@ -1,3 +1,8 @@
+---
+id: 11d95c37-d430-488f-92bc-a764983a2190
+title: DDIA_zh
+slug: 3397cfc4e0ffd16e7b898f8861ef5b
+---
 # DDIA - Design Data-intensive Application
 
 总结:

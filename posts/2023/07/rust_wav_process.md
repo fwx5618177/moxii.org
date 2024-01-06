@@ -1,3 +1,8 @@
+---
+id: cd530e80-2ce3-4291-b10b-f9c6510d3ed3
+title: rust_wav_process
+slug: fd196f448bc5e8476daf3abe55921d
+---
 # [Rust]-WAV 音频命令行工具`zrtstr`解析
 
 Awesome-Rust 常年身居第一，是 Rust 早期版本的一个工具。它的主要功能是：检查立体声 WAV 文件是否具有相同的通道（假立体声）并将其转换为单声道。

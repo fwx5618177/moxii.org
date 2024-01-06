@@ -1,3 +1,8 @@
+---
+id: c0a67b48-67bc-42ac-b694-5ec230fc3f78
+title: PGSQL
+slug: 08fd2637732fa35236321e72a2f784
+---
 # PGSQL修炼之道
 
 ## 本书内容

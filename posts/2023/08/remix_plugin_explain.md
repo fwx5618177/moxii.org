@@ -1,3 +1,8 @@
+---
+id: e78a85e6-4e1e-49ec-be50-a8e8ad0f5450
+title: remix_plugin_explain
+slug: cfc3535e1800529594cd0b20c45b41
+---
 # 【Web3】Remix(Ethereum IDE) 插件之 solidity-uml-gen，
 
 > 前阵子在啃`Remix`的源代码，在给`official-remix`贡献代码。给自己留下一些记录，方便今后回来查找和阅读，也是另一种整理。

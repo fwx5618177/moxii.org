@@ -54,6 +54,7 @@ declare module "Response" {
     type: string; // 文章的类型
     language: string; // 文章的语言
     id?: string;
+    isSticky?: boolean;
   }
 
   interface DetailArticleDisplayResponse

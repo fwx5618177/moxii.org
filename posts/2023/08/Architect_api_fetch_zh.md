@@ -1,3 +1,8 @@
+---
+id: c9c13d62-8ed9-4967-9fe9-91d5c84f60c1
+title: Architect_api_fetch_zh
+slug: cfe4f5f2ab5cad96ab0c1a75e30918
+---
 # 前端架构-现代API请求中的设计
 
 ## 引言

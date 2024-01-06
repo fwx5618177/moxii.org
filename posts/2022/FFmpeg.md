@@ -1,3 +1,21 @@
+---
+id: 93c7ae87-fe7b-4da8-aced-a6bf9387797a
+title: FFmpeg
+slug: a16a695ef6f7b73910a01cf2b45d85
+isSticky: true
+cover: 'https://picsum.photos/950/300'
+status: upload
+type: article
+language: 中文
+description: 音视频入门
+excerpt: 学习音视频的笔记
+name: moxi
+tags:
+  - FFmpeg
+  - 音视频
+addition:
+  - 音视频
+---
 # FFmpeg入门详解
 
 ## 发展方向

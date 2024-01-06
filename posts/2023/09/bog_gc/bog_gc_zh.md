@@ -1,3 +1,8 @@
+---
+id: 517bd6ce-a33c-4449-aab3-ec5e167f912c
+title: bog_gc_zh
+slug: f0cb3ef58ce581cde2892f31531dce
+---
 # 【Zig】Bog Gc 设计
 
 Bog 是一款基于 Zig 开发的小型脚本语言。它的 GC 设计受到一篇论文[An efficient of Non-Moving GC for Function languages](https://www.pllab.riec.tohoku.ac.jp/papers/icfp2011UenoOhoriOtomoAuthorVersion.pdf)的启发。

@@ -1,3 +1,8 @@
+---
+id: 2b2dd972-4d3b-4e9c-9bac-4fac449cce0d
+title: NodeMicroArchitecture
+slug: 03d2778ce9dd4f171fdbb91b3bf9e5
+---
 # 使用
 - `kaust_DB`: 数据库
 - `kaust_cms_front`: 前端页面

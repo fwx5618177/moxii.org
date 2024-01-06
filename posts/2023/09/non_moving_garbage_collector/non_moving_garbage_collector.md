@@ -1,3 +1,8 @@
+---
+id: 66c25f29-69b5-4fdd-bfe7-cfa50743df5a
+title: non_moving_garbage_collector
+slug: a3124eac13903be6aa126c40b7352e
+---
 # 【Bog-GC 设计】FL 的高效非移动垃圾回收器
 
 ## 摘要

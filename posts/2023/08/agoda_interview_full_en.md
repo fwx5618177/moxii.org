@@ -1,3 +1,8 @@
+---
+id: a82f59a0-ca47-4efd-ae83-bd8314bb7557
+title: agoda_interview_full_en
+slug: f57136aa6e4d7255afd3a25d8fe70c
+---
 # High Concurrency: What I Learned from a System Design Interview with Agoda
 
 Share an interview with Senior Full Stack Engineer. For my limited oral english, it's a tough time for my interviewer.

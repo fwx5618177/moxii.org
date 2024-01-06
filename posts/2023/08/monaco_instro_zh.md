@@ -1,3 +1,8 @@
+---
+id: d352826b-c346-4691-a082-89ed8fa96aa9
+title: monaco_instro_zh
+slug: d8de0b88f2a98d9a04ac6f6c29ddb5
+---
 # 【Typescript】Monaco 源码分析与介绍
 
 Monaco 是 Vscode 的编辑器。有 monaco-editor 和 monaco-editor-core 两个库。而核心的编辑器原名叫"Monaco-editor-core"，现在改名为[vscode](https://github.com/microsoft/vscode)

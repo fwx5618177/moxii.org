@@ -1,3 +1,8 @@
+---
+id: f63d0ac8-9191-4dbd-9c15-b94eb5e52fb0
+title: richText_OP_CRDT
+slug: e5cd575c2f15f57332c6e39d04642a
+---
 # 前端富文本编辑器关于 OP 与 CRDT 的总结
 
 # 绪论

@@ -1,3 +1,8 @@
+---
+id: 7bb50ca8-c61a-4569-a50d-3dd0fc141631
+title: rust_alacritty_zh
+slug: 3342e5dee9dfbe8e4367475c784745
+---
 # [Rust]-现代终端仿真器 Alacritty 的设计整理（一）
 
 Alacritty 是一个现代终端仿真器，具有合理的默认值，但允许进行广泛的配置。通过与其他应用程序集成，而不是重新实现其功能，它设法提供一组灵活的高性能功能。目前支持的平台包括 BSD、Linux、macOS 和 Windows。

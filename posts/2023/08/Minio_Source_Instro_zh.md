@@ -1,3 +1,8 @@
+---
+id: e4404032-a564-4d6c-8cc4-dceb67dd48eb
+title: Minio_Source_Instro_zh
+slug: 883ae175fa96ca889aec20b744ad04
+---
 # 【Go】Minio源码解析（一）——入口函数、位腐败算法、服务器入口点
 
 MinIO 是一个开源的对象存储服务器，旨在实现高性能、高可用性的分布式对象存储解决方案。它是一个兼容Amazon S3（Simple Storage Service）的服务器，可以用于构建私有云存储、公有云存储、备份、归档以及大规模数据存储等应用场景。MinIO 支持大规模数据存储、高速数据传输以及对象元数据的存储和检索。

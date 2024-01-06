@@ -1,3 +1,8 @@
+---
+id: 29d39363-4159-4cb0-bc29-e850e41434e7
+title: node_error_captureStackTree_20231005_jp
+slug: 7a2e0865f0fac8635ff897e475a270
+---
 # JavaScript エラースタックトレース（コールフレーム）を理解し、デコレータのエラー位置を捉える
 
 ## 要約

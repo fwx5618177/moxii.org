@@ -1,3 +1,8 @@
+---
+id: 5b90241a-37f2-4232-a575-31f0296f1089
+title: reposting-Minio_Exploration_jp
+slug: ceb8b11042551f37dbe20a5d0aad29
+---
 # 【転載】MinIO ソースコードの簡単な探求
 
 ## 1. はじめに

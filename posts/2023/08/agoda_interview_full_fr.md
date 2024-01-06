@@ -1,3 +1,8 @@
+---
+id: a9941c99-03d0-4bb6-bc46-8739767b951b
+title: agoda_interview_full_fr
+slug: 68a4425a2e0034595427c7399f6ee6
+---
 **Haute Concurrency : Ce que j'ai appris d'un entretien sur la conception de système avec Agoda**
 
 Partage d'un entretien en tant que Senior Full Stack Engineer. Pour ma maîtrise de l'anglais, ce fut un moment difficile avec mon interlocuteur.

@@ -1,3 +1,8 @@
+---
+id: 0aa32f48-5549-4a86-88db-5937a19ef08f
+title: zig_midi_en
+slug: 5e854dcb2723fd130262e1beef433a
+---
 # Zig-midi
 
 MIDI stands for "Musical Instrument Digital Interface" and is a protocol used for communication between musical devices.

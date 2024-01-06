@@ -1,3 +1,8 @@
+---
+id: bf22ea42-0c87-4abe-a5ad-c3b483e10fb2
+title: cicd_yml_instros_zh
+slug: 9f12411e47cadc77b372d8c6aeb590
+---
 # 阅读源码过程中对 Github 中 CI/CD 的 YML 的总结
 
 梗概:

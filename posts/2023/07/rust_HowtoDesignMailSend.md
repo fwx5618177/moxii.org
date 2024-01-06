@@ -1,3 +1,8 @@
+---
+id: 75da71c4-e006-4546-9baa-123e020cdb90
+title: rust_HowtoDesignMailSend
+slug: 76f72901c64c1af80e5acb45b161a5
+---
 # [Rust]-如何设计 Mail Send 的基础库
 
 最近在 Rust 的学习过程中，看到一个蛮有意思的项目: [mail-send](https://github.com/stalwartlabs/mail-send)。

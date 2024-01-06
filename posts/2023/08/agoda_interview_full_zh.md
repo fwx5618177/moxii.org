@@ -1,3 +1,8 @@
+---
+id: 9a34adb8-d22f-49af-a901-25424821959d
+title: agoda_interview_full_zh
+slug: 78c290566e66a98c1c8ae0565c1d6e
+---
 # 高并发：从一次 Agoda 系统设计面试中的收获
 
 分享一个我在应聘 Senior Full Stack Engineer 职位时的面试经历。由于我的英语口语有限，这次面试对我来说是一次相当大的挑战。

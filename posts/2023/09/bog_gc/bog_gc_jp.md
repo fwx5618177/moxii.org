@@ -1,3 +1,8 @@
+---
+id: 3df90d50-c6d3-43c1-9926-5388977ca11e
+title: bog_gc_jp
+slug: 06dce3ed4519acfb101fd0555db485
+---
 # 【Zig】Bog Gc デザイン
 
 Bog は、Zig で開発された小型のスクリプト言語です。その GC のデザインは、[An efficient of Non-Moving GC for Function languages](https://www.pllab.riec.tohoku.ac.jp/papers/icfp2011UenoOhoriOtomoAuthorVersion.pdf)という論文に触発されました。

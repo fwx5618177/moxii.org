@@ -1,3 +1,8 @@
+---
+id: 38dc51f3-1544-478e-b990-6fffa1d9a9b7
+title: reposting-Minio_Exploration_en
+slug: 4843e97b3e67f75886a664a558ef24
+---
 # 【RePost】A Brief Exploration of MinIO Source Code
 
 ## 1. Introduction

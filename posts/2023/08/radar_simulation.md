@@ -1,3 +1,8 @@
+---
+id: 5783d4a5-6328-4a54-9925-669ffdaf5120
+title: radar_simulation
+slug: e6437dc77a4f33c35671e8a8f79722
+---
 # 【Matlab/C】多时序激光雷达点云数据的形变监测
 
 假如我有多组点云数据。

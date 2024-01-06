@@ -1,3 +1,8 @@
+---
+id: 856c2e09-a356-4957-bca2-349b1bf787ce
+title: Minio_Source_Instro_en
+slug: c54c134306fb503895224035dd5132
+---
 # [Go] MinIO Source Code Analysis (Part 1) - Entry Function, Bitrot Algorithm, Server Entry Points
 
 MinIO is an open-source object storage server designed to deliver high-performance, high-availability distributed object storage solutions. It is a server compatible with Amazon S3 (Simple Storage Service) and can be used to build private cloud storage, public cloud storage, backup, archiving, and large-scale data storage applications. MinIO supports massive data storage, high-speed data transfer, and the storage and retrieval of object metadata.

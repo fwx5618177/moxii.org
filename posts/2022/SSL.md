@@ -1,3 +1,8 @@
+---
+id: 10c5c02a-9ecb-4c36-9844-c644a4c672f1
+title: SSL
+slug: b95be07683bb97c2e7f5160163013a
+---
 # 生成SSL证书
 当我们自己颁布证书时，常用以下`shell`生成SSL证书：
 

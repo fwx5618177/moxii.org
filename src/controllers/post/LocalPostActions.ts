@@ -47,6 +47,7 @@ export class LocalPostActions {
       type,
       language,
       id,
+      isSticky,
     } = data as BaseLocalDataResponse;
     const wordCount = content.split(/\s+/gu).length;
     const readTimeCost = Math.ceil(wordCount / 200);
@@ -85,7 +86,7 @@ export class LocalPostActions {
         lastUpdated: new Date().toISOString(),
       },
       meta: {
-        isSticky: false,
+        isSticky: isSticky || false,
         type: data?.meta?.type || "article",
         date: new Date().toISOString(),
         readCount: 0,

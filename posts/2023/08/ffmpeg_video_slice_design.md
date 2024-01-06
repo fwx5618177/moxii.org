@@ -1,3 +1,8 @@
+---
+id: 51c19e9e-334c-4644-861a-8e14c6d309db
+title: ffmpeg_video_slice_design
+slug: 769b2342cb01c5ded4e52776de9f63
+---
 # 【FFmpeg-Node】视频切片服务端设计
 
 最近在设计一个基于 Node 的 视频切片设计。这里记录一下设计思路。

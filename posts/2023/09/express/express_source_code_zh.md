@@ -1,3 +1,8 @@
+---
+id: 77b47467-1dc0-478a-bc1f-f6bcb941f1c6
+title: express_source_code_zh
+slug: 1e2d780133d9798d026315d0c71b66
+---
 # Express 源码解析
 
 Express 是一个简单的 Node 框架。本文不涉及源码处理，近涉及设计思路。

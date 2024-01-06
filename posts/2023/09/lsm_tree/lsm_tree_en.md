@@ -1,3 +1,8 @@
+---
+id: 853696ba-6ff9-4302-beb8-13261e07a0b3
+title: lsm_tree_en
+slug: 7b37ab44578cb661211922197a77ea
+---
 # LSM Tree Analysis and Practical Examples
 
 LSM Tree (Log-Structured Merge Tree) is a tree-like data structure that differs from balanced search trees like red-black trees. LSM Tree is primarily used to optimize the performance of write operations and is widely applied in storage systems. It consists of multiple levels, including memory and disk layers, to achieve efficient write operations and faster query performance. The design goal of LSM Tree is to minimize disk write operations by buffering write operations in memory and periodically writing data to disk in batches at appropriate times, thus improving write performance and data persistence.

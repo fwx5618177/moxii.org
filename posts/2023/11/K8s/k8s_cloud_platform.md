@@ -1,9 +1,13 @@
 ---
 title: 基于Kubernetes的容器云平台实战
-date: 2023-11-28 14:19:00
-author: "moxi"
-tags: ["K8S", "容器云平台"]
-description: "基于Kubernetes的容器云平台实战"
+date: 2023-11-28T14:19:00.000Z
+author: moxi
+tags:
+  - K8S
+  - 容器云平台
+description: 基于Kubernetes的容器云平台实战
+id: 291ffc60-8592-4ad0-90d6-a353f320e73a
+slug: ce107969255bc7a625c8213f0b9d98
 ---
 
 # 基于 Kubernetes 的容器云平台实战

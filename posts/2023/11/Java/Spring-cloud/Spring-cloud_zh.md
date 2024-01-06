@@ -1,9 +1,14 @@
 ---
 title: Spring Cloud 微服务架构进阶
-date: 2023-11-17 00:12:00
-author: "fwx"
-tags: ["Java", "Spring Cloud", "微服务架构"]
-description: "Spring Cloud 微服务架构进阶"
+date: 2023-11-17T00:12:00.000Z
+author: fwx
+tags:
+  - Java
+  - Spring Cloud
+  - 微服务架构
+description: Spring Cloud 微服务架构进阶
+id: 459e7041-3956-48f2-b971-34401c1c83c0
+slug: 6a9e7ec9df81bedd9451f9d470ee40
 ---
 
 # Spring Cloud 微服务架构进阶

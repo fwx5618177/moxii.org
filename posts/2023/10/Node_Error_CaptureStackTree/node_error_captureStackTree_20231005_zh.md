@@ -1,3 +1,8 @@
+---
+id: 50640917-c223-4f32-9a29-a36acd69b66d
+title: node_error_captureStackTree_20231005_zh
+slug: f54cbadd3ad048c07e9b573a7956bd
+---
 # 深入理解 JavaScript 错误堆栈(调用桢)捕获装饰器的错误位置
 
 ## 摘要

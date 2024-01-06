@@ -1,3 +1,8 @@
+---
+id: 6f0f6384-66cc-40a7-9ef0-a1fee890381d
+title: LearnC
+slug: 72ae13c6e3e3c9b7943ca2721634fe
+---
 # GuideToC
 
 ## 简单介绍

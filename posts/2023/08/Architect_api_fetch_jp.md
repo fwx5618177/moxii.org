@@ -1,3 +1,8 @@
+---
+id: de8e5b11-1c55-4d37-b9d2-84b84540bd91
+title: Architect_api_fetch_jp
+slug: 6dedb57447835f031c9642ec7fd974
+---
 # フロントエンドアーキテクチャ - 現代のAPIリクエストデザイン
 
 ## 序論

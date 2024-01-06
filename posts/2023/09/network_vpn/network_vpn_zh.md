@@ -1,3 +1,8 @@
+---
+id: ead0957e-aa3f-49b3-8e76-6f79c8f615ac
+title: network_vpn_zh
+slug: 96a8ecc3f3c58bc811f48a96d8549f
+---
 # 网络 VPN 的设计的一些思考和处理
 
 梗概:

@@ -1,3 +1,8 @@
+---
+id: f7fcb281-288a-4cf8-9ed7-533f7c44fee6
+title: Architect_api_fetch_en
+slug: 2b6d69bcba8110c3369fa96e191709
+---
 # Simple Introduction: Efficient Data Fetching in Frontend Applications
 
 ## Introduction
