@@ -12,6 +12,7 @@ import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 export async function GET(
   _request: NextRequest
 ): Promise<NextResponse<HomeResponse>> {
+  const localDataList = LocalPostActions.getAllPostsData();
   try {
     return new NextResponse(
       JSON.stringify({
@@ -19,7 +20,7 @@ export async function GET(
         code: "200",
         data: {
           imageData,
-          list: LocalPostActions.getAllPostsData(),
+          list: localDataList,
           recentArticles,
           tags,
           websiteStats,
