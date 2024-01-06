@@ -1,4 +1,4 @@
-import { localDataList } from "@/controllers/post/cache";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 import { DetailArticleDisplayResponse } from "Response";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,6 +7,7 @@ export const POST = async (
 ): Promise<NextResponse<DetailArticleDisplayResponse>> => {
   try {
     const { slug } = await request.json();
+    const localDataList = LocalPostActions.getAllPostsData();
     const findItem: DetailArticleDisplayResponse = localDataList.find(
       (item) => item?.slug === String(slug)
     );

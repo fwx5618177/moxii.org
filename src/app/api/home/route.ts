@@ -6,8 +6,8 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
-import { localDataList } from "@/controllers/post/cache";
 import { HomeResponse } from "Response";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 
 export async function GET(
   _request: NextRequest
@@ -19,7 +19,7 @@ export async function GET(
         code: "200",
         data: {
           imageData,
-          list: localDataList,
+          list: LocalPostActions.getAllPostsData(),
           recentArticles,
           tags,
           websiteStats,

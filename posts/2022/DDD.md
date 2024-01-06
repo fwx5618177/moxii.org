@@ -1,3 +1,19 @@
+---
+id: 0291a0fb-1092-493c-8825-0df2ce465b6d
+title: DDD
+slug: 4c5f91d8424f9529acf7118d133a93
+isSticky: false
+cover: 'https://picsum.photos/950/300'
+status: upload
+type: article
+language: 中文
+description: DDD是一种新的架构
+excerpt: DDD阅读的摘抄
+name: Hyou
+tags:
+  - DDD
+addition: []
+---
 # 实现领域驱动设计
 
 ## 目录概要

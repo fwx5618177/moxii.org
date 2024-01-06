@@ -1,4 +1,4 @@
-import { localDataList } from "@/controllers/post/cache";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
@@ -7,7 +7,7 @@ export const GET = async (request: NextRequest) => {
       JSON.stringify({
         status: "success",
         code: "200",
-        data: localDataList,
+        data: LocalPostActions.getAllPostsData(),
       })
     );
   } catch (error) {

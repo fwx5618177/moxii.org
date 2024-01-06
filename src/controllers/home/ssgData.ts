@@ -6,7 +6,7 @@ import {
   websiteStats,
   profileInfo,
 } from "@/mocks/ssg";
-import { localDataList } from "@/controllers/post/cache";
+import { LocalPostActions } from "@/controllers/post/LocalPostActions";
 import { HomeResponse } from "Response";
 
 export async function ssgData(): Promise<NextResponse<HomeResponse>> {
@@ -17,7 +17,7 @@ export async function ssgData(): Promise<NextResponse<HomeResponse>> {
         code: "200",
         data: {
           imageData,
-          list: localDataList,
+          list: LocalPostActions.getAllPostsData(),
           recentArticles,
           tags,
           websiteStats,
