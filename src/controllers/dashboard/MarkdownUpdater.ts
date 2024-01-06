@@ -16,6 +16,8 @@ class MarkdownUpdater {
     if (!MarkdownUpdater.instance) {
       MarkdownUpdater.instance = new MarkdownUpdater(markdownFilePath);
     }
+
+    MarkdownUpdater.instance.markdownFilePath = markdownFilePath;
     return MarkdownUpdater.instance;
   }
 

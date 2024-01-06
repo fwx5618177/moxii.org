@@ -42,11 +42,19 @@ const Post = () => {
               size="small"
               loading={isLoading}
               onClick={async () => {
+                console.log({
+                  record,
+                });
+
                 const { isExist } = await mutateAsync({
                   id: record?.id,
                   title: record?.title,
                   slug: record?.slug,
                 } as PostStatusProps);
+
+                console.log({
+                  isExist,
+                });
 
                 if (isExist) {
                   message.success("同步成功");

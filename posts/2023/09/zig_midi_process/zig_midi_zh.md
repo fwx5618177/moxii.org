@@ -1,13 +1,18 @@
 ---
 title: 【Zig 音频】乐器数字接口-Midi
-date: 2023-09-01 00:00:00
+date: 2023-09-01T00:00:00.000Z
 author: fwx
 language: 中文
-tags: ["Zig", "MIDI"]
+tags:
+  - Zig
+  - MIDI
 description: 乐器数字接口-Midi
 excerpt: Zig-awesome中比较靠前的项目
-addition: ["中文"]
+addition:
+  - 中文
 type: 文章
+id: 75965414-b2fc-4c6f-9a7a-e82b9f1c25ee
+slug: e746a14785933ea03fc02e69c5694d
 ---
 
 # 【Zig 音频】乐器数字接口-Midi

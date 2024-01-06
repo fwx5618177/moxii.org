@@ -56,9 +56,17 @@ class LocalMarkdownService {
         }
       );
 
+      console.log({
+        matchingMarkdownFiles,
+      });
+
       // 使用 MarkdownUpdater 更新匹配的Markdown文件
       const promises = matchingMarkdownFiles.map(async (filePath) => {
         const updater = MarkdownUpdater.getInstance(filePath);
+
+        console.log({
+          filePath,
+        });
 
         return updater.insertLocalMarkDownID({
           id,
@@ -68,6 +76,10 @@ class LocalMarkdownService {
       });
 
       const result = await Promise.all(promises);
+
+      console.log({
+        result,
+      });
 
       return result;
     } catch (error) {
