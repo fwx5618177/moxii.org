@@ -41,8 +41,8 @@ class LocalMarkdownService {
 
   async insertLocalMarkDownIDs(data: PostStatusProps[]): Promise<{
     message: string;
-    successIds: string[];
-    failedIds: string[];
+    successIds: { id: string; title: string }[];
+    failedIds: { id: string; title: string }[];
   }> {
     try {
       const updateTasks = data.map(async (item) => {
@@ -57,10 +57,17 @@ class LocalMarkdownService {
           try {
             const updater = MarkdownUpdater.getInstance(filePath);
             await updater.insertLocalMarkDownID({ id, title, slug });
-            return { id, success: true };
+
+            console.log({
+              filePath,
+              title,
+              slug,
+            });
+
+            return { id, success: true, title };
           } catch (error) {
             console.error(`更新失败：${error.message}，文件路径：${filePath}`);
-            return { id, success: false };
+            return { id, success: false, title };
           }
         });
 
@@ -75,10 +82,12 @@ class LocalMarkdownService {
       // 分类成功和失败的ID
       const successIds = flatResults
         .filter((result) => result.success)
-        .map((result) => result.id);
+        .map((result) => ({
+          ...result,
+        }));
       const failedIds = flatResults
         .filter((result) => !result.success)
-        .map((result) => result.id);
+        .map((result) => ({ ...result }));
 
       return {
         message: "Markdown文件更新完成",
