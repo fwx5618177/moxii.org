@@ -12,7 +12,7 @@ excerpt: 本文为我在学习 Java Spring Cloud 过程中的一些坑和笔记
 addition:
   - 中文
 type: article
-slug: ab01d6ab4777c191751ca2206c42ff
+slug: 97e93323c4c9cef3622d37a51ed961
 isSticky: false
 cover: 'https://picsum.photos/950/300'
 status: upload

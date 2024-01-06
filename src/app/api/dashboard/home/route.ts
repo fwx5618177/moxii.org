@@ -102,6 +102,7 @@ export const POST = async (request: Request) => {
         code: "200",
         data: {
           isExist: true,
+          result,
         },
         message: "查询成功",
       },
@@ -110,8 +111,6 @@ export const POST = async (request: Request) => {
       }
     );
   } catch (error) {
-    console.error(error);
-
     return NextResponse.json(
       {
         status: "error",

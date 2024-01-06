@@ -1,4 +1,4 @@
-import { Button, Card, Table } from "antd";
+import { Button, Card, Table, message } from "antd";
 import styles from "./index.module.scss";
 import { columns, detailColumns } from "./conf";
 import { useLocalPostList, useLocalPostStatus } from "@/services/Local/hooks";
@@ -41,14 +41,20 @@ const Post = () => {
               type="primary"
               size="small"
               loading={isLoading}
-              onClick={() =>
-                mutateAsync({
+              onClick={async () => {
+                const { isExist } = await mutateAsync({
                   id: record?.id,
                   title: record?.title,
-                })
-              }
+                  slug: record?.slug,
+                } as PostStatusProps);
+
+                if (isExist) {
+                  message.success("同步成功");
+                  refetch();
+                }
+              }}
             >
-              同步
+              更新数据
             </Button>
             <Button
               type="primary"

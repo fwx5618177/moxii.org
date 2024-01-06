@@ -71,7 +71,6 @@ class LocalMarkdownService {
 
       return result;
     } catch (error) {
-      console.error("Markdown更新失败：", error);
       throw new Error("Markdown更新失败：" + error.message);
     }
   }
@@ -135,21 +134,13 @@ class LocalMarkdownService {
         // 如果是Markdown文件，检查是否匹配数据的标识
         const markdownContent = await fs.readFile(filePath, "utf-8");
         const isSameFilePath = this.isSameFilePath(filePath, data.title);
-        const iseSameID = this.isSameId(markdownContent, data.id);
+        const isSameID = this.isSameId(markdownContent, data.id);
         const isMarkdownMatchingData = this.isMarkdownMatchingData(
           markdownContent,
           data
         );
 
-        if (iseSameID) {
-          matchingFiles.push(filePath);
-        }
-
-        if (isSameFilePath) {
-          matchingFiles.push(filePath);
-        }
-
-        if (isMarkdownMatchingData) {
+        if (isSameID || isSameFilePath || isMarkdownMatchingData) {
           matchingFiles.push(filePath);
         }
       }
@@ -167,8 +158,6 @@ class LocalMarkdownService {
   private isSameId(content: string, id: string): boolean {
     const parsedData = matter(content);
     const dataId = parsedData.data.id;
-
-    console.log({ dataId, id });
 
     return dataId === id;
   }

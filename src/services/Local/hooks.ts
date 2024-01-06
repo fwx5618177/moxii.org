@@ -86,15 +86,14 @@ export const useLocalPostStatus = <T>(): UseMutationResult<LocalPostStatus> => {
 
       const result = await response?.json();
 
+      if (result?.code === "999") {
+        throw new Error(result?.message);
+      }
+
       return result?.data;
     },
     retryDelay: 1000 * 60 * 60 * 24,
     retry: false,
-    onSettled: (data, error, _variables, _context) => {
-      if (error) {
-        message.error("Error:" + JSON.stringify(error));
-      }
-    },
   });
 
   const queryStatus = async (params: T) => {

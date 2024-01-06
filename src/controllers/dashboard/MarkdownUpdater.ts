@@ -25,23 +25,31 @@ class MarkdownUpdater {
       const markdownContent = await this.readMarkdownFile();
       // 解析Markdown文件的前置元数据
       const matterData = matter(markdownContent);
+      const localId = matterData?.data?.id;
+
+      if (localId === updatedData?.id) {
+        throw new Error("Markdown文件已经更新过");
+      }
+
       // 更新每个字段
-      const updatedMatterData = this.updateFields(updatedData, matterData);
+      const updatedMatterData = {
+        ...matterData,
+        data: {
+          ...matterData.data,
+          id: updatedData?.id,
+          title: updatedData?.title,
+          slug: updatedData?.slug,
+        },
+      };
 
       // 生成更新后的Markdown内容
       const updatedMarkdownContent = matter.stringify(updatedMatterData, {});
-      const localHash = this.calculateHash(markdownContent);
 
-      if (localHash !== updatedData?.slug) {
-        // 如果哈希值不同，更新本地Markdown文件
-        await this.writeMarkdownFile(updatedMarkdownContent);
-        return { message: "Markdown文件已更新", id: updatedData?.id };
-      } else {
-        return { message: "Markdown文件未修改", id: updatedData?.id };
-      }
+      await this.writeMarkdownFile(updatedMarkdownContent);
+
+      return { message: "Markdown文件已更新", id: updatedData?.id };
     } catch (error) {
-      console.error("处理文件出错：", error);
-      throw new Error("处理文件出错");
+      throw new Error("处理文件出错" + error?.message);
     }
   }
 
