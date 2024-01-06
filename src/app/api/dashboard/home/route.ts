@@ -115,7 +115,14 @@ export const PATCH = async (request: Request) => {
       {
         status: "error",
         code: "999",
-        data: null,
+        data: {
+          isExist: false,
+          result: {
+            message: error?.message,
+            successIds: [],
+            failedIds: [],
+          },
+        },
         message: error?.message,
       },
       {

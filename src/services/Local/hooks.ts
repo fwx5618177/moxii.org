@@ -8,6 +8,7 @@ import { ApiLocalService } from "./ApiLocalService";
 import {
   ArticleListResponse,
   DetailArticleDisplayResponse,
+  LocalAllPostStatus,
   LocalPostStatus,
   ResponseConfig,
 } from "Response";
@@ -67,6 +68,54 @@ export const useLocalPostList = (): UseQueryResult<ArticleListResponse> => {
     refetchOnReconnect: false,
     staleTime: 1000 * 60 * 60 * 24,
   });
+};
+
+/**
+ * 所有本地文章数据状态的修改和获取
+ * @returns
+ */
+export const useLocalAllPostStatus = <
+  T
+>(): UseMutationResult<LocalAllPostStatus> => {
+  const mutation = useMutation<LocalAllPostStatus, unknown, T>({
+    mutationKey: ["localAllPostStatus"],
+    mutationFn: async (params: T) => {
+      const response = await fetch(ApiLocalService.localPostAllUpdate, {
+        cache: "no-cache",
+        method: "POST",
+        mode: "same-origin",
+        body: JSON.stringify(params),
+      });
+
+      const result = await response?.json();
+
+      if (result?.code === "999") {
+        throw new Error(result?.message);
+      }
+
+      return result?.data;
+    },
+    retryDelay: 1000 * 60 * 60 * 24,
+    retry: false,
+  });
+
+  const queryStatus = async (params: T) => {
+    try {
+      const result = await mutation.mutateAsync(params);
+
+      return result;
+    } catch (error) {
+      console.error("Error updating local post:", error);
+      message.error("Error:" + error?.message);
+
+      throw new Error("Call api error");
+    }
+  };
+
+  return {
+    ...mutation,
+    mutateAsync: queryStatus,
+  };
 };
 
 /**

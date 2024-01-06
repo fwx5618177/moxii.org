@@ -152,4 +152,9 @@ declare module "Response" {
     id: string;
     isExist: boolean;
   }
+  interface LocalAllPostStatus {
+    message: string;
+    successIds: string[];
+    failedIds: string[];
+  }
 }

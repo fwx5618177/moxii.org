@@ -1,7 +1,11 @@
 import { Button, Card, Table, message } from "antd";
 import styles from "./index.module.scss";
 import { columns, detailColumns } from "./conf";
-import { useLocalPostList, useLocalPostStatus } from "@/services/Local/hooks";
+import {
+  useLocalAllPostStatus,
+  useLocalPostList,
+  useLocalPostStatus,
+} from "@/services/Local/hooks";
 import { find } from "lodash";
 import { useState } from "react";
 import { ColumnsType } from "antd/es/table";
@@ -14,6 +18,8 @@ const Post = () => {
   moment.locale("zh-cn");
   const { data, isLoading, refetch } = useLocalPostList();
   const { mutateAsync } = useLocalPostStatus<PostStatusProps>();
+  const { mutateAsync: updateAllPosts } =
+    useLocalAllPostStatus<PostStatusProps>();
   const [detailData, setDetailData] = useState([]);
   const [visible, setVisible] = useState<boolean>(false);
   const [modalRecord, setModalRecord] = useState(null);
@@ -51,10 +57,6 @@ const Post = () => {
                   title: record?.title,
                   slug: record?.slug,
                 } as PostStatusProps);
-
-                console.log({
-                  isExist,
-                });
 
                 if (isExist) {
                   message.success("同步成功");
@@ -105,6 +107,32 @@ const Post = () => {
             </div>
           }
         >
+          <div
+            style={{
+              margin: 12,
+            }}
+          >
+            <Button
+              type="primary"
+              onClick={async () => {
+                const list = data?.map((item) => ({
+                  id: item?.id,
+                  title: item?.title,
+                  slug: item?.slug,
+                }));
+
+                const updatedResult = await updateAllPosts(list);
+                const { successIds, failedIds } = updatedResult;
+
+                message.success(
+                  `同步结束, 成功:${successIds?.length}条, 失败:${failedIds?.length}条!`
+                );
+                refetch();
+              }}
+            >
+              所有Post规格化
+            </Button>
+          </div>
           <Table
             loading={isLoading}
             rowKey={(record) => record?.slug}
