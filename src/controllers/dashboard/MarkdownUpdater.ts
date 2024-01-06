@@ -13,12 +13,14 @@ class MarkdownUpdater {
   }
 
   public static getInstance(markdownFilePath: string): MarkdownUpdater {
-    if (!MarkdownUpdater.instance) {
-      MarkdownUpdater.instance = new MarkdownUpdater(markdownFilePath);
-    }
+    // if (!MarkdownUpdater.instance) {
+    //   MarkdownUpdater.instance = new MarkdownUpdater(markdownFilePath);
+    // }
 
-    MarkdownUpdater.instance.markdownFilePath = markdownFilePath;
-    return MarkdownUpdater.instance;
+    // MarkdownUpdater.instance.markdownFilePath = markdownFilePath;
+    // return MarkdownUpdater.instance;
+
+    return new MarkdownUpdater(markdownFilePath);
   }
 
   public async insertLocalMarkDownID(updatedData: PostStatusProps) {

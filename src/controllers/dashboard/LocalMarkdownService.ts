@@ -58,12 +58,6 @@ class LocalMarkdownService {
             const updater = MarkdownUpdater.getInstance(filePath);
             await updater.insertLocalMarkDownID({ id, title, slug });
 
-            console.log({
-              filePath,
-              title,
-              slug,
-            });
-
             return { id, success: true, title };
           } catch (error) {
             console.error(`更新失败：${error.message}，文件路径：${filePath}`);
