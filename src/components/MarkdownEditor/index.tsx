@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { MarkdownEditorProps } from "Dashboard";
 import "@/styles/markdownStyles.module.scss";
-// import PlateEditor from "./components/plate";
+import BasicEditor from "./components/plate/BasicEditor";
+import { initialValue } from "./defaultData";
 
 const MarkdownEditor: FC<Partial<MarkdownEditorProps>> = ({
   value,
@@ -9,7 +10,7 @@ const MarkdownEditor: FC<Partial<MarkdownEditorProps>> = ({
 }) => {
   return (
     <div style={{ maxHeight: 400, overflowY: "auto" }}>
-      {/* <PlateEditor /> */}
+      <BasicEditor value={initialValue} />
     </div>
   );
 };
