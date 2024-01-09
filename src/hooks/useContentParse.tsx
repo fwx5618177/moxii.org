@@ -6,7 +6,11 @@ import "highlight.js/styles/dark.css";
 import "@/styles/zigStyle.css";
 import { zigLanguageSupport } from "@/lib/ZigLanguageSupport";
 
-const useContentParse = (content: string) => {
+const useContentParse = (
+  content: string,
+  options = { permalinkBefore: true, symbol: "¶" }
+) => {
+  const { permalinkBefore, symbol } = options;
   const parseContent = useMemo(() => {
     if (!content) {
       return null;
@@ -47,16 +51,16 @@ const useContentParse = (content: string) => {
     }).use(anchor, {
       level: [1, 2, 3, 4, 5, 6], // 从哪个级别的标题开始插入锚点（例如 1 就是从 <h1> 开始）
       permalink: anchor.permalink.linkInsideHeader({
-        symbol: "¶",
+        symbol: symbol,
         renderAttrs: (slug) => ({ "data-slug": slug }),
         space: true,
       }),
-      permalinkBefore: true, // 链接是否出现在标题文本之前
+      permalinkBefore: permalinkBefore, // 链接是否出现在标题文本之前
       slugify: (s) => s.trim().toLowerCase().replace(/\s+/g, "-"),
     });
 
-    return markdownContent.render(content);
-  }, [content]);
+    return markdownContent?.render(content);
+  }, [content, permalinkBefore, symbol]);
 
   return parseContent;
 };

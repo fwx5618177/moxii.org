@@ -79,6 +79,12 @@ import { TableRowElement } from "@/components/plate-ui/table-row-element";
 import { TodoListElement } from "@/components/plate-ui/todo-list-element";
 import { withDraggables } from "@/components/plate-ui/with-draggables";
 
+interface CreatePlateUIProps {
+  placeholder?: boolean;
+  draggable?: boolean;
+  overrideByKey?: Partial<Record<string, PlatePluginComponent>>;
+}
+
 export const createPlateUI = (
   overrideByKey?: Partial<Record<string, PlatePluginComponent>>,
   {
