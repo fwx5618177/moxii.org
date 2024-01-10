@@ -8,7 +8,7 @@ const MarkdownEditor: FC<Partial<MarkdownEditorProps>> = ({
   onChange,
 }) => {
   return (
-    <div style={{ maxHeight: 400, overflowY: "auto" }}>
+    <div style={{ overflowY: "auto" }}>
       <BasicEditor value={value} />
     </div>
   );
