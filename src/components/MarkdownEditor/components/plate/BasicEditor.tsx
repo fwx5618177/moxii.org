@@ -13,12 +13,8 @@ import { usePlugins } from "./plugins";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import PreviewLeaf from "./MarkdownPreview/PreviewLeaf";
 import { useHtmlSerializer } from "@/hooks/useSlateSerializer";
-import { FC } from "react";
-import { initialValue } from "../../defaultData";
 
-const BasicEditor: FC<{
-  value: string;
-}> = ({ value }) => {
+const BasicEditor = ({ value, onChange }) => {
   const _editableProps: PlateContentProps = {
     spellCheck: false,
     autoFocus: false,
@@ -35,7 +31,8 @@ const BasicEditor: FC<{
         <Plate
           plugins={plugins}
           normalizeInitialValue
-          initialValue={slateValue || initialValue}
+          initialValue={slateValue}
+          onChange={onChange}
         >
           <TooltipProvider>
             <CommentsProvider>

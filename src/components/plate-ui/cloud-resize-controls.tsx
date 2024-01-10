@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, {
   Dispatch,
@@ -6,14 +6,14 @@ import React, {
   useCallback,
   useRef,
   useState,
-} from 'react';
-import { resizeInWidth } from '@portive/client';
+} from "react";
+import { resizeInWidth } from "@portive/client";
 import {
   PlateCloudEditor,
   PlateCloudImageEditor,
   TCloudImageElement,
-} from '@udecode/plate-cloud';
-import { findNodePath, setNodes, useEditorRef } from '@udecode/plate-common';
+} from "@udecode/plate-cloud";
+import { findNodePath, setNodes, useEditorRef } from "@udecode/plate-common";
 
 type ImageSize = { width: number; height: number };
 
@@ -28,19 +28,19 @@ function ResizeLabel({ size }: { size: { width: number; height: number } }) {
   return (
     <div
       style={{
-        position: 'absolute',
+        position: "absolute",
         bottom,
         left: 4,
-        font: '10px/20px sans-serif',
-        color: 'white',
-        background: '#404040',
+        font: "10px/20px sans-serif",
+        color: "white",
+        background: "#404040",
         minWidth: 50,
-        padding: '0 7px',
+        padding: "0 7px",
         borderRadius: 3,
-        textAlign: 'center',
-        boxShadow: '0px 0px 2px 1px rgba(255, 255, 255, 0.5)',
+        textAlign: "center",
+        boxShadow: "0px 0px 2px 1px rgba(255, 255, 255, 0.5)",
         zIndex: 100,
-        transition: 'bottom 250ms',
+        transition: "bottom 250ms",
       }}
     >
       {size.width} &times; {size.height}
@@ -52,11 +52,11 @@ function ResizeLabel({ size }: { size: { width: number; height: number } }) {
  * The little divets on the resize handle bar.
  */
 const barStyle = {
-  position: 'absolute',
+  position: "absolute",
   top: 8,
   width: 1,
   height: 16,
-  background: 'rgba(255,255,255,0.75)',
+  background: "rgba(255,255,255,0.75)",
 } as const;
 
 /**
@@ -73,25 +73,25 @@ function ResizeHandles({
       <div
         onMouseDown={onMouseDown}
         style={{
-          position: 'absolute',
-          cursor: 'ew-resize',
+          position: "absolute",
+          cursor: "ew-resize",
           width: 16,
           right: -8,
           top: 0,
           bottom: 0,
-          background: 'rgba(127,127,127,0.01)',
+          background: "rgba(127,127,127,0.01)",
         }}
       >
         {/* Visible Handle */}
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             width: 16,
             height: 32,
-            background: 'DodgerBlue',
+            background: "DodgerBlue",
             borderRadius: 4,
             left: 0,
-            top: '50%',
+            top: "50%",
             marginTop: -16,
           }}
         >
@@ -160,8 +160,8 @@ export function ResizeControls({
        */
       function onDocumentMouseUp() {
         setIsResizing(false);
-        document.removeEventListener('mousemove', onDocumentMouseMove);
-        document.removeEventListener('mouseup', onDocumentMouseUp);
+        document.removeEventListener("mousemove", onDocumentMouseMove);
+        document.removeEventListener("mouseup", onDocumentMouseUp);
         document.body.style.cursor = originalCursor;
 
         const at = findNodePath(editor, element);
@@ -174,8 +174,8 @@ export function ResizeControls({
       /**
        * Attach document event listeners
        */
-      document.addEventListener('mousemove', onDocumentMouseMove);
-      document.addEventListener('mouseup', onDocumentMouseUp);
+      document.addEventListener("mousemove", onDocumentMouseMove);
+      document.addEventListener("mouseup", onDocumentMouseUp);
 
       /**
        * While dragging, we want the cursor to be `ew-resize` (left-right arrow)
@@ -185,7 +185,7 @@ export function ResizeControls({
        *
        * Also, image has max width/height and the cursor can fall outside of it.
        */
-      document.body.style.cursor = 'ew-resize';
+      document.body.style.cursor = "ew-resize";
     },
     [size.width, minResizeWidth, element, maxResizeWidth, setSize, editor]
   );

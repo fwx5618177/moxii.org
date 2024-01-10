@@ -61,9 +61,10 @@ import {
   Ungroup,
   WrapText,
   X,
-  DivideCircle,
   Film,
   PenTool,
+  Paperclip,
+  DownloadCloud,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
@@ -228,6 +229,8 @@ export const Icons = {
   hr: Minus,
   embed: Film,
   excalidraw: PenTool,
+  attachment: Paperclip,
+  downloadCloud: DownloadCloud,
 
   // www
   gitHub: (props: LucideProps) => (

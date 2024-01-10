@@ -20,6 +20,9 @@ const EditPost = ({ setVisible, data, refetch }) => {
 
   const onFinish = async (values: PostEditFormProps) => {
     try {
+      console.log({
+        values,
+      });
       // 执行异步操作
       await mutateAsync(values);
 

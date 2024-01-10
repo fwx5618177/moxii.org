@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { cn } from '@udecode/cn';
+import React from "react";
+import { cn } from "@udecode/cn";
 import {
   TCloudAttachmentElement,
   useCloudAttachmentElementState,
-} from '@udecode/plate-cloud';
-import { PlateElement, PlateElementProps, Value } from '@udecode/plate-common';
+} from "@udecode/plate-cloud";
+import { PlateElement, PlateElementProps, Value } from "@udecode/plate-common";
 
-import { Icons } from '@/components/icons';
+import { Icons } from "@/components/icons";
 
-import { StatusBar } from './cloud-status-bar';
+import { StatusBar } from "./cloud-status-bar";
 
 export interface CloudAttachmentElementProps
   extends PlateElementProps<Value, TCloudAttachmentElement> {}
@@ -28,8 +28,8 @@ export function CloudAttachmentElement({
   return (
     <PlateElement
       className={cn(
-        'relative my-4 flex h-10 max-w-sm items-center gap-2 rounded-lg border border-border bg-background p-4',
-        focused && selected && 'border-blue-400 shadow-[0_0_1px_3px_#60a5fa]',
+        "relative my-4 flex h-10 max-w-sm items-center gap-2 rounded-lg border border-border bg-background p-4",
+        focused && selected && "border-blue-400 shadow-[0_0_1px_3px_#60a5fa]",
         className
       )}
       draggable
@@ -47,10 +47,10 @@ export function CloudAttachmentElement({
         </StatusBar>
       </div>
       <div
-        className="ml-4 h-8 w-8 shrink-0 duration-200"
+        className="w-8 h-8 ml-4 duration-200 shrink-0"
         contentEditable={false}
       >
-        {upload.status === 'success' && (
+        {upload.status === "success" && (
           <a href={element.url} target="_blank" rel="noreferrer">
             <Icons.downloadCloud
               className="cursor-pointer text-muted-foreground hover:text-foreground"
