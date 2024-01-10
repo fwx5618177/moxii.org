@@ -3,7 +3,7 @@ id: 6f0f6384-66cc-40a7-9ef0-a1fee890381d
 title: Learn C
 slug: 8d6fcac3cc737df5616b1b0d99f941
 isSticky: true
-cover: "https://picsum.photos/950/300"
+cover: 'https://picsum.photos/950/300'
 status: upload
 type: article
 language: 中文

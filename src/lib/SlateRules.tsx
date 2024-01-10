@@ -15,7 +15,7 @@ import {
 export const RULES = {
   deserialize: {
     list: {
-      transform: (node, options) => {
+      transform: (node: MdastNode, options) => {
         console.log({
           node,
         });

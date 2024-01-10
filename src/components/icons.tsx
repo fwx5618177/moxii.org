@@ -61,6 +61,9 @@ import {
   Ungroup,
   WrapText,
   X,
+  DivideCircle,
+  Film,
+  PenTool,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
@@ -222,6 +225,9 @@ export const Icons = {
   underline: Underline,
   unlink: Link2Off,
   viewing: Eye,
+  hr: Minus,
+  embed: Film,
+  excalidraw: PenTool,
 
   // www
   gitHub: (props: LucideProps) => (

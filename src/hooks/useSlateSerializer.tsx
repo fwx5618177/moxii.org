@@ -1,14 +1,12 @@
 import { RULES } from "@/lib/SlateRules";
 import escapeHtml from "escape-html";
 import { Text, Descendant, Element as SlateElement } from "slate";
-import { jsx } from "slate-hyperscript";
 import rehypeStringify from "rehype-stringify";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
-import slate from "remark-slate";
 import { Value } from "@udecode/plate-common";
 import {
   remarkDefaultElementRules,
@@ -17,30 +15,30 @@ import {
 } from "@udecode/plate-serializer-md";
 
 export const useHtmlSerializer = () => {
-  const serialize = (node: Descendant): string => {
-    if (Text.isText(node)) {
-      let string = escapeHtml(node.text);
+  // const serialize = (node: Descendant): string => {
+  //   if (Text.isText(node)) {
+  //     let string = escapeHtml(node.text);
 
-      if (node.bold) {
-        string = `<strong>${string}</strong>`;
-      }
-      return string;
-    }
+  //     if (node.bold) {
+  //       string = `<strong>${string}</strong>`;
+  //     }
+  //     return string;
+  //   }
 
-    const element = node as SlateElement;
-    const children = element.children.map((n) => serialize(n)).join("");
+  //   const element = node as SlateElement;
+  //   const children = element.children.map((n) => serialize(n)).join("");
 
-    switch (element.type) {
-      case "quote":
-        return `<blockquote><p>${children}</p></blockquote>`;
-      case "paragraph":
-        return `<p>${children}</p>`;
-      case "link":
-        return `<a href="${escapeHtml(element.url)}">${children}</a>`;
-      default:
-        return children;
-    }
-  };
+  //   switch (element.type) {
+  //     case "quote":
+  //       return `<blockquote><p>${children}</p></blockquote>`;
+  //     case "paragraph":
+  //       return `<p>${children}</p>`;
+  //     case "link":
+  //       return `<a href="${escapeHtml(element.url)}">${children}</a>`;
+  //     default:
+  //       return children;
+  //   }
+  // };
 
   // const deserialize = (el, markAttributes = {}) => {
   //   console.log({
@@ -110,15 +108,11 @@ export const useHtmlSerializer = () => {
 
     const tree = file.result as Value;
 
-    console.log({
-      tree,
-    });
-
     return tree;
   };
 
   return {
-    serialize: serialize,
+    // serialize: serialize,
     deserializeMarkdown2Slate,
     convert2htmlString,
   };

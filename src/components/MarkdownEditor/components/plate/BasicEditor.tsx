@@ -12,9 +12,8 @@ import { Editor } from "@/components/plate-ui/editor";
 import { usePlugins } from "./plugins";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import PreviewLeaf from "./MarkdownPreview/PreviewLeaf";
-import useContentParse from "@/hooks/useContentParse";
 import { useHtmlSerializer } from "@/hooks/useSlateSerializer";
-import { FC, useCallback, useEffect, useMemo, useState } from "react";
+import { FC } from "react";
 import { initialValue } from "../../defaultData";
 
 const BasicEditor: FC<{
@@ -26,22 +25,18 @@ const BasicEditor: FC<{
     placeholder: "Type......",
     renderLeaf: PreviewLeaf,
   };
-  // const parsedContent = useContentParse(value, {
-  //   permalinkBefore: false,
-  //   symbol: "",
-  // });
   const { deserializeMarkdown2Slate } = useHtmlSerializer();
   const slateValue = deserializeMarkdown2Slate(value);
   const plugins = usePlugins();
 
-  // console.log({
-  //   plateData,
-  // });
-
   return (
     <div className="p-10">
       <DndProvider backend={HTML5Backend}>
-        <Plate plugins={plugins} initialValue={slateValue || initialValue}>
+        <Plate
+          plugins={plugins}
+          normalizeInitialValue
+          initialValue={slateValue || initialValue}
+        >
           <TooltipProvider>
             <CommentsProvider>
               <FixedToolbar>
