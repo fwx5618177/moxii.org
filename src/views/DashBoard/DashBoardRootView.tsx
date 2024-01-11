@@ -1,6 +1,7 @@
 "use client";
 
 import ArticleInfoCard from "@/components/ArticleInfoCard";
+import CalendarHeatMap from "@/components/CalendarHeatMapCard";
 import { useLocalPostList } from "@/services/Local/hooks";
 import { useMemo } from "react";
 
@@ -42,6 +43,8 @@ const DashBoardRootView = () => {
         lastPublished={latestLastPublished}
         typeCount={uniqueTypes}
       />
+
+      <CalendarHeatMap />
     </div>
   );
 };

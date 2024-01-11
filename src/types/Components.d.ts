@@ -244,4 +244,13 @@ declare module "Components" {
   interface MenuItemProps extends MenuProps {
     active?: boolean;
   }
+
+  interface CalendarHeatMapProps {
+    startDate: string | number | Date | undefined;
+    endDate: string | number | Date | undefined;
+    values: Array<{
+      date: string;
+      count: number;
+    }>;
+  }
 }
