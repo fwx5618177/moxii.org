@@ -3,7 +3,7 @@ id: 6f0f6384-66cc-40a7-9ef0-a1fee890381d
 title: Learn C
 slug: 8d6fcac3cc737df5616b1b0d99f941
 isSticky: true
-cover: 'https://picsum.photos/950/300'
+cover: "https://picsum.photos/950/300"
 status: upload
 type: article
 language: 中文
@@ -23,16 +23,16 @@ addition:
 
 - [ ] 算法
 - [ ] 计算机网络
-  - [ ] tcp/ip 协议栈
+- [ ] tcp/ip 协议栈
 - [ ] 操作系统
-  - [ ] 进程和线程 并发 和锁 内存分布调度
+- [ ] 进程和线程 并发 和锁 内存分布调度
 - [ ] 设计模式
 - [ ] Linux OS
 - [ ] CMake
 - [ ] gcc, gdb, makefile
 - [ ] OS API
 - [ ] 多线程编程
-  - 网络编程（unix 环境高级编程）（Linux 高性能服务器编程）（posix 多线程程序设计）
+- 网络编程（unix 环境高级编程）（Linux 高性能服务器编程）（posix 多线程程序设计）
 - [ ] 网络编程
 
 ## 推荐书籍
