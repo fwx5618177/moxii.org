@@ -1,5 +1,10 @@
-import { UserOutlined, HomeOutlined, QqCircleFilled } from "@ant-design/icons";
-import { FcManager, FcSearch, FcSurvey, FcReddit } from "react-icons/fc";
+import {
+  UserOutlined,
+  HomeOutlined,
+  QqCircleFilled,
+  UsergroupAddOutlined,
+} from "@ant-design/icons";
+import { FcManager, FcSearch, FcSurvey, FcReddit, FcUsb } from "react-icons/fc";
 import DashBoardRootView from "@/views/DashBoard/DashBoardRootView";
 import { MenuProps } from "Components";
 import { FaUsers } from "react-icons/fa";
@@ -34,6 +39,21 @@ export const SideItem: MenuProps[] = [
         label: <Link href="/dashboard/createPost">创建文章</Link>,
         href: "/dashboard/createPost",
         icon: <FcSearch />,
+      },
+    ],
+  },
+  {
+    name: "小说工具",
+    key: "novelTools",
+    label: "小说工具",
+    icon: <UsergroupAddOutlined />,
+    children: [
+      {
+        name: "人物设计",
+        label: <Link href="/dashboard/characterDesign">人物设计</Link>,
+        key: "characterDesign",
+        href: "/dashboard/characterDesign",
+        icon: <UserOutlined />,
       },
     ],
   },

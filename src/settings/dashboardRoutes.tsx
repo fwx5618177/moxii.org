@@ -14,6 +14,12 @@ export const routes: ComponentMap = {
   createPost: dynamic(() => import("@/views/DashBoard/Post/CreatePost"), {
     ssr: false,
   }),
+  characterDesign: dynamic(
+    () => import("@/views/DashBoard/NovelTools/CharacterDesign"),
+    {
+      ssr: false,
+    }
+  ),
 };
 
 export const dynamicRoutes = (key: string) => {
