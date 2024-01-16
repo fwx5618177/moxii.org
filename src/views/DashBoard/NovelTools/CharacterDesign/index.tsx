@@ -1,38 +1,18 @@
-import * as PIXI from "pixi.js";
-import { useEffect, useRef } from "react";
+import CharacterNetwork from "@/components/CharacterNetwork";
+import SigmaComponent from "@/components/CharacterNetwork/SigmaComponent";
+import CloudAnime from "@/components/CloudAnime";
+import { Typography } from "antd";
 
 const CharacterDesign = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      const app = new PIXI.Application({
-        background: "#1099bb",
-        resizeTo: window,
-        view: canvasRef.current,
-      });
-
-      return () =>
-        app.destroy(true, {
-          children: true,
-          texture: true,
-        });
-    }
-  }, []);
-
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-    >
-      <canvas
-        style={{
-          height: 800,
-        }}
-        ref={canvasRef}
-      ></canvas>
+    <div>
+      <Typography.Title>人物设计</Typography.Title>
+      <div>
+        <CharacterNetwork />
+
+        <SigmaComponent />
+        <CloudAnime />
+      </div>
     </div>
   );
 };
