@@ -52,7 +52,7 @@ const CharacterNetwork: FC<{
             content: "person",
             fontFamily: "Material Icons",
             fontSize: 20,
-            color: "#ffffff",
+            color: "#000",
           },
           label: {
             content: (node) => node.id,
