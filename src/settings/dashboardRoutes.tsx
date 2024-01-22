@@ -20,6 +20,12 @@ export const routes: ComponentMap = {
       ssr: false,
     }
   ),
+  characterTimeLine: dynamic(
+    () => import("@/views/DashBoard/NovelTools/CharacterTimeLine"),
+    {
+      ssr: false,
+    }
+  ),
 };
 
 export const dynamicRoutes = (key: string) => {

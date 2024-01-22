@@ -4,7 +4,7 @@ import {
   QqCircleFilled,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
-import { FcManager, FcSearch, FcSurvey, FcReddit, FcUsb } from "react-icons/fc";
+import { FcManager, FcSearch, FcSurvey, FcReddit } from "react-icons/fc";
 import DashBoardRootView from "@/views/DashBoard/DashBoardRootView";
 import { MenuProps } from "Components";
 import { FaUsers } from "react-icons/fa";
@@ -49,10 +49,17 @@ export const SideItem: MenuProps[] = [
     icon: <UsergroupAddOutlined />,
     children: [
       {
-        name: "人物设计",
-        label: <Link href="/dashboard/characterDesign">人物设计</Link>,
+        name: "人物关系",
+        label: <Link href="/dashboard/characterDesign">人物关系</Link>,
         key: "characterDesign",
         href: "/dashboard/characterDesign",
+        icon: <UserOutlined />,
+      },
+      {
+        name: "人物时间线发展",
+        label: <Link href="/dashboard/characterTimeLine">人物时间线发展</Link>,
+        key: "characterTimeLine",
+        href: "/dashboard/characterTimeLine",
         icon: <UserOutlined />,
       },
     ],

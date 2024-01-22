@@ -11,6 +11,7 @@
   "dependencies": {
     "@ant-design/cssinjs": "^1.18.2",
     "@ant-design/icons": "^5.2.6",
+    "@pixi/filter-drop-shadow": "^5.2.0",
     "@pixi/filter-glow": "^5.2.1",
     "@portive/client": "^10.0.3",
     "@radix-ui/react-avatar": "^1.0.4",

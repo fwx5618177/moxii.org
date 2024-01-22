@@ -7,6 +7,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Menu, Button, theme, Breadcrumb } from "antd";
 import { SideItem } from "@/settings/side.config";
 import { useAuthContext } from "@/contexts/AuthContext";
+import styles from "@/styles/dashboard.module.scss";
 
 const { Header, Sider, Content } = Layout;
 const { Item } = Breadcrumb;
@@ -87,6 +88,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
             borderRadius: borderRadiusLG,
             overflow: "auto",
           }}
+          className={styles.dashboardContent}
         >
           {children}
         </Content>
