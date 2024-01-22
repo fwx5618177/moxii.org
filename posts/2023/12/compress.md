@@ -7,7 +7,7 @@ tags:
   - 算法
   - 压缩
   - lzw
-description: '字符串无损压缩算法-huffman, lzw, deflate, rle, bwt, lzma, lzss, lzo, brotli, zstd'
+description: "字符串无损压缩算法-huffman, lzw, deflate, rle, bwt, lzma, lzss, lzo, brotli, zstd"
 excerpt: 压缩算法
 addition:
   - 中文
@@ -15,7 +15,7 @@ type: article
 id: 79dfd64b-4e27-4829-a768-350173a58361
 slug: dcbdf16561fdf3fe613e06ee4937e0
 isSticky: false
-cover: 'https://picsum.photos/950/300'
+cover: "https://picsum.photos/950/300"
 status: upload
 name: fwx
 ---
