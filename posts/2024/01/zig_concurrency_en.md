@@ -6,13 +6,18 @@ tags:
   - Zig
   - Concurrency
   - Multi-threaded Data Transfer
-description: Mainly introduces several methods provided by Zig - Mutex, Condition, Semaphore, WaitGroup, Event.Channel. As Zig's Channel is not yet effective, we will create a basic Channel and Select based on Mutex.
+description: >-
+  Mainly introduces several methods provided by Zig - Mutex, Condition,
+  Semaphore, WaitGroup, Event.Channel. As Zig's Channel is not yet effective, we
+  will create a basic Channel and Select based on Mutex.
 excerpt: Zig's concurrency implementation methods. Mainly implemented through mutex.
 addition:
   - English
   - Zig
 type: Article
 isSticky: true
+id: ab8ebdc3-78d5-45f4-894e-0f8d54c51b90
+slug: 620cb6b8e11ea9b56cf299e83e9a28
 ---
 
 # 【Zig】Concurrency Implementation Methods
