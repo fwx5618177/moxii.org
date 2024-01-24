@@ -1,31 +1,11 @@
 import * as PIXI from "pixi.js";
-import { DropShadowFilter } from "@pixi/filter-drop-shadow";
 import { TimelineEvent } from "Novel";
-import { config } from "./config";
-
-// 滤镜
-const dropShadowFilter = new DropShadowFilter({
-  blur: 2,
-  distance: 3,
-  alpha: 0.5,
-});
-
-const createMainAxis = ({ x, y, h, w, filters }) => {
-  const timeline = new PIXI.Graphics();
-  timeline.clear();
-  timeline.beginFill(0xffffff);
-  timeline.drawRect(x, y, w, h);
-  timeline.endFill();
-
-  // 添加阴影滤镜给主轴
-  timeline.filters = [...filters];
-
-  return timeline;
-};
+import { config, dropShadowFilter } from "./config";
+import { createMainAxis } from "./createMainAxis";
 
 const setCircleStyle = ({ graphics, style, x, y, radius }) => {
   graphics.clear();
-  graphics.lineStyle(style.lineWidth, style.lineColor);
+  // graphics.lineStyle(style.lineWidth, style.lineColor);
   graphics.beginFill(style.fillColor);
   graphics.drawCircle(x, y, radius);
   graphics.endFill();
@@ -37,33 +17,6 @@ const setTextStyle = ({ text, style, x, y }) => {
   text.y = y;
   text.style.fill = style.fillColor;
   text.style.fontSize = style.fontSize;
-};
-
-const updateStyles = (
-  circle: { graphics: any; style: any; x: any; y: any; radius: any },
-  word: { text: any; style: any; x: any; y: any }
-) => {
-  const {
-    graphics,
-    style: circleStyle,
-    x: circleX,
-    y: circleY,
-    radius,
-  } = circle;
-  const { text, style: wordStyle, x: wordX, y: wordY } = word;
-  setCircleStyle({
-    graphics,
-    style: circleStyle,
-    x: circleX,
-    y: circleY,
-    radius,
-  });
-  setTextStyle({
-    text,
-    style: wordStyle,
-    x: circleX,
-    y: circleY,
-  });
 };
 
 export const createTimeline = (
@@ -89,11 +42,11 @@ export const createTimeline = (
 
   // 遍历时间线事件并创建标记
   events.forEach((event, index) => {
-    // 初始化点击状态
     let isClicked = false;
-
     const eventY = (timelineHeight / events.length) * index + padding;
     const eventRadius = 20;
+    const textPaddingX = eventRadius + 10;
+    const textPaddingY = eventRadius;
 
     // 绘制时间线上的事件
     const eventGraphics = new PIXI.Graphics();
@@ -108,7 +61,7 @@ export const createTimeline = (
       graphics: eventGraphics,
       style: config.normalStyle,
       x: eventRadius,
-      y: 0,
+      y: eventRadius,
       radius: eventRadius,
     });
 
@@ -126,15 +79,13 @@ export const createTimeline = (
       fill: event.color,
       fontSize: 14,
     });
-
-    eventText.position.set(timelineX + 30, eventY);
+    eventText.position.set(timelineX + textPaddingX, eventY);
     eventText.anchor.set(0);
-
     setTextStyle({
       text: eventText,
       style: config.normalStyle,
-      x: timelineX + 30,
-      y: eventY,
+      x: timelineX + textPaddingX,
+      y: eventY - textPaddingY,
     });
 
     // 将事件添加到舞台
@@ -145,83 +96,89 @@ export const createTimeline = (
     eventGraphics.interactive = true;
     eventGraphics.cursor = "pointer";
 
-    // 添加事件监听器
+    const createRippleEffect = (x, y, container) => {
+      const ripple = new PIXI.Graphics();
+      let radius = 0;
+      let alpha = 0.5;
 
-    const applyNormalOrClickedStyle = () => {
-      if (isClicked) {
-        updateStyles(
-          {
-            graphics: eventGraphics,
-            style: config.clickStyle,
-            x: eventRadius,
-            y: 0,
-            radius: eventRadius,
-          },
-          {
-            text: eventText,
-            style: config.clickStyle,
-            x: timelineX + 30,
-            y: eventY,
-          }
-        );
-      } else {
-        updateStyles(
-          {
-            graphics: eventGraphics,
-            style: config.normalStyle,
-            x: eventRadius,
-            y: 0,
-            radius: eventRadius,
-          },
-          {
-            text: eventText,
-            style: config.normalStyle,
-            x: timelineX + 30,
-            y: eventY,
-          }
-        );
-      }
+      const animateRipple = () => {
+        if (radius < 100) {
+          radius += 2;
+          alpha -= 0.01;
+          drawRipple();
+          requestAnimationFrame(animateRipple);
+        } else {
+          container.removeChild(ripple);
+        }
+      };
+
+      const drawRipple = () => {
+        ripple.clear();
+        ripple.beginFill(0xffffff, alpha);
+        ripple.drawCircle(x, y, radius);
+        ripple.endFill();
+      };
+
+      drawRipple();
+      container.addChild(ripple);
+      animateRipple();
     };
 
     eventGraphics.on("pointerover", () => {
-      if (!isClicked)
-        updateStyles(
-          {
-            graphics: eventGraphics,
-            style: config.hoverStyle,
-            x: eventRadius,
-            y: 0,
-            radius: eventRadius,
-          },
-          {
-            text: eventText,
-            style: config.hoverStyle,
-            x: timelineX + 30,
-            y: eventY,
-          }
-        );
+      if (isClicked) return;
+
+      setCircleStyle({
+        graphics: eventGraphics,
+        style: config.hoverStyle,
+        x: eventRadius,
+        y: eventRadius,
+        radius: eventRadius,
+      });
+      setTextStyle({
+        text: eventText,
+        style: config.hoverStyle,
+        x: timelineX + textPaddingX,
+        y: eventY - textPaddingY,
+      });
     });
 
     eventGraphics.on("pointerout", () => {
-      applyNormalOrClickedStyle();
+      if (isClicked) return;
+
+      setCircleStyle({
+        graphics: eventGraphics,
+        style: config.normalStyle,
+        x: eventRadius,
+        y: eventRadius,
+        radius: eventRadius,
+      });
+
+      setTextStyle({
+        text: eventText,
+        style: config.normalStyle,
+        x: timelineX + textPaddingX,
+        y: eventY - textPaddingY,
+      });
     });
 
     eventGraphics.on("click", () => {
-      updateStyles(
-        {
-          graphics: eventGraphics,
-          style: config.clickStyle,
-          x: eventRadius,
-          y: 0,
-          radius: eventRadius,
-        },
-        {
-          text: eventText,
-          style: config.clickStyle,
-          x: timelineX + 30,
-          y: eventY,
-        }
-      );
+      isClicked = !isClicked;
+
+      createRippleEffect(circleX, circleY, timelineContainer);
+
+      setCircleStyle({
+        graphics: eventGraphics,
+        style: config.clickStyle,
+        x: eventRadius,
+        y: eventRadius,
+        radius: eventRadius,
+      });
+      setTextStyle({
+        text: eventText,
+        style: config.clickStyle,
+        x: timelineX + textPaddingX,
+        y: eventY - textPaddingY,
+      });
     });
   });
 
