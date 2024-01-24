@@ -245,12 +245,16 @@ declare module "Components" {
     active?: boolean;
   }
 
+  interface HeatMapDataProps {
+    date: string;
+    count: number;
+  }
+
   interface CalendarHeatMapProps {
     startDate: string | number | Date | undefined;
     endDate: string | number | Date | undefined;
-    values: Array<{
-      date: string;
-      count: number;
-    }>;
+    values: Array<HeatMapDataProps>;
+    pushCount: number;
+    pushDate: string;
   }
 }

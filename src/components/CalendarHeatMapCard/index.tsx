@@ -27,15 +27,9 @@ const weekdayLabels = ["周日", "周一", "周二", "周三", "周四", "周五
 const CalendarHeatMapCard: FC<Partial<CalendarHeatMapProps>> = ({
   startDate = moment().startOf("year").toDate(),
   endDate = moment().endOf("year").toDate(),
-  values = [
-    { date: "2024-01-01", count: 8 },
-    { date: "2024-01-02", count: 1 },
-    { date: "2024-01-03", count: 2 },
-    { date: "2024-01-04", count: 5 },
-    { date: "2024-01-05", count: 7 },
-    { date: "2024-01-11", count: 2 },
-    { date: "2024-01-12", count: 4 },
-  ],
+  values = [],
+  pushCount = 0,
+  pushDate,
 }) => {
   const handleClassForValue = (value) => {
     if (!value) {
@@ -78,6 +72,10 @@ const CalendarHeatMapCard: FC<Partial<CalendarHeatMapProps>> = ({
         gutterSize={2}
         values={values}
       ></CalendarHeatmap>
+
+      <div>
+        今日推送次数: {pushCount} ({pushDate})
+      </div>
     </Card>
   );
 };

@@ -6,14 +6,14 @@ tags:
   - Zig
   - 并发
   - 多线程传递数据
-description: 主要对zig自带的几个方法进行介绍: Mutex, Condition, Semaphore, WaitGroup, Event.Channel。由于Zig的Channel目前尚未生效，所以我们基于Mutex做一个最基础的Channel和Select。
+description: 主要对zig自带的几个方法进行介绍 - Mutex, Condition, Semaphore, WaitGroup, Event.Channel。由于Zig的Channel目前尚未生效，所以我们基于Mutex做一个最基础的Channel和Select。
 excerpt: Zig的并发实现方法。主要通过mutex来实现。
 addition:
-    - 中文
-    - Zig
+  - 中文
+  - Zig
 type:
-    - 文章
-    - 介绍
+  - 文章
+  - 介绍
 isSticky: true
 ---
 
