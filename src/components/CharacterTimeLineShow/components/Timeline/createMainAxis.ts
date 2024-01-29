@@ -1,4 +1,4 @@
-import { Graphics } from "pixi.js";
+import { Graphics } from "@pixi/graphics";
 
 export const createMainAxis = ({ x, y, h, w, filters }) => {
   const timeline = new Graphics();

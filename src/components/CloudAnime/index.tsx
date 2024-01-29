@@ -1,58 +1,60 @@
-import * as PIXI from "pixi.js";
 import { useEffect, useRef } from "react";
 import { GlowFilter } from "@pixi/filter-glow";
 import { cloudShader, extractBrightnessFragmentShader } from "./cloud";
+import { Application } from "@pixi/app";
+import { Sprite } from "@pixi/sprite";
+import { BLEND_MODES, Filter, Texture } from "@pixi/core";
 
 const CloudAnime = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     if (canvasRef.current) {
-      const app = new PIXI.Application({
+      const app = new Application({
         resizeTo: window,
         view: canvasRef.current,
       });
 
-      const skyBg = PIXI.Sprite.from(
+      const skyBg = Sprite.from(
         "https://pixijs.com/header/assets/img/skyBG.jpg"
       );
       skyBg.width = app.screen.width;
       skyBg.height = app.screen.height;
       app.stage.addChild(skyBg);
 
-      const spaceBg = PIXI.Sprite.from(
+      const spaceBg = Sprite.from(
         "https://pixijs.com/header/assets/img/spaceBG.jpg"
       );
       spaceBg.width = app.screen.width;
       spaceBg.height = app.screen.height;
-      spaceBg.blendMode = PIXI.BLEND_MODES.ADD;
+      spaceBg.blendMode = BLEND_MODES.ADD;
       app.stage.addChild(spaceBg);
 
-      const skyCloud1Texture = PIXI.Texture.from(
+      const skyCloud1Texture = Texture.from(
         "https://pixijs.com/header/assets/img/skyCloud1.png"
       );
-      const skyCloud2Texture = PIXI.Texture.from(
+      const skyCloud2Texture = Texture.from(
         "https://pixijs.com/header/assets/img/skyCloud2.png"
       );
 
       const clouds = [];
       const cloudAmount = 10;
       let cameraZ = 0;
-      const fragmentShader = new PIXI.Filter(null, cloudShader);
-      const extractBrightnessFilter = new PIXI.Filter(
+      const fragmentShader = new Filter(null, cloudShader);
+      const extractBrightnessFilter = new Filter(
         null,
         extractBrightnessFragmentShader,
         { threshold: 0.7 }
       );
-      const blurFilter = new PIXI.BlurFilter();
-      blurFilter.blur = 5;
+      // const blurFilter = new BlurFilter();
+      // blurFilter.blur = 5;
 
       const margin = app.screen.width * 0.3; // 边缘区域宽度（例如，屏幕宽度的30%）
 
       for (let i = 0; i < cloudAmount; i++) {
         const texture = i % 2 === 0 ? skyCloud1Texture : skyCloud2Texture; // 交替纹理
 
-        const cloud = new PIXI.Sprite(texture);
+        const cloud = new Sprite(texture);
 
         // TODO: 比较卡，暂时不用
         // cloud.filters = [

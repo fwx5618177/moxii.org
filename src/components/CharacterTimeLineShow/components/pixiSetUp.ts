@@ -1,10 +1,11 @@
 import { SetupPixiAppProps } from "Novel";
-import * as PIXI from "pixi.js";
+import { Application } from "@pixi/app";
+import { ICanvas } from "@pixi/core";
 
 export const setupPixiApp = (
   props: SetupPixiAppProps
-): PIXI.Application<PIXI.ICanvas> => {
-  const app = new PIXI.Application({
+): Application<ICanvas> => {
+  const app = new Application({
     ...props,
     resizeTo: window,
     width: props?.width || 800,

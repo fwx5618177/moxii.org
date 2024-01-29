@@ -1,11 +1,13 @@
-import * as PIXI from "pixi.js";
 import { TimelineEvent } from "Novel";
 import { config, dropShadowFilter } from "./config";
 import { createMainAxis } from "./createMainAxis";
+import { Application } from "@pixi/app";
+import { Container } from "@pixi/display";
+import { SmoothGraphics } from "@pixi/graphics-smooth";
+import { Sprite } from "@pixi/sprite";
 
 const setCircleStyle = ({ graphics, style, x, y, radius }) => {
   graphics.clear();
-  // graphics.lineStyle(style.lineWidth, style.lineColor);
   graphics.beginFill(style.fillColor);
   graphics.drawCircle(x, y, radius);
   graphics.endFill();
@@ -20,10 +22,10 @@ const setTextStyle = ({ text, style, x, y }) => {
 };
 
 export const createTimeline = (
-  app: PIXI.Application,
+  app: Application,
   events: TimelineEvent[]
-): PIXI.Container => {
-  const timelineContainer = new PIXI.Container();
+): Container => {
+  const timelineContainer = new Container();
   const timelineHeight = app.screen.height * config.timelineHeightFactor; // 时间线高度为画布高度的 80%
   const timelineWidth = config.timelineWidth; // 时间线宽度
   const timelineX = app.screen.width / 2; // 时间线水平居中
@@ -49,7 +51,7 @@ export const createTimeline = (
     const textPaddingY = eventRadius;
 
     // 绘制时间线上的事件
-    const eventGraphics = new PIXI.Graphics();
+    const eventGraphics = new SmoothGraphics();
     const circleX = timelineX + timelineWidth / 2; // 圆的中心X坐标
     const circleY = eventY; // 圆的中心Y坐标
 
@@ -67,7 +69,7 @@ export const createTimeline = (
 
     // 如果提供了图标，将它添加到圆圈中心
     if (event.icon) {
-      const iconSprite = new PIXI.Sprite(event.icon);
+      const iconSprite = new Sprite(event.icon);
       iconSprite.x = timelineX;
       iconSprite.y = eventY;
       iconSprite.anchor.set(0.5);
@@ -75,7 +77,7 @@ export const createTimeline = (
     }
 
     // 添加事件文本
-    const eventText = new PIXI.Text(`${event.title} - ${event.date}`, {
+    const eventText = new Text(`${event.title} - ${event.date}`, {
       fill: event.color,
       fontSize: 14,
     });
@@ -97,7 +99,7 @@ export const createTimeline = (
     eventGraphics.cursor = "pointer";
 
     const createRippleEffect = (x, y, container) => {
-      const ripple = new PIXI.Graphics();
+      const ripple = new Graphics();
       let radius = 0;
       let alpha = 0.5;
 

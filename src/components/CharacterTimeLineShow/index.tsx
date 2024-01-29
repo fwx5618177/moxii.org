@@ -4,6 +4,7 @@ import { showLoadingAnimation } from "./components/loadingAnimation";
 import { createTimeline } from "./components/Timeline/createTimeline";
 
 import styles from "./index.module.scss";
+import { createCircle } from "./components/Timeline/createCircle";
 
 const CharacterTimeLineShow = () => {
   const divRef = useRef<HTMLCanvasElement>(null);
@@ -15,7 +16,7 @@ const CharacterTimeLineShow = () => {
         view: canvas,
         width: 800,
         height: 800,
-        backgroundColor: 0x000609,
+        backgroundColor: 0xffffff,
       });
       const loadingText = showLoadingAnimation(app);
 
@@ -28,9 +29,10 @@ const CharacterTimeLineShow = () => {
           { title: "Event 2", date: "2022-01-01", color: 0x00ff00 },
           // ...更多事件
         ];
-        const timelineContainer = createTimeline(app, events);
-        app.stage.addChild(timelineContainer);
-      }, 2000);
+        // const timelineContainer = createTimeline(app, events);
+        const circleContainer = createCircle({ app });
+        app.stage.addChild(circleContainer);
+      }, 10);
     }
   }, []);
 

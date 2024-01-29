@@ -1,7 +1,8 @@
-import * as PIXI from "pixi.js";
+import { Application } from "@pixi/app";
+import { Text } from "@pixi/text";
 
-export const showLoadingAnimation = (app: PIXI.Application) => {
-  const text = new PIXI.Text("Loading...", {
+export const showLoadingAnimation = (app: Application) => {
+  const text = new Text("Loading...", {
     fill: "white",
     fontSize: 64,
     // fontWeight: "600",
