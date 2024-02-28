@@ -17,11 +17,20 @@ type:
 isSticky: false
 ---
 
+# TODO
+
+1. 每个模块里的链路是什么？
+2. 比如说 book，这个数据如何更新？
+3. 比如 bid 100 ask 101，假如不停有数据进来，如何更新？
+4. 你写你要超高性能，这怎么做到
+
 # 【系统设计】撮合引擎设计
 
 ## 介绍
 
 ### 高频交易(High-Frequency Trading, HFT)的专业术语介绍
+
+转载自: [知乎-高频交易介绍](https://zhuanlan.zhihu.com/p/78427989)
 
 #### 1. Co-location 主机托管
 
