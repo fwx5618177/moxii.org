@@ -3,15 +3,17 @@ id: bc56e678-e2ad-4db0-9992-29f393d75735
 title: bog_gc_en
 slug: fe5ca3e0f8c062599b1d2c921bd3b1
 ---
+
 # 【Zig】Bog GC Design
 
 Bog is a small scripting language developed using Zig. Its GC design is inspired by a paper titled [An efficient of Non-Moving GC for Function languages](https://www.pllab.riec.tohoku.ac.jp/papers/icfp2011UenoOhoriOtomoAuthorVersion.pdf).
 
 ## Overview
+
 1. Introduction
-    - Design of the Heap
-    - Types of GC
-    - Design of Bitmap
+   - Design of the Heap
+   - Types of GC
+   - Design of Bitmap
 2. Implementation
 
 ## Introduction
@@ -23,6 +25,7 @@ Represented as a formula:
 $$
 Heap = (M, S, (H_3, H_4, ..., H_{12}))
 $$
+
 Where:
 
 1. M: is a special region dedicated to storing large objects.
@@ -91,6 +94,7 @@ Generational Copying Collector: It is a common method of garbage collection, esp
 Cheney's Copying Collector: This is a garbage collector used for semi-space. It works by dividing the available memory in half and only allocating objects in one half. When this half is exhausted, the collector performs garbage collection by copying active objects to the other half. The original half is then completely emptied, becoming the new available space. Cheney's collector is particularly suited for handling data with short lifespans because it quickly copies only the active data while ignoring the dead data. This makes it highly efficient for its "minor collections" (collections that only reclaim Young Generation data) when dealing with programs that handle a large amount of short-lifetime data, such as functional programs. **The advantage of this method is that it can efficiently handle memory fragmentation since memory becomes continuously occupied by copying active objects to new locations.**
 
 Characteristics:
+
 - **Any precise copy gc requires the runtime system to locate and update all pointers of every heap-allocated data.**
 - In traditional garbage collection strategies (Moving GC), compaction is a commonly used technique, moving active objects into a contiguous region of memory, thereby freeing up unused memory. In other words, it consolidates memory fragmentation.
 
@@ -101,7 +105,7 @@ In Non-Moving GC, there's "Mark-Sweep".
 The benefits are as follows:
 
 1. **Lock Simplification**: In a multi-threaded environment, if an object needs to be moved (e.g., during the compaction phase of garbage collection), we need to ensure other threads cannot access this object while it's moving. This might require complex locking strategies and synchronization mechanisms. However, if objects never move, this synchronization need is reduced, making locking strategies simpler.
-  
+
 2. **Pointer Stability**: In multi-threaded programs, threads might share pointers or references to objects. If an object moves in memory, all threads sharing that object would need to update their pointers or references. This not only adds synchronization complexity but might also introduce errors, like dangling pointers. If objects don't move, these pointers remain consistently valid.
 
 3. **Predictability and Performance**: Not having to move objects means memory access patterns are more stable and predictable. In multi-threaded programs, predictability is a valuable trait as it can reduce contention between threads, improving overall program performance.
@@ -162,7 +166,6 @@ const Page = struct {
 1. `max_size`: Represents the maximum number of bytes a Page can store. We have defined a constant to represent the size of 1 MiB and ensure at compile time that the size of the Page type is exactly 1 MiB. Otherwise, a compile-time error will be triggered.
 2. `val_count`: Represents the number of Value objects a Page can store.
 3. `pad_size`: Represents the size of the unused space remaining in the Page after storing the maximum number of Value objects.
-
 
 ```zig
     const State = enum {
