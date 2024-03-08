@@ -114,4 +114,4 @@ tags:
 
 ### 核心系统交互
 
-![payment_transaction_combined_system](./paypay/payment_transaction_combined_system.png)
+![payment_transaction_combined_system](./paypay/payment_ewallet_transaction_system.png)
