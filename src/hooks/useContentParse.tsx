@@ -32,7 +32,7 @@ const useContentParse = (
           highlighted: string,
           lang: string
         ) => `${highlighted}
-        <button class="copy-button" data-clipboard-text='${str}'>
+        <button class="copy-button" data-clipboard-text=\`${str}\`>
           <p>${lang}</p>
         </button>`;
 

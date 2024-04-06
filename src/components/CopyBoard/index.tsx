@@ -10,13 +10,13 @@ type CopyBoardProps = {
 };
 
 const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
-  const spanRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
   const [status, setStatue] = useState<"success" | "error" | "default">(
     "default"
   );
 
   const handleCopy = () => {
-    const clipboard = new ClipboardJS(spanRef.current as any, {
+    const clipboard = new ClipboardJS(btnRef.current as any, {
       text: () => text,
     });
 
@@ -43,15 +43,11 @@ const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
   };
 
   useEffect(() => {
-    spanRef.current?.click();
+    btnRef.current?.click();
   }, []);
 
   return (
-    <div
-      className={`relative w-full h-full ${styles.copied} flex items-center justify-center`}
-      ref={spanRef}
-      onClick={handleCopy}
-    >
+    <button className={styles.copied} ref={btnRef} onClick={handleCopy}>
       {status === "success" ? (
         <FcOk />
       ) : status === "error" ? (
@@ -59,7 +55,7 @@ const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
       ) : (
         children
       )}
-    </div>
+    </button>
   );
 };
 

@@ -12,6 +12,7 @@ import { PostPageProps } from "Components";
 import useContentParse from "@/hooks/useContentParse";
 import useExactToc from "@/hooks/useExactToc";
 import { useToc } from "@/contexts/TocContext";
+import MarkdownRenderer from "../MarkdownRenderer";
 
 const PostPage: FC<PostPageProps> = ({
   content,
@@ -75,12 +76,15 @@ const PostPage: FC<PostPageProps> = ({
                 {excerpt}
               </blockquote>
             )}
-            <div
+            {/* <div
               dangerouslySetInnerHTML={{
                 __html: parsedContent,
               }}
               className={markdownStyle["markdown-body"]}
-            ></div>
+            ></div> */}
+            <div className={markdownStyle["markdown-body"]}>
+              <MarkdownRenderer content={content} />
+            </div>
           </section>
         </article>
 

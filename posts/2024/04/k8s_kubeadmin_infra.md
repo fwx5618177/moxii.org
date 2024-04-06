@@ -11,7 +11,7 @@ tags:
   - 自签证书
 ---
 
-[TOC]
+# TOC
 
 # 如何在公网上搭建 k8s 集群
 
@@ -145,7 +145,7 @@ cp ca.crt /etc/docker/certs.d/<ip>:<port>/ca.crt
 此处的 ca.crt 是镜像仓库的证书，需要提前准备好。
 
 - ca.crt: 证书文件
-- <ip>:<port>: 镜像仓库地址
+- `<ip>:<port>`: 镜像仓库地址
 
 启动:
 
@@ -200,24 +200,26 @@ apt-mark hold kubelet kubeadm kubectl  # 锁定版本
 #### 1.4 开启云服务器的端口
 
 **ControlPanel/Master**:
-| 协议 | 方向 | 端口范围 | 目标 | 使用者 |
-| --- | --- | --- | --- | --- |
-| TCP | 入站 | 6443 | kubernetes API 服务器 | 所有 |
-| TCP | 入站 | 2379-2380 | etcd 服务器客户端 API | kube-apiserver, etcd |
-| TCP | 入站 | 10250 | Kubelet API | Self, Control plane |
-| TCP | 入站 | 10251 | kube-scheduler | Self |
-| TCP | 入站 | 10255 | Read-Only Kubelet API | Self |
-| TCP | 入站 | 10256 | Read-Write Kubelet API | Self |
-| TCP | 入站 | 10257 | kube-controller-manager | Self |
-| TCP | 入站 | 10259 | kube-scheduler | Self |
+
+| 协议 | 方向 | 端口范围  | 目标                    | 使用者               |
+| ---- | ---- | --------- | ----------------------- | -------------------- |
+| TCP  | 入站 | 6443      | kubernetes API 服务器   | 所有                 |
+| TCP  | 入站 | 2379-2380 | etcd 服务器客户端 API   | kube-apiserver, etcd |
+| TCP  | 入站 | 10250     | Kubelet API             | Self, Control plane  |
+| TCP  | 入站 | 10251     | kube-scheduler          | Self                 |
+| TCP  | 入站 | 10255     | Read-Only Kubelet API   | Self                 |
+| TCP  | 入站 | 10256     | Read-Write Kubelet API  | Self                 |
+| TCP  | 入站 | 10257     | kube-controller-manager | Self                 |
+| TCP  | 入站 | 10259     | kube-scheduler          | Self                 |
 
 如果要在外部自己托管 etcd，还需要开启 2379-2380 端口。
 
 **Worker**:
-| 协议 | 方向 | 端口范围 | 目标 | 使用者 |
-| --- | --- | --- | --- | --- |
-| TCP | 入站 | 10250 | Kubelet API | Self, Control plane |
-| TCP | 入站 | 30000-32767 | NodePort Services | All |
+
+| 协议 | 方向 | 端口范围    | 目标              | 使用者              |
+| ---- | ---- | ----------- | ----------------- | ------------------- |
+| TCP  | 入站 | 10250       | Kubelet API       | Self, Control plane |
+| TCP  | 入站 | 30000-32767 | NodePort Services | All                 |
 
 [服务 Service][1-service]: 是 pod 服务的默认端口范围。这里如果希望 Master 的 IP 也可以访问 Pod 服务，那么也可以给 Master 主机开放这些端口（建议）
 
@@ -446,7 +448,7 @@ kubeadm join 101.34.112.190:6443 --token abcdef.0123456789abcdef \
 
 ##### 常见错误
 
-###### 1. Initial timeout of 40s passed
+###### Initial timeout of 40s passed
 
 1. 检查镜像版本，可能是不匹配或者本地替换 tag 出错造成的了，或者是因为公网 IP ETCD 无法启动造成的。执行：
    `journalctl -xeu kubelet` 查看具体错误，或者时候 `journalctl -f -u kubelet` 查看初始化的实时输出，下次初始化之前执行 kubeadm reset 重置。

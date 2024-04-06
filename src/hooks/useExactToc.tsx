@@ -9,7 +9,10 @@ const useExactToc = (parsedContent: string) => {
     while ((match = titleRegex.exec(parsedContent)) !== null) {
       // 获取标题的级别和文本内容
       const level = match[1];
-      const href = match[2];
+      const href = match[2]
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[:]/g, "");
       const text = href.replace(/[\W|\s|\D]/, "");
       // 将提取的标题信息添加到数组中
       titles.push({
