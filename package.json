@@ -161,6 +161,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0",
     "remark-slate": "^1.8.6",
     "remark-toc": "^9.0.0",
     "sass": "^1.74.1",

@@ -458,6 +458,9 @@ dependencies:
   remark-parse:
     specifier: ^11.0.0
     version: 11.0.0
+  remark-rehype:
+    specifier: ^11.1.0
+    version: 11.1.0
   remark-slate:
     specifier: ^1.8.6
     version: 1.8.6
