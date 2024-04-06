@@ -1,15 +1,8 @@
 import { NodeStyle } from "@/components/Graph";
 import { TextType } from "@/components/Graph/interfaces/lib.interface";
-import NodeRender from "@/components/Graph/render/node";
 import { TextureCache } from "@/components/Graph/texture-cache";
 import { Container } from "@pixi/display";
-import { SmoothGraphics } from "@pixi/graphics-smooth";
-import { Rectangle } from "@pixi/core";
-import { Sprite } from "@pixi/sprite";
-import { Circle } from "@pixi/math";
 import PixiNode from "@/components/Graph/lib/PixiNode";
-import { Text } from "@pixi/text";
-import NodeLabelRender from "@/components/Graph/render/node-label";
 
 export const createCircle = ({ app }) => {
   const nodeContainer = new Container();

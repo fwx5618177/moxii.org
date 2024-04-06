@@ -1,11 +1,12 @@
 import { CharacterOptions } from "Graph";
-import * as PIXI from "pixi.js";
+import { Sprite } from "@pixi/sprite";
+import { Application } from "@pixi/app";
 
 export const loadCharacter = (
-  app: PIXI.Application,
+  app: Application,
   options: CharacterOptions
-): PIXI.Sprite => {
-  const character = PIXI.Sprite.from(options.imagePath);
+): Sprite => {
+  const character = Sprite.from(options.imagePath);
   app.stage.addChild(character);
   return character;
 };

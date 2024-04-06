@@ -1,4 +1,5 @@
-export { TextStyle, BitmapText } from "pixi.js";
+export { TextStyle } from "@pixi/text";
+export { BitmapText } from "@pixi/text-bitmap";
 export { PixiGraph } from "./graph";
 export type {
   NodeStyle,

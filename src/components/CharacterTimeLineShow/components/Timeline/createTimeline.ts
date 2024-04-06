@@ -5,6 +5,8 @@ import { Application } from "@pixi/app";
 import { Container } from "@pixi/display";
 import { SmoothGraphics } from "@pixi/graphics-smooth";
 import { Sprite } from "@pixi/sprite";
+import { Text } from "@pixi/text";
+import { Graphics } from "@pixi/graphics";
 
 const setCircleStyle = ({ graphics, style, x, y, radius }) => {
   graphics.clear();
@@ -126,62 +128,62 @@ export const createTimeline = (
       animateRipple();
     };
 
-    eventGraphics.on("pointerover", () => {
-      if (isClicked) return;
+    // eventGraphics.on("pointerover", () => {
+    //   if (isClicked) return;
 
-      setCircleStyle({
-        graphics: eventGraphics,
-        style: config.hoverStyle,
-        x: eventRadius,
-        y: eventRadius,
-        radius: eventRadius,
-      });
-      setTextStyle({
-        text: eventText,
-        style: config.hoverStyle,
-        x: timelineX + textPaddingX,
-        y: eventY - textPaddingY,
-      });
-    });
+    //   setCircleStyle({
+    //     graphics: eventGraphics,
+    //     style: config.hoverStyle,
+    //     x: eventRadius,
+    //     y: eventRadius,
+    //     radius: eventRadius,
+    //   });
+    //   setTextStyle({
+    //     text: eventText,
+    //     style: config.hoverStyle,
+    //     x: timelineX + textPaddingX,
+    //     y: eventY - textPaddingY,
+    //   });
+    // });
 
-    eventGraphics.on("pointerout", () => {
-      if (isClicked) return;
+    // eventGraphics.on("pointerout", () => {
+    //   if (isClicked) return;
 
-      setCircleStyle({
-        graphics: eventGraphics,
-        style: config.normalStyle,
-        x: eventRadius,
-        y: eventRadius,
-        radius: eventRadius,
-      });
+    //   setCircleStyle({
+    //     graphics: eventGraphics,
+    //     style: config.normalStyle,
+    //     x: eventRadius,
+    //     y: eventRadius,
+    //     radius: eventRadius,
+    //   });
 
-      setTextStyle({
-        text: eventText,
-        style: config.normalStyle,
-        x: timelineX + textPaddingX,
-        y: eventY - textPaddingY,
-      });
-    });
+    //   setTextStyle({
+    //     text: eventText,
+    //     style: config.normalStyle,
+    //     x: timelineX + textPaddingX,
+    //     y: eventY - textPaddingY,
+    //   });
+    // });
 
-    eventGraphics.on("click", () => {
-      isClicked = !isClicked;
+    // eventGraphics.on("click", () => {
+    //   isClicked = !isClicked;
 
-      createRippleEffect(circleX, circleY, timelineContainer);
+    //   createRippleEffect(circleX, circleY, timelineContainer);
 
-      setCircleStyle({
-        graphics: eventGraphics,
-        style: config.clickStyle,
-        x: eventRadius,
-        y: eventRadius,
-        radius: eventRadius,
-      });
-      setTextStyle({
-        text: eventText,
-        style: config.clickStyle,
-        x: timelineX + textPaddingX,
-        y: eventY - textPaddingY,
-      });
-    });
+    //   setCircleStyle({
+    //     graphics: eventGraphics,
+    //     style: config.clickStyle,
+    //     x: eventRadius,
+    //     y: eventRadius,
+    //     radius: eventRadius,
+    //   });
+    //   setTextStyle({
+    //     text: eventText,
+    //     style: config.clickStyle,
+    //     x: timelineX + textPaddingX,
+    //     y: eventY - textPaddingY,
+    //   });
+    // });
   });
 
   return timelineContainer;

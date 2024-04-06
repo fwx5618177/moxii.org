@@ -212,7 +212,7 @@ declare module "Components" {
     children: TocTypes[];
   };
 
-  interface ArticleStatus {
+  interface ArticleStatusType {
     status: PostStatusEnum;
     onStatusChange?: (newStatus: PostStatusEnum) => void;
   }

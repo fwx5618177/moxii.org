@@ -1,9 +1,9 @@
-import { ArticleStatus } from "Components";
+import { ArticleStatusType } from "Components";
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { PostStatusEnum } from "@/types/common";
 
-const ArticleStatus: FC<ArticleStatus> = ({ status, onStatusChange }) => {
+const ArticleStatus: FC<ArticleStatusType> = ({ status, onStatusChange }) => {
   // 根据状态显示不同的按钮样式或文本
   const renderButton = () => {
     switch (status) {

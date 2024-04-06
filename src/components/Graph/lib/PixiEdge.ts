@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { Container } from "@pixi/display";
-import { InteractionEvent } from "@pixi/interaction";
 import { IPointData } from "@pixi/math";
 import { TypedEmitter } from "tiny-typed-emitter";
 import { EdgeStyle, PixiEdgeEvents } from "../interfaces/lib.interface";
@@ -10,7 +10,6 @@ class PixiEdge extends TypedEmitter<PixiEdgeEvents> {
   edgeGfx: Container;
   edgePlaceholderGfx: Container = new Container();
   edgeRender: EdgeRender;
-
   hovered: boolean = false;
 
   constructor() {

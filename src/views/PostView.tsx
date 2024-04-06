@@ -59,7 +59,7 @@ const PostView: FC<PostViewProps> = ({ defaultData, postData }) => {
                     justifyContent: "flex-start",
                   }}
                 >
-                  <FaHistory className={styles} color="#4c4948" />
+                  <FaHistory color="#4c4948" />
                   <span
                     style={{
                       marginLeft: 5,

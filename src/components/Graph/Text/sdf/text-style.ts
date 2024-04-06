@@ -4,7 +4,7 @@ import {
   TextStyle,
   TextStyleFill,
 } from "@pixi/text";
-import { utils } from "pixi.js";
+import { hex2rgb } from "@pixi/utils";
 
 const defaultStyle = {
   align: "left",
@@ -75,7 +75,7 @@ export default class TextStyleExtension extends TextStyle {
   }
 
   set fill(value: number) {
-    const outputColor = utils.hex2rgb(value);
+    const outputColor = hex2rgb(value);
     if (this._fill !== outputColor) {
       this._fill = outputColor as TextStyleFill;
       this.styleID++;

@@ -1,5 +1,6 @@
 declare module "Graph" {
-  import * as PIXI from "pixi.js";
+  import { Application } from "@pixi/app";
+  import { Sprite } from "@pixi/sprite";
 
   interface CharacterOptions {
     imagePath: string;

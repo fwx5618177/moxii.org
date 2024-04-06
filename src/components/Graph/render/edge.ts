@@ -1,5 +1,5 @@
 import { Container, DisplayObject } from "@pixi/display";
-import { Texture } from "pixi.js";
+import { Texture } from "@pixi/core";
 import { Sprite } from "@pixi/sprite";
 import { Node_Config_Name } from "../config/config";
 import { TextureCache } from "../texture-cache";
@@ -19,7 +19,7 @@ class EdgeRender {
   createEdge() {
     // edgeGfx -> edgeLine
     this.edgeLine = new Sprite(Texture.WHITE);
-    this.edgeLine.name = Node_Config_Name.EDGE_LINE;
+    this.edgeLine.pluginName = Node_Config_Name.EDGE_LINE;
     this.edgeLine.anchor.set(0.5);
     this.edgeGfx.addChild(this.edgeLine);
   }
