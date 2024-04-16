@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { extensions } from "@pixi/extensions";
 import { TickerPlugin } from "@pixi/ticker";
 import { AppLoaderPlugin, IAddOptions } from "@pixi/loaders";

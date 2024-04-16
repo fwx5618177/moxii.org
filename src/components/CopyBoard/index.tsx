@@ -2,6 +2,7 @@ import ClipboardJS from "clipboard";
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import { FcOk, FcHighPriority } from "react-icons/fc";
+import { message } from "antd";
 
 type CopyBoardProps = {
   text: string;
@@ -11,9 +12,6 @@ type CopyBoardProps = {
 
 const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
-  const [status, setStatue] = useState<"success" | "error" | "default">(
-    "default"
-  );
 
   const handleCopy = () => {
     const clipboard = new ClipboardJS(btnRef.current as any, {
@@ -22,22 +20,13 @@ const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
 
     clipboard.on("success", () => {
       onCopy?.(text);
-      setStatue("success");
 
-      setTimeout(() => {
-        setStatue("default");
-      }, 3000);
-
+      message.success("Copied!");
       clipboard.destroy();
     });
 
     clipboard.on("error", () => {
-      setStatue("error");
-
-      setTimeout(() => {
-        setStatue("default");
-      }, 3000);
-
+      message.error("Copied failed!");
       clipboard.destroy();
     });
   };
@@ -48,13 +37,7 @@ const CopyBoard: FC<CopyBoardProps> = ({ text, onCopy, children }) => {
 
   return (
     <button className={styles.copied} ref={btnRef} onClick={handleCopy}>
-      {status === "success" ? (
-        <FcOk />
-      ) : status === "error" ? (
-        <FcHighPriority />
-      ) : (
-        children
-      )}
+      {children}
     </button>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import style from "./index.module.scss";
 
 const slugify = (text: string) =>
   text.toLowerCase().replace(/\s+/g, "-").replace(/[:]/g, "");
@@ -9,13 +10,13 @@ const Heading = ({ level, children }) => {
 
   const Component = React.createElement(
     Tag,
-    { id: slug },
-    <>
-      {children}
-      <a href={`#${slug}`} className="anchor">
-        ¶
+    { id: slug, className: style["heading"] },
+    <React.Fragment>
+      {children}{" "}
+      <a href={`#${slug}`} className={style["anchor"]}>
+        #
       </a>
-    </>
+    </React.Fragment>
   );
 
   return Component;

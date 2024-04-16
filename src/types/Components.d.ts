@@ -257,4 +257,16 @@ declare module "Components" {
     pushCount: number;
     pushDate: string;
   }
+
+  interface CodeBlockProps {
+    language: string;
+    text: string;
+    setTheme?: Dispatch<SetStateAction<string>>;
+    children?: ReactNode;
+  }
+
+  interface DropdownSelectorProps {
+    dataList: string[];
+    onChange: (value: string) => void;
+  }
 }
