@@ -2,7 +2,7 @@ import React from "react";
 import style from "./index.module.scss";
 
 const slugify = (text: string) =>
-  text.toLowerCase().replace(/\s+/g, "-").replace(/[:]/g, "");
+  text?.toLowerCase()?.replace(/\s+/g, "-")?.replace(/[:]/g, "");
 
 const Heading = ({ level, children }) => {
   const slug = slugify(children);
