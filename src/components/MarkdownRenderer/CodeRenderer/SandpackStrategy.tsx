@@ -13,10 +13,10 @@ const SandpackStrategy: FC<ICodeRenderStrategy> = ({
   language,
   className,
 }) => {
-  const { sandpack } = props;
-  const parseJson = JSON.parse(sandpack);
-
-  console.log(parseJson);
+  const { html, type } = props;
+  const isLink = type === "link";
+  const blob = new Blob([html], { type: "text/html" });
+  const url = isLink ? html : URL.createObjectURL(blob);
 
   return (
     <div
@@ -24,27 +24,18 @@ const SandpackStrategy: FC<ICodeRenderStrategy> = ({
         margin: "2rem 0",
       }}
     >
-      <Sandpack
-        theme={sandpack?.theme || "dark"}
-        files={{
-          "/App.js": {
-            code: children,
-          },
+      <iframe
+        style={{
+          width: "100%",
+          height: 900,
+          outline: "1px solid #252525",
+          border: 0,
+          borderRadius: 8,
+          marginBottom: 16,
+          zIndex: 100,
         }}
-        template={language as SandpackPredefinedTemplate}
-        options={{
-          showNavigator: true,
-          showTabs: true,
-          showLineNumbers: true,
-          showReadOnly: true,
-          externalResources: ["https://cdn.tailwindcss.com"],
-          autoReload: true,
-          autorun: true,
-          initMode: "user-visible",
-          initModeObserverOptions: { rootMargin: `1000px 0px` },
-          editorHeight: 500,
-        }}
-      />
+        src={url}
+      ></iframe>
     </div>
   );
 };

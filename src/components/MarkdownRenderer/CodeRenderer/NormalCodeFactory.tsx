@@ -7,7 +7,7 @@ import SandpackStrategy from "./SandpackStrategy";
 const NormalCodeFactory: FC<ICodeRenderStrategy> = (props) => {
   const { language, props: hProperties } = props;
 
-  switch (hProperties.type) {
+  switch (hProperties.mode) {
     case "sandpack":
       return <SandpackStrategy {...props} />;
     default:

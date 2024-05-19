@@ -1,5 +1,5 @@
 ---
-title: 【DevOps】如何搭建 CI/CD
+title: 【DevOps】如何基于 Github 搭建 CI/CD
 tags:
   - kubernetes
   - Docker Swarm
@@ -16,3 +16,7 @@ tags:
 # 如何搭建 CI/CD 平台
 
 > 本文主要为搭建 CI/CD 发布流程的一些经验之谈
+> 包含内容有：
+>
+> 1. Github Action
+> 2. Docker Swarm

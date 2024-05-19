@@ -14,7 +14,11 @@ class SimplePlantUMLPlugin {
 }
 ```
 
-```react codesandbox=react-component?name=App.tsx
+```rust codesandbox=new?name=/test.rs&external="https://codesandbox.io/p/sandbox/fork-syscall-example-7giodp?file=/src/main.rs"
+pub const a = 1;
+```
+
+```react codesandbox=new?name=/App.js
 export default function Example() {
   return (
     <div className="bg-gray-50">
@@ -160,4 +164,68 @@ docker-compose down -v
 docker-compose up -d
 
 echo "end."
+```
+
+This is a youtube video:
+
+https://www.youtube.com/watch?v=aoLhACqJCUg
+
+This is a photo:
+
+https://www.flickr.com/photos/pedrocaetano/27432477888
+
+This another photo:
+
+http://www.23hq.com/mprove/photo/66422006
+
+Check it out 👆
+
+## js
+
+这是测试:
+
+```js
+const a = 1;
+const b = 2;
+const c = 3;
+```
+
+加上`codesandbox=new`:
+
+```react codesandbox=new
+const a = 1;
+```
+
+加上`codesandbox=new?style=height:1000px;width:600px&name=App.tsx`:
+
+```react codesandbox=new?style=height:1000px;width:600px
+const a = 1;
+```
+
+```javascript
+const a = 1;
+```
+
+```react codesandbox=new
+const a = 1;
+```
+
+```react codesandbox=new?style=height:1000px;width:600px
+const a = 1;
+```
+
+## React
+
+```react
+const a = 1;
+```
+
+```react codesandbox=new
+const a = 1;
+```
+
+```react codesandbox=new?style=height:1000px;width:600px&theme=dark
+const a = 1;
+const a = 1;
+const a = 1;
 ```

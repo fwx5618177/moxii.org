@@ -8,9 +8,9 @@ import rehypeKatex from "rehype-katex";
 import remarkToc from "remark-toc";
 import rehypeRaw from "rehype-raw";
 import simplePlantUML from "@akebifiky/remark-simple-plantuml";
-import codeSandBox from "remark-codesandbox-newest";
+import codeSandBox from "remark-codesandbox-sandpack";
 import "katex/dist/katex.min.css";
-import { Pluggable } from "unified";
+import { Pluggable, PluggableList } from "unified";
 
 const components = {
   h1: H1,
@@ -35,12 +35,15 @@ const remarkPlugins: Array<Pluggable> = [
     },
   ],
   [simplePlantUML, { baseUrl: "https://www.plantuml.com/plantuml/svg" }],
+  codeSandBox
+];
+
+const rehypePlugins: PluggableList = [
+  rehypeKatex,
   [
-    codeSandBox,
+    rehypeRaw,
     {
-      mode: "iframe",
-      runtime: "browser",
-      type: "sandpack",
+      allowDangerousHtml: true,
     },
   ],
 ];
@@ -50,15 +53,7 @@ const MarkdownRenderer = ({ content }) => {
     <ReactMarkdown
       components={components}
       remarkPlugins={remarkPlugins}
-      rehypePlugins={[
-        rehypeKatex,
-        [
-          rehypeRaw,
-          {
-            allowDangerousHtml: true,
-          },
-        ],
-      ]}
+      rehypePlugins={rehypePlugins}
     >
       {content}
     </ReactMarkdown>
